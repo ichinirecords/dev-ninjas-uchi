@@ -1,22 +1,26 @@
+require("dotenv").config();
 import { Pool } from "pg";
 
-const dbUrl = process.env.DATABASE_URL || "postgres://localhost:5432/cyf";
-
 const pool = new Pool({
-	connectionString: dbUrl,
-	connectionTimeoutMillis: 5000,
+  user: process.env.DB_USER,
+  host: process.env.DB_URL,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: 5432,
+  //connectionString: dbUrl,
+  connectionTimeoutMillis: 5000,
 });
 
 export const connectDb = async () => {
-	let client;
-	try {
-		client = await pool.connect();
-	} catch (err) {
-		console.error(err);
-		process.exit(1);
-	}
-	console.log("Postgres connected to", client.database);
-	client.release();
+  let client;
+  try {
+    client = await pool.connect();
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  console.log("Postgres connected to", client.database);
+  client.release();
 };
 
 export const disconnectDb = () => pool.close();
