@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AdminLogIn = ({ logIn, setLogIn }) => {
+const AdminLogin = () => {
   const classes = useStyles();
 
   const Copyright = () => {
@@ -50,7 +50,6 @@ const AdminLogIn = ({ logIn, setLogIn }) => {
   };
 
   return (
-    <div className={logIn ? 'admin' : 'd-none'}>
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <div className={classes.paper}>
@@ -58,7 +57,7 @@ const AdminLogIn = ({ logIn, setLogIn }) => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component='h1' variant='h5'>
-            Admin Log In
+            Admin Login
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -93,9 +92,8 @@ const AdminLogIn = ({ logIn, setLogIn }) => {
               variant='contained'
               color='primary'
               className={classes.submit}
-              onClick={() => setLogIn(false)}
             >
-              Log In
+              Login
             </Button>
             <Grid container>
               <Grid item xs>
@@ -115,8 +113,7 @@ const AdminLogIn = ({ logIn, setLogIn }) => {
           <Copyright />
         </Box>
       </Container>
-    </div>
   );
 };
 
-export default AdminLogIn;
+export default AdminLogin;
