@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', 
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -34,7 +35,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AdminLogin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const classes = useStyles();
+  
+  //TODO send a get api request to access and approve submitted contents
+  const handleLogin = () => {
+    fetch(`/admin?email=${email}&password=${password}`)
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
 
   const Copyright = () => {
     return (
@@ -70,6 +80,7 @@ const AdminLogin = () => {
               name='email'
               autoComplete='email'
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               variant='outlined'
@@ -81,6 +92,7 @@ const AdminLogin = () => {
               type='password'
               id='password'
               autoComplete='current-password'
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value='remember' color='primary' />}
@@ -92,6 +104,7 @@ const AdminLogin = () => {
               variant='contained'
               color='primary'
               className={classes.submit}
+              onClick={handleLogin}
             >
               Login
             </Button>
