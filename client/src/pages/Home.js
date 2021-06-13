@@ -30,7 +30,7 @@ export function Home() {
 					<img className="logo" data-qa="logo" src={logo} alt="Just the React logo" />
 					<div className='about-and-login'>
 						<Button color='primary' className='about' component={Link} to="/about/this/site">About</Button>
-						<Button component={Link} to="/admin" color='primary'>Admin Login</Button>
+						<Button component={Link} to="/login" color='primary'>Admin Login</Button>
 					</div>
 				</header>
 				<h1 className="message" data-qa="message">{message}</h1>

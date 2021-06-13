@@ -24,3 +24,5 @@ CREATE TABLE artwork (
 	FOREIGN KEY (admin_id)
         REFERENCES admins (id)
 );
+
+INSERT INTO admins (username, pass) VALUES ('user1', '$2b$10$MVxoipkq1jsFrwZJeiE6Y.hXPC0aSkeYDrW5DMa2jXmUh1BDca2Yq'); //pw is qwerty
