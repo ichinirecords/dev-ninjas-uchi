@@ -1,16 +1,23 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Button } from "@material-ui/core";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const AdminPanel = () => {
-	const location = useLocation();
-	const [username, setUsername] = useState("");
+const AdminPanel = ({user, setUser}) => {
 
 	let history = useHistory();
 
-	useEffect(()=>{ if (location.state && location.state.username){
-		setUsername(location.state.username)
-	}},[location]);
+	useEffect(()=>{ 
+		console.log(user)
+		fetch('/api/ping')
+		.then(res => {
+			if (res.status === 401) {
+				setUser("")
+			} else {
+				return res.json()
+			}
+		})
+		.then(data => setUser(data))
+	},[]);
 
 	const handleLogout = () => {
 		fetch("/api/logout")
@@ -25,18 +32,18 @@ const AdminPanel = () => {
 
 	return (
     <>
-      {username.length < 1 && <div>User not logged in</div>}
-      {username.length > 0 && (
-		<>
-        <div className="about-and-login">
-          <Button onClick={handleLogout} color="primary">
-            Logout
-          </Button> 
-        </div>
-		<div>
-			Welcome, {username}
-		</div>
-		</>
+      {!user && (
+        <div>User not logged in</div>
+      )}
+      {user && user.username && (
+        <>
+          <div className="about-and-login">
+            <Button onClick={handleLogout} color="primary">
+              Logout
+            </Button>
+          </div>
+          <div>Welcome, {user.username}</div>
+        </>
       )}
     </>
   );

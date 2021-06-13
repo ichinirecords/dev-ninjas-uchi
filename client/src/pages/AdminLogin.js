@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AdminLogin = () => {
+const AdminLogin = ({setUser}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const classes = useStyles();
@@ -60,10 +60,8 @@ const AdminLogin = () => {
 	})
     .then(data => {
 		if (data.username) {
-			history.push({
-				pathname: "/admin",
-				state: { username: data.username },
-			});
+			setUser(data);
+			history.push("/admin");
 		} else {
 			alert("incorrect login details");
 		}		
@@ -132,7 +130,7 @@ const AdminLogin = () => {
             >
               Login
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href='#' variant='body2'>
                   Forgot password?
@@ -143,7 +141,7 @@ const AdminLogin = () => {
                   {"Don't have an admin account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </form>
         </div>
         <Box mt={8}>

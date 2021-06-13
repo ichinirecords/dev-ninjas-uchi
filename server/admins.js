@@ -1,7 +1,6 @@
 module.exports = {
   login: (req, res) => {
     const { user } = req;
-
     res.json(user);
   },
 
@@ -16,6 +15,8 @@ module.exports = {
   },
 
   ping: function (req, res) {
-    res.sendStatus(200);
+	const { user } = req;
+    res.send(user);
+    //res.sendStatus(200);
   },
 };
