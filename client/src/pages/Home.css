@@ -1,11 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
 .logo {
-    width: 100px;
+  width: 100px;
 }
 
 .message {
-    color: blue;
+  color: blue;
 }
 
 .message:hover {
-    background-color: yellow;
+  background-color: yellow;
+}
+
+.d-none {
+  display: none;
+}
+.about-and-login {
+  float: right;
+  margin: 2em;
+}
+.about {
+  margin-right: 2em;
 }
