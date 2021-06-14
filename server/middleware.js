@@ -34,3 +34,8 @@ export const pushStateRouting = (apiRoot, staticDir) => (req, res, next) => {
 	}
 	next();
 };
+
+export const requiresLogin = (req, res, next) => {
+	if (req.user) return next()
+	res.sendStatus(401)
+};
