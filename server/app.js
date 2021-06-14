@@ -26,9 +26,9 @@ let sessionOptions = {
   },
 };
 
-// if (process.env.PORT !== 3100) {
-//   sessionOptions.cookie.secure = true;
-// }
+if (process.env.MODE !== "dev") {
+  sessionOptions.cookie.secure = true;
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false, limit: "20mb" }));
