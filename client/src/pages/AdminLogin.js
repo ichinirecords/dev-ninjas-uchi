@@ -116,12 +116,13 @@ const AdminLogin = ({setUser}) => {
               autoComplete='current-password'
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value='remember' color='primary' />}
               label='Remember me'
-            />
+            /> */}
             <Button
               type='submit'
+			  id='submit'
               fullWidth
               variant='contained'
               color='primary'

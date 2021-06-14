@@ -16,7 +16,7 @@
     "preserve": "npm run build",
     "serve": "npm start",
     "start": "node dist/server.js",
-    "test": "mocha -u tdd ./server/tests/functional-tests.js"
+    "test": "testcafe chrome tests/"
   },
   "repository": {
     "type": "git",
@@ -57,6 +57,7 @@
     "react-router-dom": "^5.2.0",
     "rimraf": "^3.0.2",
     "style-loader": "^2.0.0",
+    "testcafe": "^1.14.2",
     "wait-on": "^5.3.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2",
@@ -68,14 +69,11 @@
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "bcrypt": "^5.0.1",
-    "chai": "^4.3.4",
-    "chai-http": "^4.3.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "helmet": "^4.6.0",
-    "mocha": "^9.0.0",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

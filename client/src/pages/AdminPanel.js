@@ -42,7 +42,7 @@ const AdminPanel = ({user, setUser}) => {
               Logout
             </Button>
           </div>
-          <div>Welcome, {user.username}</div>
+          <div id="welcome">Welcome, {user.username}</div>
         </>
       )}
     </>
