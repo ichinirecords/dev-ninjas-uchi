@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import ArtistsStoryCards from "../components/ArtistsStoryCards";
 
 const AdminPanel = ({user, setUser}) => {
 
 	let history = useHistory();
 
 	useEffect(()=>{ 
-		console.log(user)
 		fetch('/api/ping')
 		.then(res => {
 			if (res.status === 401) {
@@ -32,9 +32,7 @@ const AdminPanel = ({user, setUser}) => {
 
 	return (
     <>
-      {!user && (
-        <div>User not logged in</div>
-      )}
+      {!user && <div>User not logged in</div>}
       {user && user.username && (
         <>
           <div className="about-and-login">
@@ -43,6 +41,8 @@ const AdminPanel = ({user, setUser}) => {
             </Button>
           </div>
           <div id="welcome">Welcome, {user.username}</div>
+          <h2>Artwork to approve</h2>
+          <ArtistsStoryCards isAdmin={true}/>
         </>
       )}
     </>
