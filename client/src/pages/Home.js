@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import logo from "./logo.svg";
 import { Button } from '@material-ui/core';
+import ArtistsStoryCards from '../components/ArtistsStoryCards';
 
 export function Home() {
 	const [message, setMessage] = useState("Loading...");
@@ -35,6 +36,7 @@ export function Home() {
 				</header>
 				<h1 className="message" data-qa="message">{message}</h1>
 			</div>
+			<ArtistsStoryCards/>
 		</main>
 	);
 }

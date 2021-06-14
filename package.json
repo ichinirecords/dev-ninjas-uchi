@@ -79,7 +79,9 @@
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "react-lorem-ipsum": "^1.4.9",
+    "react-read-more-read-less": "^1.0.7"
   },
   "engines": {
     "node": "^10 || ^12 || ^14 || ^16"
