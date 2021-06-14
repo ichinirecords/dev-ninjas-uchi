@@ -21,3 +21,20 @@
 .about {
   margin-right: 2em !important;
 }
+.cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  place-items: center;
+  width: 95%;
+  gap: 2em;
+  margin: auto;
+  padding-bottom: 5em;
+}
+
+.react-read-more-read-less-more, 
+.react-read-more-read-less{
+  color: crimson;
+  font-weight: bold;
+}
+
