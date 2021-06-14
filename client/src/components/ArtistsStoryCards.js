@@ -34,8 +34,8 @@ const ArtistsStoryCards = ({ isAdmin }) => {
         .catch((err) => console.log(err));
     }
   }, [isAdmin]);
-  console.log(submittedArtwork)
 
+  // function to accept/reject submitted artwork
   const changeStatus = (id, newStatus) => {
     fetch(`/api/artwork/${id}`, {
       method: "PUT",
