@@ -41,7 +41,7 @@ const createUpdateQuery = (validFields) => {
   for (let i in validFields) {
     query += ` ${i}=$${counter},`;
     counter++;
-	queryArray.push(validFields[i])
+    queryArray.push(validFields[i]);
   }
   query = query.slice(0, -1);
   query += ` WHERE id=$${counter}`;
@@ -60,5 +60,15 @@ export const updateArtwork = (req, res) => {
     .then((result) =>
       res.json({ success: `Artwork ${artworkId} updated successfully` })
     )
+    .catch((e) => console.error(e));
+};
+
+export const getArtwork = (req, res) => {
+  const status = req.query.status;
+  let getQuery = `SELECT * FROM artwork`;
+  if (Object.keys(req.query).length > 0) getQuery += " WHERE ";
+  if (status) getQuery += `artwork_status = '${status}'`;
+  db.query(getQuery)
+    .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 };
