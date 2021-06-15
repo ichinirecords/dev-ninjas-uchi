@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -5,14 +6,29 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import loremIpsum from "react-lorem-ipsum";
+=======
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import loremIpsum from 'react-lorem-ipsum';
+>>>>>>> Created educational and header components
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
+<<<<<<< HEAD
     width: "100%",
     backgroundColor: "#b1b19c",
     height: "auto",
+=======
+    width: '100%',
+    backgroundColor: '#b1b19c',
+    height: 'auto'
+>>>>>>> Created educational and header components
   },
   title: {
     fontSize: 22,
@@ -30,6 +46,13 @@ const ArtistsStoryCards = ({ isAdmin }) => {
       {loremIpsum({ p: 15 }).map((text, index) => {
         return (
           <Card key={index} className={classes.root}>
+            <CardMedia
+              component="img"
+              alt="Contemplative Reptile"
+              height="240"
+              image="https://cdn.pixabay.com/photo/2020/06/17/12/40/artistic-5309339_960_720.jpg"
+              title="Contemplative Reptile"
+            />
             <CardContent>
               <CardMedia
                 component="img"
