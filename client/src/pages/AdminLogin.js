@@ -82,72 +82,73 @@ const AdminLogin = ({setUser}) => {
   };
 
   return (
-    <Container component='main' maxWidth='xs'>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component='h1' variant='h5'>
-          Admin Login
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            id='email'
-            label='Email Address'
-            name='email'
-            autoComplete='email'
-            autoFocus
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            id='password'
-            autoComplete='current-password'
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <FormControlLabel
-            control={<Checkbox value='remember' color='primary' />}
-            label='Remember me'
-          />
-          <Button
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}
-            onClick={handleLogin}
-          >
-            Login
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href='#' variant='body2'>
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='#' variant='body2'>
-                {"Don't have an admin account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
+            Admin Login
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField
+              variant='outlined'
+              margin='normal'
+              required
+              fullWidth
+              id='username'
+              label='Username'
+              name='username'
+              autoComplete='username'
+              autoFocus
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <TextField
+              variant='outlined'
+              margin='normal'
+              required
+              fullWidth
+              name='password'
+              label='Password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {/* <FormControlLabel
+              control={<Checkbox value='remember' color='primary' />}
+              label='Remember me'
+            /> */}
+            <Button
+              type='submit'
+			  id='submit'
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+              onClick={handleLogin}
+            >
+              Login
+            </Button>
+            {/* <Grid container>
+              <Grid item xs>
+                <Link href='#' variant='body2'>
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href='#' variant='body2'>
+                  {"Don't have an admin account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid> */}
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
   );
 };
 

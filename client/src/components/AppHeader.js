@@ -146,7 +146,7 @@ const AppHeader = () => {
               <Button style={{ color: 'aliceblue' }}>Videos</Button>
               <Button style={{ color: 'aliceblue' }}>Images</Button>
               <Button style={{ color: 'aliceblue' }} className='about' component={Link} to="/about/this/site">About</Button>
-              <Button style={{ color: 'aliceblue' }} component={Link} to="/admin">Admin Login</Button>
+              <Button style={{ color: 'aliceblue' }} component={Link} to="/login">Admin Login</Button>
             </div>
           </div>
         </Toolbar>
