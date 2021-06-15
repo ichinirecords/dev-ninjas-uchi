@@ -177,7 +177,7 @@ const ArtistsStoryCards = ({ isAdmin }) => {
             </Card>
           );
         })}
-		{submittedArtwork.length === 0 && (<div>No artwork to approve</div>)}
+		{isAdmin && submittedArtwork.length === 0 && (<div>No artwork to approve</div>)}
     </div>
   );
 };

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import Sticky from "react-stickynode";
+
 import "./Home.css";
 import ArtistsStoryCards from '../components/ArtistsStoryCards';
 import AppHeader from '../components/AppHeader';
 import Educational from '../components/Educational';
+import DonateLink from "../components/DonateLink";
 
 export function Home() {
 	const [message, setMessage] = useState("Loading...");
@@ -24,12 +27,17 @@ export function Home() {
 	}, []);
 
 	return (
-		<main className='main' role="main">
-			<AppHeader />
-			<Educational />
-			<ArtistsStoryCards />
-		</main>
-	);
+    <>
+      <Sticky enabled={true} top={50} >
+        <DonateLink />
+      </Sticky>
+      <main className="main" role="main">
+        <AppHeader />
+        <Educational />
+        <ArtistsStoryCards />
+      </main>
+    </>
+  );
 }
 
 export default Home;
