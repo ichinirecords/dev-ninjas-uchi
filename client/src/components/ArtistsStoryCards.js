@@ -130,13 +130,13 @@ const ArtistsStoryCards = ({ isAdmin }) => {
                   }}
                   gutterBottom
                 >
-                  Title of the Story
+                  {artwork.title}
                 </Typography>
                 <Typography
                   className={classes.pos}
                   style={{ color: "midnightblue", fontWeight: "600" }}
                 >
-                  By: {artwork.title}
+                  By: {artwork.artist_name}
                   <br />
                   Country: {artwork.country}
                   <br />
