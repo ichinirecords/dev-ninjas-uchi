@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useState } from 'react';
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,16 +34,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AdminLogin = () => {
-  const [email, setEmail] = useState('');
+const AdminLogin = ({setUser}) => {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const classes = useStyles();
 
-  //TODO send a get api request to access and approve submitted contents
-  const handleLogin = () => {
-    fetch(`/admin?email=${email}&password=${password}`)
-      .then(res => res.json())
-      .then(data => console.log(data))
+  let history = useHistory();
+  
+  //Send a post api request to login admin
+  const handleLogin = (e) => {
+	e.preventDefault();
+	fetch(`/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({username: username, password: password}),
+    })
+    .then(res => {
+		if (res.status === 401) {
+			return "Unauthorised"
+		} else {
+			return res.json()
+		}
+	})
+    .then(data => {
+		if (data.username) {
+			setUser(data);
+			history.push("/admin");
+		} else {
+			alert("incorrect login details");
+		}		
+	})
   }
 
   const Copyright = () => {
@@ -80,7 +102,7 @@ const AdminLogin = () => {
             name='email'
             autoComplete='email'
             autoFocus
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             variant='outlined'
