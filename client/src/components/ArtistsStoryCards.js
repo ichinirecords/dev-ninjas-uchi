@@ -1,17 +1,18 @@
-import React, {useState, useEffect} from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import loremIpsum from "react-lorem-ipsum";
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import loremIpsum from 'react-lorem-ipsum';
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
-    backgroundColor: "rgb(228, 218, 250)",
-    height: "auto",
+    width: '100%',
+    backgroundColor: '#b1b19c',
+    height: 'auto'
   },
   title: {
     fontSize: 22,
@@ -71,6 +72,13 @@ const ArtistsStoryCards = ({ isAdmin }) => {
           return (
             <Card key={index} className={classes.root}>
               <CardContent>
+				  <CardMedia
+              component="img"
+              alt="Contemplative Reptile"
+              height="240"
+              image="https://cdn.pixabay.com/photo/2020/06/17/12/40/artistic-5309339_960_720.jpg"
+              title="Contemplative Reptile"
+            />
                 <Typography
                   variant="h3"
                   className={classes.title}
