@@ -1,26 +1,39 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-}
-.logo {
-  width: 100px;
+html, body {
+  min-width: fit-content;
+  margin: 0;
+  padding: 0;
 }
 
+.main {
+  background-color: rgb(46, 79, 139);
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+.intro {
+  width: 100%;
+  margin-bottom: 2em;
+}
+.foreground-text {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  text-align: justify;
+  text-justify: inter-word;
+  gap: 2em;
+  width: 95%;
+}
 .message {
   color: blue;
 }
 
-.message:hover {
-  background-color: yellow;
-}
-
-.about-and-login {
-  float: right;
+.menu-items {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   margin: 2em;
 }
-.about {
-  margin-right: 2em !important;
-}
+
 .cards-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -30,6 +43,7 @@
   gap: 2em;
   margin: auto;
   padding-bottom: 5em;
+  margin-top: 2em;
 }
 
 .react-read-more-read-less-more, 

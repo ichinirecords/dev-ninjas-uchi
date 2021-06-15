@@ -69,6 +69,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
+    "material-paper": "^0.0.8",
     "morgan": "^1.10.0",
     "pg": "^8.6.0",
     "react-lorem-ipsum": "^1.4.9",

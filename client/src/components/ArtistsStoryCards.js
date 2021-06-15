@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import loremIpsum from 'react-lorem-ipsum';
@@ -9,7 +10,7 @@ import ReactReadMoreReadLess from "react-read-more-read-less";
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    backgroundColor: 'rgb(228, 218, 250)',
+    backgroundColor: '#b1b19c',
     height: 'auto'
   },
   title: {
@@ -27,6 +28,13 @@ const ArtistsStoryCards = () => {
       {loremIpsum({ p: 15 }).map((text, index) => {
         return (
           <Card key={index} className={classes.root}>
+            <CardMedia
+              component="img"
+              alt="Contemplative Reptile"
+              height="240"
+              image="https://cdn.pixabay.com/photo/2020/06/17/12/40/artistic-5309339_960_720.jpg"
+              title="Contemplative Reptile"
+            />
             <CardContent>
               <Typography variant='h3' className={classes.title} style={{ color: 'crimson', textShadow: '1px 1px honeydew', fontWeight: 'bolder' }} gutterBottom>
                 Title of the Story
