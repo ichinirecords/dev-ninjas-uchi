@@ -32,13 +32,13 @@ const LeafletControlGeocoder = () => {
       .on("markgeocode", function (e) {
         var latlng = e.geocode.center;
 		console.log(e.geocode.properties.address)
-		console.log(
+		console.log("city",
       e.geocode.properties.address.city ||
         e.geocode.properties.address.village ||
         e.geocode.properties.address.municipality ||
         e.geocode.properties.address.county
     );
-		console.log(e.geocode.properties.address.country)
+		console.log("country",e.geocode.properties.address.country)
 		console.log("lat", e.geocode.center.lat);
 		console.log("lon", e.geocode.center.lng);
         L.marker(latlng, { icon })

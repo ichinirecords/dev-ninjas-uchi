@@ -47,6 +47,7 @@ const AdminPanel = ({user, setUser}) => {
           <ArtistsStoryCards isAdmin={true}/>
         </>
       )}
+	  {/* Just testing, to remove in the future */}
 	  <MapForm />
     </>
   );
