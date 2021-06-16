@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import AdminStoryCards from "../components/AdminStoryCards";
+import MapForm from "../components/MapForm";
+
 
 const AdminPanel = ({user, setUser}) => {
 
@@ -45,6 +47,8 @@ const AdminPanel = ({user, setUser}) => {
           <AdminStoryCards />
         </>
       )}
+	  {/* Just testing, to remove in the future */}
+	  <MapForm />
     </>
   );
 };
