@@ -19,7 +19,7 @@ CREATE TABLE artwork (
 	content_link VARCHAR(200),
 	created_on DATE,
 	artwork_status VARCHAR(20),
-	published_on DATE,
+	decision_date DATE,
 	admin_id INT,
 	FOREIGN KEY (admin_id)
         REFERENCES admins (id)

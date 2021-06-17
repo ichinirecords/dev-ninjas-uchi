@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import loremIpsum from "react-lorem-ipsum";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
 
@@ -22,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminStoryCards = () => {
+const AdminStoryCards = ({user}) => {
   const classes = useStyles();
 
   const [submittedArtwork, setSubmittedArtwork] = useState([]);
@@ -41,7 +39,7 @@ const AdminStoryCards = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ artwork_status: newStatus }),
+      body: JSON.stringify({ artwork_status: newStatus, decision_date: new Date(), admin_id: user.id }),
     })
       .then((res) => {
         if (res.status === 401) {
@@ -52,7 +50,7 @@ const AdminStoryCards = () => {
       })
       .then((data) => {
         if (data.success) {
-          alert("Status updated successfully");
+          alert(data.success);
           fetch("/api/artwork?status=submitted")
             .then((res) => res.json())
             .then((data) => setSubmittedArtwork(data))
@@ -62,6 +60,34 @@ const AdminStoryCards = () => {
         }
       });
   };
+
+  // function to delete an artwork item
+  const deleteArtwork = (id) => {
+	  fetch(`/api/artwork/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          return "Unauthorised";
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        if (data.success) {
+          alert(data.success);
+          fetch("/api/artwork?status=submitted")
+            .then((res) => res.json())
+            .then((data) => setSubmittedArtwork(data))
+            .catch((err) => console.log(err));
+        } else {
+          alert("Could delete item");
+        }
+      });
+  }
 
   return (
     <div className="cards-wrapper">
@@ -120,6 +146,13 @@ const AdminStoryCards = () => {
                       onClick={() => changeStatus(artwork.id, "rejected")}
                     >
                       Reject
+                    </Button>
+                    <Button
+                      color="primary"
+                      className="about"
+                      onClick={() => deleteArtwork(artwork.id)}
+                    >
+                      Delete
                     </Button>
                   </>
                 )}
