@@ -123,17 +123,7 @@ textarea,
   gap: 2em;
   width: 95%;
 }
-<<<<<<< HEAD
 
-.menu-items {
-=======
-/* .menu-items {
->>>>>>> Layout improvements
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  margin: 2em;
-} */
 .cards-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
