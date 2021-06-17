@@ -1,7 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import admins from "./admins";
-import upload from "./upload";
+import { artUpload } from "./upload";
 import { getArtwork, updateArtwork } from "./artwork";
 import db from "./db";
 import { requiresLogin } from "./middleware";
@@ -12,7 +12,7 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-router.post("/upload", upload.artUpload);
+router.post("/upload", artUpload);
 
 router.post("/login", passport.authenticate("local"), admins.login);
 

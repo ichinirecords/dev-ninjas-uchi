@@ -3,7 +3,7 @@ const Upload = () => {
 	const [uploadForm, setUploadForm] = useState({
 		title: "",
 		artist_name: "",
-		townCity: "",
+		city: "",
 		country: "",
 		story: "",
 	});
@@ -12,7 +12,7 @@ const Upload = () => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		fetch("/upload", {
+		fetch("/api/upload", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -29,7 +29,7 @@ const Upload = () => {
 					name="title"
 					value={uploadForm.title}
 					onChange={handleChange}
-					placeholder="Title"
+					placeholder="Art title"
 				/>
 				<br />
 				<br />
@@ -44,8 +44,8 @@ const Upload = () => {
 				<br />
 				<input
 					type="text"
-					name="townCity"
-					value={uploadForm.townCity}
+					name="city"
+					value={uploadForm.city}
 					onChange={handleChange}
 					placeholder="Town/City"
 				/>
@@ -61,13 +61,12 @@ const Upload = () => {
 				<br />
 				<br />
 				<p>Please tell us enter your story below:</p>
-				<input
-					type="text"
-					name="story"
-					value={uploadForm.story}
+				<textarea
+					type="text" name="story" value={uploadForm.story}
 					onChange={handleChange}
 					placeholder=""
 				/>
+
 				<br />
 				<br />
 				<button type="submit" className="btn">
