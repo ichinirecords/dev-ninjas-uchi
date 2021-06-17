@@ -2,7 +2,7 @@ import { Router } from "express";
 import passport from "passport";
 import admins from "./admins";
 import { artUpload } from "./upload";
-import { getArtwork, updateArtwork, deleteArtwork } from "./artwork";
+import { getArtwork, updateArtwork } from "./artwork";
 import db from "./db";
 import { requiresLogin } from "./middleware";
 
@@ -23,8 +23,6 @@ router.get("/ping", requiresLogin, admins.ping);
 router.get("/artwork", getArtwork);
 
 router.put("/artwork/:id", requiresLogin, updateArtwork);
-
-router.delete("/artwork/:id", requiresLogin, deleteArtwork);
 
 // test route to check db queries - to delete in the future
 router.get("/test", (_, res) => {
