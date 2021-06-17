@@ -3,7 +3,7 @@ import React from 'react';
 const SelectCountry = () => {
   return(
     <div className='select-country'>
-      <label for="select-country"></label>
+      <label htmlFor="select-country"></label>
       <select name="pets" id="select-country">
         <option value="">Select A Country</option>
         <option value="dog">Sudan</option>
