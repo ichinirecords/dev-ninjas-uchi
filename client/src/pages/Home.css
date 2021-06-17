@@ -1,9 +1,88 @@
-html, body {
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css);
+html,
+body {
   min-width: fit-content;
   margin: 0;
   padding: 0;
+  background-color: mediumpurple;
 }
-
+header {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+header h1 {
+  margin: 0;
+  padding: 100px 0;
+  font: 44px 'Arial';
+  text-align: left;
+  position: relative;
+  transform: skewY(7deg);
+  color: mediumpurple;
+}
+.header-contents {
+  display: grid;
+  grid-template-columns: 100px 200px 200px;
+  place-items: center;
+  width: 95%;
+  gap: 2em;
+  margin: auto;
+  margin-top: 2em;
+  margin: auto;
+  justify-content: left;
+}
+.search-input-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  padding: 0.5em;
+  transform: skewY(7deg);
+  border-radius: 0.2em;
+  margin-top: 5.3em;
+  background-color: mediumpurple;
+  height: 1.2em;
+}
+.search-bar {
+  border-radius: 0.25em;
+  padding-left: 0.5em;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: mediumpurple;
+  font-size: 1em;
+}
+input,
+textarea,
+[contenteditable] {
+  caret-color: white;
+  color: white;
+  font-size: 2em;
+}
+.fa-search {
+  font-size: 1.3em;
+  color: white;
+}
+::placeholder {
+  color: white;
+  font-size: large;
+}
+:-ms-input-placeholder {
+  color: white;
+}
+::-ms-input-placeholder {
+  color: white;
+}
+.app-title-wrapper {
+  display: flex;
+  width: 95%;
+  margin: auto;
+}
+.select-country {
+  display: flex;
+  transform: skewY(7deg);
+}
 .main {
   background-color: rgb(46, 79, 139);
   width: 100%;
@@ -23,21 +102,13 @@ html, body {
   gap: 2em;
   width: 95%;
 }
-.message {
-  color: blue;
-}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Created educational and header components
 .menu-items {
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin: 2em;
 }
-
 .cards-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -49,10 +120,33 @@ html, body {
   padding-bottom: 5em;
   margin-top: 2em;
 }
-
-.react-read-more-read-less-more, 
-.react-read-more-read-less{
+.react-read-more-read-less-more,
+.react-read-more-read-less {
   color: crimson;
   font-weight: bold;
 }
+label {
+  font-size: 1.5rem;
+  padding-right: 10px;
+}
+select {
+  font-size: 1.1rem;
+  padding: 6px 5px;
+  border-style: none;
+  border-radius: 0.2em;
+  background-color: mediumpurple;
+  color: white;
+}
+select option {
+  background: white;
+  color: black;
+}
 
+@media screen and (min-width: 300px) and (max-width: 740px) {
+  .cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
