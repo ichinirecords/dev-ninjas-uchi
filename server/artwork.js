@@ -84,7 +84,7 @@ export const getArtwork = (req, res) => {
 
 export const deleteArtwork = (req, res) => {
   const id = req.params.id;
-  db.query("SELECT * FROM artwork WHERE customer_id=$1", [id])
+  db.query("SELECT * FROM artwork WHERE id=$1", [id])
     .then((result) => {
       if (result.rows.length > 0) {
         db.query("DELETE FROM artwork WHERE id=$1", [id])

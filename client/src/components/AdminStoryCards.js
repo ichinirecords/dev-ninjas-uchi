@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
-import { deleteArtwork } from "../../../server/artwork";
 
 const useStyles = makeStyles({
   root: {
@@ -153,7 +152,7 @@ const AdminStoryCards = ({user}) => {
                       className="about"
                       onClick={() => deleteArtwork(artwork.id)}
                     >
-                      Reject
+                      Delete
                     </Button>
                   </>
                 )}
