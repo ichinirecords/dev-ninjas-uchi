@@ -88,7 +88,7 @@ export const deleteArtwork = (req, res) => {
     .then((result) => {
       if (result.rows.length > 0) {
         db.query("DELETE FROM artwork WHERE id=$1", [id])
-          .then(() => res.json({ success: `Item ${id} deleted!` }))
+          .then(() => res.send(`Item ${id} deleted!`))
           .catch((e) => console.error(e));
       } else {
         res.sendStatus(404);
