@@ -1,12 +1,12 @@
+
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import loremIpsum from "react-lorem-ipsum";
 import ReactReadMoreReadLess from "react-read-more-read-less";
-import { Button } from "@material-ui/core";
+import { loremIpsum, name, surname, fullname, username } from 'react-lorem-ipsum'
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +28,7 @@ const ArtistsStoryCards = ({ isAdmin }) => {
   return (
     <div className="cards-wrapper">
       {loremIpsum({ p: 15 }).map((text, index) => {
+        console.log(name)
         return (
           <Card key={index} className={classes.root}>
             <CardContent>
@@ -50,15 +51,12 @@ const ArtistsStoryCards = ({ isAdmin }) => {
               >
                 Title of the Story
               </Typography>
-              <Typography
-                className={classes.pos}
-                style={{ color: "midnightblue", fontWeight: "600" }}
-              >
-                By: [Name of the artist]
+              <Typography className={classes.pos} style={{ color: 'midnightblue', fontWeight: '600' }}>
+                Name: {fullname()}
                 <br />
-                Country:
+                Country: {username()}
                 <br />
-                City:
+                City: {surname()}
               </Typography>
               <Typography style={{ color: "midnightblue" }} variant="body1">
                 <ReactReadMoreReadLess
@@ -67,14 +65,16 @@ const ArtistsStoryCards = ({ isAdmin }) => {
                   readMoreText={"Read more ▼"}
                   readLessText={"Read less ▲"}
                 >
-                  {text.props.children}
+                  {text}
                 </ReactReadMoreReadLess>
               </Typography>
             </CardContent>
           </Card>
-        );
+
+        )
       })}
     </div>
+    
   );
 };
 

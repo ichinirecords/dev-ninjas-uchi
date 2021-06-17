@@ -29,6 +29,7 @@ export function Home() {
 
 	return (
 		<>
+
 			<Button component={Link} to="/upload" color="primary">
         Upload
 			</Button>
@@ -37,7 +38,6 @@ export function Home() {
 			</Sticky>
 			<main className="main" role="main">
 				<AppHeader />
-				<Educational />
 				<ArtistsStoryCards />
 			</main>
 		</>
