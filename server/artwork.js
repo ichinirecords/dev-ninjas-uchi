@@ -11,10 +11,13 @@ const validUpdateFields = [
   "content_text",
   "content_link",
   "artwork_status",
+  "decision_date",
+  "admin_id",
 ];
 
 const filterValidUpdateFields = (newFields) => {
   let validFields = {};
+  console.log(newFields)
   for (let i in newFields) {
     if (
       i === "artwork_status" &&
@@ -25,7 +28,7 @@ const filterValidUpdateFields = (newFields) => {
       validFields[i] = newFields[i];
     } else if (
       newFields[i] !== null &&
-      newFields[i].trim() != "" &&
+      String(newFields[i]).trim() != "" &&
       validUpdateFields.includes(i)
     ) {
       validFields[i] = newFields[i];

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import loremIpsum from "react-lorem-ipsum";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
 
@@ -22,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminStoryCards = () => {
+const AdminStoryCards = ({user}) => {
   const classes = useStyles();
 
   const [submittedArtwork, setSubmittedArtwork] = useState([]);
@@ -41,7 +39,7 @@ const AdminStoryCards = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ artwork_status: newStatus }),
+      body: JSON.stringify({ artwork_status: newStatus, decision_date: new Date(), admin_id: user.id }),
     })
       .then((res) => {
         if (res.status === 401) {

@@ -44,7 +44,7 @@ const AdminPanel = ({user, setUser}) => {
           </div>
           <div id="welcome">Welcome, {user.username}</div>
           <h2>Artwork to approve</h2>
-          <AdminStoryCards />
+          <AdminStoryCards user={user}/>
         </>
       )}
 	  {/* Just testing, to remove in the future */}
