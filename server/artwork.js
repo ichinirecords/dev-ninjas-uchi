@@ -1,5 +1,7 @@
 import db from "./db";
 
+// functions for PUT endpoint
+
 const validUpdateFields = [
   "artist_name",
   "title",
@@ -11,10 +13,13 @@ const validUpdateFields = [
   "content_text",
   "content_link",
   "artwork_status",
+  "decision_date",
+  "admin_id",
 ];
 
 const filterValidUpdateFields = (newFields) => {
   let validFields = {};
+  console.log(newFields);
   for (let i in newFields) {
     if (
       i === "artwork_status" &&
@@ -25,7 +30,7 @@ const filterValidUpdateFields = (newFields) => {
       validFields[i] = newFields[i];
     } else if (
       newFields[i] !== null &&
-      newFields[i].trim() != "" &&
+      String(newFields[i]).trim() != "" &&
       validUpdateFields.includes(i)
     ) {
       validFields[i] = newFields[i];
@@ -63,6 +68,8 @@ export const updateArtwork = (req, res) => {
     .catch((e) => console.error(e));
 };
 
+// function for GET endpoint
+
 export const getArtwork = (req, res) => {
   const status = req.query.status;
   let getQuery = `SELECT * FROM artwork`;
@@ -70,5 +77,22 @@ export const getArtwork = (req, res) => {
   if (status) getQuery += `artwork_status = '${status}'`;
   db.query(getQuery)
     .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
+};
+
+// function for DELETE endpoint
+
+export const deleteArtwork = (req, res) => {
+  const id = req.params.id;
+  db.query("SELECT * FROM artwork WHERE id=$1", [id])
+    .then((result) => {
+      if (result.rows.length > 0) {
+        db.query("DELETE FROM artwork WHERE id=$1", [id])
+          .then(() => res.json({ success: `Item ${id} deleted!` }))
+          .catch((e) => console.error(e));
+      } else {
+        res.sendStatus(404);
+      }
+    })
     .catch((e) => console.error(e));
 };

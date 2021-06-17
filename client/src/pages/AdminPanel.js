@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import ArtistsStoryCards from "../components/ArtistsStoryCards";
+import AdminStoryCards from "../components/AdminStoryCards";
+import MapForm from "../components/MapForm";
+
 
 const AdminPanel = ({user, setUser}) => {
 
@@ -42,9 +44,11 @@ const AdminPanel = ({user, setUser}) => {
           </div>
           <div id="welcome">Welcome, {user.username}</div>
           <h2>Artwork to approve</h2>
-          <ArtistsStoryCards isAdmin={true}/>
+          <AdminStoryCards user={user}/>
         </>
       )}
+	  {/* Just testing, to remove in the future */}
+	  <MapForm />
     </>
   );
 };
