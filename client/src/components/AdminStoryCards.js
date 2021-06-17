@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
+import { deleteArtwork } from "../../../server/artwork";
 
 const useStyles = makeStyles({
   root: {
@@ -61,6 +62,34 @@ const AdminStoryCards = ({user}) => {
       });
   };
 
+  // function to delete an artwork item
+  const deleteArtwork = (id) => {
+	  fetch(`/api/artwork/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          return "Unauthorised";
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        if (data.success) {
+          alert(data.success);
+          fetch("/api/artwork?status=submitted")
+            .then((res) => res.json())
+            .then((data) => setSubmittedArtwork(data))
+            .catch((err) => console.log(err));
+        } else {
+          alert("Could delete item");
+        }
+      });
+  }
+
   return (
     <div className="cards-wrapper">
       {submittedArtwork.length > 0 &&
@@ -116,6 +145,13 @@ const AdminStoryCards = ({user}) => {
                       color="primary"
                       className="about"
                       onClick={() => changeStatus(artwork.id, "rejected")}
+                    >
+                      Reject
+                    </Button>
+                    <Button
+                      color="primary"
+                      className="about"
+                      onClick={() => deleteArtwork(artwork.id)}
                     >
                       Reject
                     </Button>
