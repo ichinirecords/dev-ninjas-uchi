@@ -50,7 +50,7 @@ const AdminStoryCards = ({user}) => {
       })
       .then((data) => {
         if (data.success) {
-          alert("Status updated successfully");
+          alert(data.success);
           fetch("/api/artwork?status=submitted")
             .then((res) => res.json())
             .then((data) => setSubmittedArtwork(data))
