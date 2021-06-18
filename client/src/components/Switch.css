@@ -1,22 +1,21 @@
 .radio-switch {
   transform: skewY(7deg);
   display: grid;
-  margin-top: -18.5em;
-  margin-left: -32em;
   place-items: start;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: minmax(40px, 50px);
+  margin: 5em 0 0 7em;
 }
 
 .video, .music, .image, .text {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin-right: 1em;
-  gap: 1em;
+  gap: 0.8em;
   
 }
 h2 {
-  margin-top: 0.9em;
+  margin-top: 0.8em;
   margin-left: -0.5em;
 }
 
