@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -22,17 +22,26 @@ const useStyles = makeStyles({
   },
 });
 
-const ArtistsStoryCards = ({ isAdmin }) => {
+const ArtistsStoryCards = () => {
   const classes = useStyles();
+
+  const [approvedArtwork, setApprovedArtwork] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/artwork?status=approved")
+      .then((res) => res.json())
+      .then((data) => setApprovedArtwork(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="cards-wrapper">
-      {loremIpsum({ p: 15 }).map((text, index) => {
-        console.log(name)
+      {approvedArtwork.map((artwork) => {
         return (
-          <Card key={index} className={classes.root}>
+          <Card key={artwork.id} className={classes.root}>
             <CardContent>
-              <CardMedia
+              {artwork.type === "image" && 
+			  <CardMedia
                 className='card-img'
                 component="img"
                 alt="drawing colors"
@@ -40,6 +49,7 @@ const ArtistsStoryCards = ({ isAdmin }) => {
                 image="https://cdn.pixabay.com/photo/2020/06/17/12/40/artistic-5309339_960_720.jpg"
                 title="drawing colors"
               />
+			  }
               <Typography
                 variant="h3"
                 className={classes.title}
@@ -50,14 +60,14 @@ const ArtistsStoryCards = ({ isAdmin }) => {
                 }}
                 gutterBottom
               >
-                Title of the Story
+                {artwork.title}
               </Typography>
               <Typography className={classes.pos} style={{ fontWeight: '700' }}>
-                Name: {fullname()}
+                Name: {artwork.artist_name}
                 <br />
-                Country: {username()}
+                Country: {artwork.country}
                 <br />
-                City: {surname()}
+                City: {artwork.city}
               </Typography>
               <Typography variant="body1">
                 <ReactReadMoreReadLess
@@ -66,7 +76,7 @@ const ArtistsStoryCards = ({ isAdmin }) => {
                   readMoreText={"Read more ▼"}
                   readLessText={"Read less ▲"}
                 >
-                  {text}
+                  {artwork.content_text}
                 </ReactReadMoreReadLess>
               </Typography>
             </CardContent>
