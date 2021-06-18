@@ -20,17 +20,24 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminStoryCards = ({user}) => {
+const AdminStoryCards = ({ user, approveMode }) => {
   const classes = useStyles();
 
   const [submittedArtwork, setSubmittedArtwork] = useState([]);
 
   useEffect(() => {
+    if (approveMode) {
       fetch("/api/artwork?status=submitted")
         .then((res) => res.json())
         .then((data) => setSubmittedArtwork(data))
         .catch((err) => console.log(err));
-  }, []);
+    } else {
+      fetch("/api/artwork")
+        .then((res) => res.json())
+        .then((data) => setSubmittedArtwork(data))
+        .catch((err) => console.log(err));
+    }
+  }, [approveMode]);
 
   // function to accept/reject submitted artwork
   const changeStatus = (id, newStatus) => {
@@ -39,7 +46,11 @@ const AdminStoryCards = ({user}) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ artwork_status: newStatus, decision_date: new Date(), admin_id: user.id }),
+      body: JSON.stringify({
+        artwork_status: newStatus,
+        decision_date: new Date(),
+        admin_id: user.id,
+      }),
     })
       .then((res) => {
         if (res.status === 401) {
@@ -63,7 +74,7 @@ const AdminStoryCards = ({user}) => {
 
   // function to delete an artwork item
   const deleteArtwork = (id) => {
-	  fetch(`/api/artwork/${id}`, {
+    fetch(`/api/artwork/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +98,7 @@ const AdminStoryCards = ({user}) => {
           alert("Could delete item");
         }
       });
-  }
+  };
 
   return (
     <div className="cards-wrapper">
@@ -138,11 +149,11 @@ const AdminStoryCards = ({user}) => {
                     {artwork.content_text}
                   </ReactReadMoreReadLess>
                 </Typography>
-                {true && (
+                <Button color="primary" className="about">
+                  Edit
+                </Button>
+                {artwork.artwork_status !== "approved" && (
                   <>
-                    <Button color="primary" className="about">
-                      Edit
-                    </Button>
                     <Button
                       color="primary"
                       className="about"
@@ -157,22 +168,20 @@ const AdminStoryCards = ({user}) => {
                     >
                       Reject
                     </Button>
-                    <Button
-                      color="primary"
-                      className="about"
-                      onClick={() => deleteArtwork(artwork.id)}
-                    >
-                      Delete
-                    </Button>
                   </>
                 )}
+                <Button
+                  color="primary"
+                  className="about"
+                  onClick={() => deleteArtwork(artwork.id)}
+                >
+                  Delete
+                </Button>
               </CardContent>
             </Card>
           );
         })}
-      {submittedArtwork.length === 0 && (
-        <div>No artwork to approve</div>
-      )}
+      {submittedArtwork.length === 0 && <div>No artwork to approve</div>}
     </div>
   );
 };
