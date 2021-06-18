@@ -5,10 +5,15 @@ export const configuredHelmet = () =>
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'", "'openstreetmap.org'"],
+        defaultSrc: ["'self'", "'nominatim.openstreetmap.org'", "'cdnjs.cloudflare.com'", "'fonts.gstatic.com'"],
         objectSrc: ["'none'"],
-        imgSrc: ["'self'", "data:", "'openstreetmap.org'"],
-        scriptSrc: ["'self'", "unpkg.com", "polyfill.io"],
+        imgSrc: ["'self'", "data:", "'tile.openstreetmap.org'"],
+        scriptSrc: [
+          "'self'",
+          "unpkg.com",
+          "polyfill.io",
+          "https: 'unsafe-inline'",
+        ],
         styleSrc: ["'self'", "https: 'unsafe-inline'"],
         fontSrc: ["'self'", "https: 'unsafe-inline'"],
         upgradeInsecureRequests: [],
