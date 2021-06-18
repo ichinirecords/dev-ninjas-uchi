@@ -9,7 +9,7 @@ import "./AdminPanel.css";
 const AdminPanel = ({ user, setUser }) => {
   let history = useHistory();
 
-  const [mode, setMode] = useState("approve");
+  const [approveMode, setApproveMode] = useState(true);
 
   useEffect(() => {
     fetch("/api/ping")
@@ -81,8 +81,30 @@ const AdminPanel = ({ user, setUser }) => {
               </Button>
             </header>
             <h1 id="welcome">Welcome, {user.username}</h1>
-            <h2 className="admin-title">Artwork to approve</h2>
-            <AdminStoryCards user={user} />
+            <div>
+              <h2 className="admin-title">
+                {approveMode ? "Artwork to approve" : "All artwork"}
+              </h2>
+              <Button
+                onClick={() => setApproveMode(!approveMode)}
+                variant="contained"
+                className="upload-btn"
+                style={{
+                  backgroundColor: "#A4237F",
+                  fontWeight: "normal",
+                  border: "5px solid #7D69AF",
+                  boxSizing: "border-box",
+                  borderRadius: "5px",
+                  fontFamily: "Righteous",
+                  padding: "0.2em 1.75em",
+                }}
+              >
+                {approveMode
+                  ? "See all artwork"
+                  : "See only artwork to approve"}
+              </Button>
+            </div>
+            <AdminStoryCards user={user} approveMode={approveMode} />
           </>
         )}
 
