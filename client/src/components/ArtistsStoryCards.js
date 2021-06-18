@@ -11,7 +11,7 @@ import { loremIpsum, name, surname, fullname, username } from 'react-lorem-ipsum
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    backgroundColor: "#b1b19c",
+    backgroundColor: "#bfacf0",
     height: "auto",
   },
   title: {
@@ -33,11 +33,12 @@ const ArtistsStoryCards = ({ isAdmin }) => {
           <Card key={index} className={classes.root}>
             <CardContent>
               <CardMedia
+                className='card-img'
                 component="img"
-                alt="Contemplative Reptile"
+                alt="drawing colors"
                 height="240"
                 image="https://cdn.pixabay.com/photo/2020/06/17/12/40/artistic-5309339_960_720.jpg"
-                title="Contemplative Reptile"
+                title="drawing colors"
               />
               <Typography
                 variant="h3"
@@ -51,14 +52,14 @@ const ArtistsStoryCards = ({ isAdmin }) => {
               >
                 Title of the Story
               </Typography>
-              <Typography className={classes.pos} style={{ color: 'midnightblue', fontWeight: '600' }}>
+              <Typography className={classes.pos} style={{ fontWeight: '700' }}>
                 Name: {fullname()}
                 <br />
                 Country: {username()}
                 <br />
                 City: {surname()}
               </Typography>
-              <Typography style={{ color: "midnightblue" }} variant="body1">
+              <Typography variant="body1">
                 <ReactReadMoreReadLess
                   className="read-more-read-less"
                   charLimit={250}
