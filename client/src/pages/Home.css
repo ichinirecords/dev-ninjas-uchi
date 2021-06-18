@@ -80,6 +80,28 @@ textarea,
   caret-color: black;
   font-size: 2em;
 }
+.upload-form{
+  padding: 2em;
+  background-color: #9e8ec7;
+}
+.btn{
+  background-color: '#A4237F'; 
+  font-weight: 'normal';
+  border: '5px solid #7D69AF';
+  box-sizing: 'border-box';
+  border-radius: '5px';
+  font-family: 'Righteous'; 
+  padding: '0.2em 1.75em';
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.story-input{
+  width: 100%;
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  box-sizing: border-box;
+  display: block;
+}
 .fa-search {
   font-size: 1.3em;
   color: white;
