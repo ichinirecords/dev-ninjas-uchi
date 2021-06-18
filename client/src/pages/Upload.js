@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 const Upload = () => {
+	const history = useHistory();
 	const [uploadForm, setUploadForm] = useState({
 		title: "",
 		artist_name: "",
@@ -18,11 +20,15 @@ const Upload = () => {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(uploadForm),
-		});
+		})
+			.then(() =>{
+				alert("Your story is successfully uploaded, waiting to be verified");
+			});
 		setUploadForm("");
+		history.push("/");
 	};
 	return (
-		<div>
+		<div className="upload-form">
 			<h2>Please use the form below to tell us your story...</h2>
 			<form className="form" onSubmit={handleSubmit}>
 				<label className="has-float-label">
@@ -75,6 +81,7 @@ const Upload = () => {
 				<br />
 				<p>Please tell us your story below:</p>
 				<textarea
+					className="story-input"
 					type="text"
 					name="story"
 					value={uploadForm.story}
