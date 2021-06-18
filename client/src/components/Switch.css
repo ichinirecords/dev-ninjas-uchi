@@ -1,25 +1,22 @@
 .radio-switch {
   transform: skewY(7deg);
-  /* margin: 0 0 3em 3em; */
   display: grid;
-  /* flex-direction: column; */
-  margin-top: -16em;
-  margin-left: -21em;
-  place-items: start end;
-  grid-template-rows: repeat(3, 50px);
-  /* flex-direction: column;
-  margin-left: 2em;
-  justify-content: end; */
+  place-items: start;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(40px, 50px);
+  margin: 5em 0 0 7em;
 }
 
-.video, .image, .text {
+.video, .music, .image, .text {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1em;
-
+  margin-right: 1em;
+  gap: 0.8em;
+  
 }
 h2 {
-  margin-top: 1em;
+  margin-top: 0.8em;
+  margin-left: -0.5em;
 }
 
 .react-switch-label {
@@ -27,8 +24,8 @@ h2 {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  width: 50px;
-  height: 20px;
+  width: 30px;
+  height: 22px;
   background: white;
   border-radius: 100px;
   border-style: solid;
@@ -41,22 +38,13 @@ h2 {
   position: absolute;
   top: 0;
   left: 2px;
-  width: 30px;
-  height: 25px;
+  width: 23px;
+  height: 22px;
   border-radius: 30px;
   transition: 0.2s;
-  background: purple;
+  background: #A4237F;
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
 }
-/* background: #A4237F;
-border: 5px solid #7D69AF;
-box-sizing: border-box;
-border-radius: 5px; */
-/* font-family: Righteous;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 20px; */
 
 .react-switch-checkbox {
   opacity: 0;
