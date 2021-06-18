@@ -36,6 +36,7 @@ const LeafletControlGeocoder = () => {
       "city",
       e.geocode.properties.address.city ||
         e.geocode.properties.address.village ||
+        e.geocode.properties.address.hamlet ||
         e.geocode.properties.address.town ||
         e.geocode.properties.address.municipality ||
         e.geocode.properties.address.county

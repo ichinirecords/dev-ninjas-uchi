@@ -5,9 +5,21 @@ export const configuredHelmet = () =>
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'", "openstreetmap.org", "cdnjs.cloudflare.com", "fonts.gstatic.com"],
+        defaultSrc: [
+          "'self'",
+          "nominatim.openstreetmap.org",
+          "cdnjs.cloudflare.com",
+          "fonts.gstatic.com",
+        ],
         objectSrc: ["'none'"],
-        imgSrc: ["'self'", "data:", "tile.openstreetmap.org"],
+        imgSrc: [
+          "'self'",
+          "data:",
+          "a.tile.openstreetmap.org",
+          "b.tile.openstreetmap.org",
+          "c.tile.openstreetmap.org",
+		  "unpkg.com"
+        ],
         scriptSrc: [
           "'self'",
           "unpkg.com",
@@ -15,34 +27,35 @@ export const configuredHelmet = () =>
           "https: 'unsafe-inline'",
         ],
         styleSrc: ["'self'", "https: 'unsafe-inline'"],
+        fontSrc: ["'self'", "https: 'unsafe-inline'"],
         upgradeInsecureRequests: [],
       },
     },
   });
 
 export const httpsOnly = () => (req, res, next) => {
-	if (!req.secure) {
-		return res.redirect(301, `https://${req.headers.host}${req.originalUrl}`);
-	}
-	next();
+  if (!req.secure) {
+    return res.redirect(301, `https://${req.headers.host}${req.originalUrl}`);
+  }
+  next();
 };
 
 export const logErrors = () => (err, _, res, next) => {
-	if (res.headersSent) {
-		return next(err);
-	}
-	console.error(err);
-	res.sendStatus(500);
+  if (res.headersSent) {
+    return next(err);
+  }
+  console.error(err);
+  res.sendStatus(500);
 };
 
 export const pushStateRouting = (apiRoot, staticDir) => (req, res, next) => {
-	if (req.method === "GET" && !req.url.startsWith(apiRoot)) {
-		return res.sendFile(path.join(staticDir, "index.html"));
-	}
-	next();
+  if (req.method === "GET" && !req.url.startsWith(apiRoot)) {
+    return res.sendFile(path.join(staticDir, "index.html"));
+  }
+  next();
 };
 
 export const requiresLogin = (req, res, next) => {
-	if (req.user) return next()
-	res.sendStatus(401)
+  if (req.user) return next();
+  res.sendStatus(401);
 };
