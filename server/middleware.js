@@ -5,9 +5,9 @@ export const configuredHelmet = () =>
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'", "'nominatim.openstreetmap.org'", "'cdnjs.cloudflare.com'", "'fonts.gstatic.com'"],
+        defaultSrc: ["'self'", "openstreetmap.org", "cdnjs.cloudflare.com", "fonts.gstatic.com"],
         objectSrc: ["'none'"],
-        imgSrc: ["'self'", "data:", "'tile.openstreetmap.org'"],
+        imgSrc: ["'self'", "data:", "tile.openstreetmap.org"],
         scriptSrc: [
           "'self'",
           "unpkg.com",
