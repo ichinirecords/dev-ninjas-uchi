@@ -81,29 +81,25 @@ const AdminPanel = ({ user, setUser }) => {
               </Button>
             </header>
             <h1 id="welcome">Welcome, {user.username}</h1>
-            <div>
-              <h2 className="admin-title">
-                {approveMode ? "Artwork to approve" : "All artwork"}
-              </h2>
-              <Button
-                onClick={() => setApproveMode(!approveMode)}
-                variant="contained"
-                className="upload-btn"
-                style={{
-                  backgroundColor: "#A4237F",
-                  fontWeight: "normal",
-                  border: "5px solid #7D69AF",
-                  boxSizing: "border-box",
-                  borderRadius: "5px",
-                  fontFamily: "Righteous",
-                  padding: "0.2em 1.75em",
-                }}
-              >
-                {approveMode
-                  ? "See all artwork"
-                  : "See only artwork to approve"}
-              </Button>
-            </div>
+            <h2 className="admin-title">
+              {approveMode ? "Artwork to approve" : "All artwork"}
+            </h2>
+            <Button
+              onClick={() => setApproveMode(!approveMode)}
+              variant="contained"
+              className="upload-btn"
+              style={{
+                backgroundColor: "#A4237F",
+                fontWeight: "normal",
+                border: "5px solid #7D69AF",
+                boxSizing: "border-box",
+                borderRadius: "5px",
+                fontFamily: "Righteous",
+                padding: "0.2em 1.75em",
+              }}
+            >
+              {approveMode ? "See all artwork" : "See only artwork to approve"}
+            </Button>
             <AdminStoryCards user={user} approveMode={approveMode} />
           </>
         )}
