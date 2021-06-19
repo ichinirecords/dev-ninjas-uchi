@@ -6,7 +6,7 @@ import L from "leaflet";
 
 import icon from "./constants";
 
-const LeafletControlGeocoder = () => {
+const LeafletControlGeocoder = ({ setCoordUploadForm }) => {
   const map = useMap();
 
   useEffect(() => {
@@ -27,23 +27,21 @@ const LeafletControlGeocoder = () => {
       placeholder: "Search your city here...",
       defaultMarkGeocode: false,
       geocoder,
-	  collapsed: false,
+      collapsed: false,
     })
       .on("markgeocode", function (e) {
         var latlng = e.geocode.center;
-		console.log(e.geocode.properties.address)
-		console.log(
-      "city",
-      e.geocode.properties.address.city ||
-        e.geocode.properties.address.village ||
-        e.geocode.properties.address.hamlet ||
-        e.geocode.properties.address.town ||
-        e.geocode.properties.address.municipality ||
-        e.geocode.properties.address.county
-    );
-		console.log("country",e.geocode.properties.address.country)
-		console.log("lat", e.geocode.center.lat);
-		console.log("lon", e.geocode.center.lng);
+        console.log(e.geocode.properties.address);
+        const city = e.geocode.properties.address.city ||
+            e.geocode.properties.address.village ||
+            e.geocode.properties.address.hamlet ||
+            e.geocode.properties.address.town ||
+            e.geocode.properties.address.municipality ||
+            e.geocode.properties.address.county;
+        const country = e.geocode.properties.address.country;
+        const lat = e.geocode.center.lat;
+        const lon = e.geocode.center.lng;
+		setCoordUploadForm({city: city, country: country, lat: lat, lon: lon})
         L.marker(latlng, { icon })
           .addTo(map)
           .bindPopup(e.geocode.name)
@@ -54,6 +52,6 @@ const LeafletControlGeocoder = () => {
   }, []);
 
   return null;
-}
+};
 
 export default LeafletControlGeocoder;

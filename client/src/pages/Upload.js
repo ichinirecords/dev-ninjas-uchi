@@ -6,10 +6,9 @@ const Upload = () => {
   const [uploadForm, setUploadForm] = useState({
     title: "",
     artist_name: "",
-    city: "",
-    country: "",
     story: "",
   });
+  const [coordUploadForm, setCoordUploadForm] = useState({})
   const handleChange = (e) => {
     setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
   };
@@ -22,7 +21,7 @@ const Upload = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(uploadForm),
+      body: JSON.stringify({...uploadForm, ...coordUploadForm}),
     }).then(() => {
       alert("Your story is successfully uploaded, waiting to be verified");
     });
@@ -59,7 +58,7 @@ const Upload = () => {
         </label>
         <br />
         <br />
-        <label className="has-float-label">
+        {/* <label className="has-float-label">
           <input
             type="text"
             name="city"
@@ -80,10 +79,57 @@ const Upload = () => {
             placeholder="Country"
           />
           <span>Country</span>
-        </label>
+        </label> */}
         <br />
         <br />
-        <MapForm uploadForm = {uploadForm} setUploadForm={setUploadForm}/>
+        <MapForm setCoordUploadForm={setCoordUploadForm} />
+        <div>
+          <div>
+            <div>
+              <input id={`video`} type="radio" name="media-type" />
+              <label htmlFor={`video`}>
+                <span />
+              </label>
+            </div>
+            <div>
+              <h2>Video</h2>
+            </div>
+          </div>
+          <div>
+            <div>
+              <input id={`music`} type="radio" name="media-type" />
+              <label htmlFor={`music`}>
+                <span />
+              </label>
+            </div>
+            <div>
+              <h2>Music</h2>
+            </div>
+          </div>
+          <div>
+            <div>
+              <input id={`image`} type="radio" name="media-type" />
+              <label htmlFor={`image`}>
+                <span />
+              </label>
+            </div>
+            <div>
+              <h2>Image</h2>
+            </div>
+          </div>
+          <div>
+            <div>
+              <input id={`text`} type="radio" name="media-type" />
+              <label htmlFor={`text`}>
+                <span />
+              </label>
+            </div>
+            <div>
+              <h2>Text</h2>
+            </div>
+          </div>
+        </div>
+
         <p>Please tell us your story below:</p>
         <textarea
           className="story-input"
