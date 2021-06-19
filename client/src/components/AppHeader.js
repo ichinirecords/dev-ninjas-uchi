@@ -18,7 +18,7 @@ const AppHeader = () => {
           width: "100 %",
           height: "100 %",
           backgroundImage: "linear-gradient(white, white)",
-          transform: "skewY(-7deg)",
+          transform: "skewY(-6deg)",
           transformOrigin: "top left",
         }}
       >

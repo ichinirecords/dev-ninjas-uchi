@@ -20,7 +20,7 @@ header h1 {
   place-items: center start;
   margin: 1.25em 0 0 0.5em;
   font-size: 5em;
-  transform: skewY(7deg);
+  transform: skewY(6deg);
   color: mediumpurple;
   font-family: 'Righteous', cursive;
 }
@@ -55,7 +55,7 @@ header h1 {
   display: flex;
   width: 100%;
   padding: 0.5em;
-  transform: skewY(7deg);
+  transform: skewY(6deg);
   border-radius: 0.2em;
   background-color: #7d69af;
   margin-top: -4em;
@@ -119,7 +119,7 @@ textarea,
 }
 .select-country {
   display: flex;
-  transform: skewY(7deg);
+  transform: skewY(6deg);
   width: 100%;
 }
 .main {
@@ -180,7 +180,7 @@ footer {
   height: 200px;
 }
 .footer-content {
-  transform: skewY(7deg);
+  transform: skewY(6deg);
   display: grid;
   place-items: end;
   width: 95%;
