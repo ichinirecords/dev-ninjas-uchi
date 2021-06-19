@@ -28,7 +28,7 @@ export function Home() {
 
 	return (
 		<>
-			<Sticky enabled={true} top={50}>
+			<Sticky enabled={true}>
 				<DonateLink />
 			</Sticky>
 			<main className="main" role="main">
