@@ -1,0 +1,60 @@
+.radio-switch {
+  transform: skewY(7deg);
+  display: grid;
+  place-items: start;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(40px, 50px);
+  margin: 5em 0 0 7em;
+}
+
+.video, .music, .image, .text {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-right: 1em;
+  gap: 0.8em;
+  
+}
+h2 {
+  margin-top: 0.8em;
+  margin-left: -0.5em;
+}
+
+.react-switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 30px;
+  height: 22px;
+  background: white;
+  border-radius: 100px;
+  border-style: solid;
+  position: relative;
+  transition: background-color .2s;
+}
+
+.react-switch-label .react-switch-button {
+  content: 'Video';
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 23px;
+  height: 22px;
+  border-radius: 30px;
+  transition: 0.2s;
+  background: #A4237F;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+.react-switch-checkbox {
+  opacity: 0;
+}
+
+.react-switch-checkbox:checked + .react-switch-label .react-switch-button {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+
+.react-switch-label:active .react-switch-button {
+  width: 60px;
+}

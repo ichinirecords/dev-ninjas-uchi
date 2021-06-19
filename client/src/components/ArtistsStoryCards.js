@@ -1,17 +1,17 @@
-import React from "react";
+
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import loremIpsum from "react-lorem-ipsum";
 import ReactReadMoreReadLess from "react-read-more-read-less";
-import { Button } from "@material-ui/core";
+import { loremIpsum, name, surname, fullname, username } from 'react-lorem-ipsum'
 
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    backgroundColor: "#b1b19c",
+    backgroundColor: "#bfacf0",
     height: "auto",
   },
   title: {
@@ -22,22 +22,34 @@ const useStyles = makeStyles({
   },
 });
 
-const ArtistsStoryCards = ({ isAdmin }) => {
+const ArtistsStoryCards = () => {
   const classes = useStyles();
+
+  const [approvedArtwork, setApprovedArtwork] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/artwork?status=approved")
+      .then((res) => res.json())
+      .then((data) => setApprovedArtwork(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="cards-wrapper">
-      {loremIpsum({ p: 15 }).map((text, index) => {
+      {approvedArtwork.map((artwork) => {
         return (
-          <Card key={index} className={classes.root}>
+          <Card key={artwork.id} className={classes.root}>
             <CardContent>
-              <CardMedia
+              {artwork.type === "image" && 
+			  <CardMedia
+                className='card-img'
                 component="img"
-                alt="Contemplative Reptile"
+                alt="drawing colors"
                 height="240"
                 image="https://cdn.pixabay.com/photo/2020/06/17/12/40/artistic-5309339_960_720.jpg"
-                title="Contemplative Reptile"
+                title="drawing colors"
               />
+			  }
               <Typography
                 variant="h3"
                 className={classes.title}
@@ -48,33 +60,32 @@ const ArtistsStoryCards = ({ isAdmin }) => {
                 }}
                 gutterBottom
               >
-                Title of the Story
+                {artwork.title}
               </Typography>
-              <Typography
-                className={classes.pos}
-                style={{ color: "midnightblue", fontWeight: "600" }}
-              >
-                By: [Name of the artist]
+              <Typography className={classes.pos} style={{ fontWeight: '700' }}>
+                Name: {artwork.artist_name}
                 <br />
-                Country:
+                Country: {artwork.country}
                 <br />
-                City:
+                City: {artwork.city}
               </Typography>
-              <Typography style={{ color: "midnightblue" }} variant="body1">
+              <Typography variant="body1">
                 <ReactReadMoreReadLess
                   className="read-more-read-less"
                   charLimit={250}
                   readMoreText={"Read more ▼"}
                   readLessText={"Read less ▲"}
                 >
-                  {text.props.children}
+                  {artwork.content_text}
                 </ReactReadMoreReadLess>
               </Typography>
             </CardContent>
           </Card>
-        );
+
+        )
       })}
     </div>
+    
   );
 };
 

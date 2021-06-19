@@ -6,7 +6,7 @@ const newQuery
 
 export const artUpload = (req, res) => {
 	const newArtTitle = req.body.title;
-	const newArtName = req.body.name;
+	const newArtName = req.body.artist_name;
 	const newArtCity = req.body.city;
 	const newArtCountry = req.body.country;
 	const newArtStory = req.body.story;

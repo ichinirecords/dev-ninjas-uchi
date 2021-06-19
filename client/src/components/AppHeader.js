@@ -1,159 +1,64 @@
-import React, { useState } from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import React from "react";
+import SelectCountry from "./SelectCountry";
+import Switch from "./Switch";
 import { Link } from "react-router-dom";
-import { Button } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '40ch',
-    },
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-}));
+import { Button } from "@material-ui/core";
 
 const AppHeader = () => {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-
-  const handleMainMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Blogs</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Poetry</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Videos</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Images</MenuItem>
-      <MenuItem onClick={handleMenuClose}>About</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Admin Login</MenuItem>
-    </Menu>
-  );
-
   return (
-    <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon onClick={handleMainMenuOpen} />
-          </IconButton>
-          <Typography className={classes.title} variant="h5" noWrap>
-            Uchi
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+    <header>
+      <div
+        className="header_bg"
+        style={{
+          position: "absolute",
+          top: "0",
+          bottom: "0",
+          right: "0",
+          left: "0",
+          width: "100 %",
+          height: "100 %",
+          backgroundImage: "linear-gradient(white, white)",
+          transform: "skewY(-7deg)",
+          transformOrigin: "top left",
+        }}
+      >
+        <div className="header-contents">
+          <div className="page-title">
+            <h1>UCHI</h1>
           </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <div className='menu-items'>
-              <Button style={{ color: 'aliceblue' }}>Blogs</Button>
-              <Button style={{ color: 'aliceblue' }}>Poetry</Button>
-              <Button style={{ color: 'aliceblue' }}>Videos</Button>
-              <Button style={{ color: 'aliceblue' }}>Images</Button>
-              <Button style={{ color: 'aliceblue' }} className='about' component={Link} to="/about/this/site">About</Button>
-              <Button style={{ color: 'aliceblue' }} component={Link} to="/login">Admin Login</Button>
+          <div className="search-select">
+            <div key="input-form" className="search-input-wrapper">
+              <i className="fas fa-search"></i>
+              <input
+                key="search-input "
+                type="text"
+                className="search-bar"
+                placeholder="Search ..."
+              // value={searchInput}
+              // onChange={handleSearchInput}
+              />
             </div>
+            <div><SelectCountry /></div>
+            
           </div>
-        </Toolbar>
-      </AppBar>
-      {renderMenu}
-    </div>
+          <div className="grid-empty-space"></div>
+          <Switch />
+        </div>
+      </div>
+      <Button component={Link} to="/upload" variant='contained' className='upload-btn' style={{
+        backgroundColor: '#A4237F', 
+        fontWeight: 'normal', 
+        border: '5px solid #7D69AF', 
+        boxSizing: 'border-box',
+        borderRadius: '5px', 
+        fontFamily: 'Righteous', 
+        padding: '0.2em 1.75em'
+      }}>
+        Upload
+      </Button>
+    </header>
   );
+
 };
 
 export default AppHeader;

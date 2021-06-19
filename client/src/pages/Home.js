@@ -5,8 +5,7 @@ import ArtistsStoryCards from "../components/ArtistsStoryCards";
 import AppHeader from "../components/AppHeader";
 import Educational from "../components/Educational";
 import DonateLink from "../components/DonateLink";
-import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import Footer from '../components/Footer';
 
 export function Home() {
 	const [message, setMessage] = useState("Loading...");
@@ -29,17 +28,14 @@ export function Home() {
 
 	return (
 		<>
-			<Button component={Link} to="/upload" color="primary">
-        Upload
-			</Button>
 			<Sticky enabled={true} top={50}>
 				<DonateLink />
 			</Sticky>
 			<main className="main" role="main">
 				<AppHeader />
-				<Educational />
 				<ArtistsStoryCards />
 			</main>
+			<Footer />
 		</>
 	);
 }

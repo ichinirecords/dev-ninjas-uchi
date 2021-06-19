@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 const Upload = () => {
+	const history = useHistory();
 	const [uploadForm, setUploadForm] = useState({
 		title: "",
 		artist_name: "",
@@ -18,51 +20,71 @@ const Upload = () => {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(uploadForm),
-		});
+		})
+			.then(() =>{
+				alert("Your story is successfully uploaded, waiting to be verified");
+			});
+		setUploadForm("");
+		history.push("/");
 	};
 	return (
-		<div>
+		<div className="upload-form">
 			<h2>Please use the form below to tell us your story...</h2>
 			<form className="form" onSubmit={handleSubmit}>
-				<input
-					type="text"
-					name="title"
-					value={uploadForm.title}
-					onChange={handleChange}
-					placeholder="Art title"
-				/>
+				<label className="has-float-label">
+					<input
+						type="text"
+						name="title"
+						value={uploadForm.title}
+						onChange={handleChange}
+						placeholder="Art title"
+					/>
+					<span>Art title</span>
+				</label>
 				<br />
 				<br />
-				<input
-					type="text"
-					name="artist_name"
-					value={uploadForm.artist_name}
-					onChange={handleChange}
-					placeholder="Full name"
-				/>
+				<label className="has-float-label">
+					<input
+						type="text"
+						name="artist_name"
+						value={uploadForm.artist_name}
+						onChange={handleChange}
+						placeholder="Full name"
+					/>
+					<span>Your name</span>
+				</label>
 				<br />
 				<br />
-				<input
-					type="text"
-					name="city"
-					value={uploadForm.city}
-					onChange={handleChange}
-					placeholder="Town/City"
-				/>
+				<label className="has-float-label">
+					<input
+						type="text"
+						name="city"
+						value={uploadForm.city}
+						onChange={handleChange}
+						placeholder="Town/City"
+					/>
+					<span>Town/city</span>
+				</label>
 				<br />
 				<br />
-				<input
-					type="text"
-					name="country"
-					value={uploadForm.country}
-					onChange={handleChange}
-					placeholder="Country"
-				/>
+				<label className="has-float-label">
+					<input
+						type="text"
+						name="country"
+						value={uploadForm.country}
+						onChange={handleChange}
+						placeholder="Country"
+					/>
+					<span>Country</span>
+				</label>
 				<br />
 				<br />
-				<p>Please tell us enter your story below:</p>
+				<p>Please tell us your story below:</p>
 				<textarea
-					type="text" name="story" value={uploadForm.story}
+					className="story-input"
+					type="text"
+					name="story"
+					value={uploadForm.story}
 					onChange={handleChange}
 					placeholder=""
 				/>
