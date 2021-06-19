@@ -1,5 +1,5 @@
 .radio-switch {
-  transform: skewY(7deg);
+  transform: skewY(6deg);
   display: grid;
   place-items: start;
   grid-template-columns: repeat(2, 1fr);
