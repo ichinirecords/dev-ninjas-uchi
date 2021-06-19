@@ -3,7 +3,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "./MapForm.css";
 import LeafletControlGeocoder from "./LeafletControlGeocoder"
 
-const MapForm = () => {
+const MapForm = ({ uploadForm, setUploadForm }) => {
   const position = [51.505, -0.09];
 
   return (
