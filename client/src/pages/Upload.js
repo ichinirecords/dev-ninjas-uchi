@@ -58,28 +58,6 @@ const Upload = () => {
         </label>
         <br />
         <br />
-        {/* <label className="has-float-label">
-          <input
-            type="text"
-            name="city"
-            value={uploadForm.city}
-            onChange={handleChange}
-            placeholder="Town/City"
-          />
-          <span>Town/city</span>
-        </label>
-        <br />
-        <br />
-        <label className="has-float-label">
-          <input
-            type="text"
-            name="country"
-            value={uploadForm.country}
-            onChange={handleChange}
-            placeholder="Country"
-          />
-          <span>Country</span>
-        </label> */}
         <br />
         <br />
         <MapForm setCoordUploadForm={setCoordUploadForm} />
