@@ -15,20 +15,20 @@ const Upload = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const validate = Object.values(uploadForm).every((key) => key.length > 1);
-    if(validate){  
-    fetch("/api/upload", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({...uploadForm, ...coordUploadForm}),
-    }).then(() => {
-      alert("Your story is successfully uploaded, waiting to be verified");
-    });
-    history.push("/");
-  }else{
-    alert("Please fill in all fields");
-  }
+    if (validate) {
+      fetch("/api/upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...uploadForm, ...coordUploadForm }),
+      }).then(() => {
+        alert("Your story is successfully uploaded, waiting to be verified");
+      });
+      history.push("/");
+    } else {
+      alert("Please fill in all fields");
+    }
   };
   return (
     <div className="upload-form">
@@ -61,53 +61,30 @@ const Upload = () => {
         <br />
         <br />
         <MapForm setCoordUploadForm={setCoordUploadForm} />
+        <br />
         <div>
           <div>
-            <div>
-              <input id={`video`} type="radio" name="media-type" />
-              <label htmlFor={`video`}>
-                <span />
+            <h3>Please choose the media type you want to upload</h3>
+            <div className="radio-container">
+              <input className="radio-input" id={`video`} type="radio" name="media-type" value='video' />
+              <label className="radio-label" htmlFor={`video`}>
+                Video
               </label>
-            </div>
-            <div>
-              <h2>Video</h2>
-            </div>
-          </div>
-          <div>
-            <div>
-              <input id={`music`} type="radio" name="media-type" />
-              <label htmlFor={`music`}>
-                <span />
+              <input className="radio-input" id={`image`} type="radio" name="media-type" value='image' />
+              <label className="radio-label" htmlFor={`image`}>
+                Image
               </label>
-            </div>
-            <div>
-              <h2>Music</h2>
-            </div>
-          </div>
-          <div>
-            <div>
-              <input id={`image`} type="radio" name="media-type" />
-              <label htmlFor={`image`}>
-                <span />
+              <input className="radio-input" id={`music`} type="radio" name="media-type" value='music' />
+              <label className="radio-label" htmlFor={`music`}>
+                Music
               </label>
-            </div>
-            <div>
-              <h2>Image</h2>
-            </div>
-          </div>
-          <div>
-            <div>
-              <input id={`text`} type="radio" name="media-type" />
-              <label htmlFor={`text`}>
-                <span />
+              <input className="radio-input" id={`text`} type="radio" name="media-type" value='text' />
+              <label className="radio-label" htmlFor={`text`}>
+                Text
               </label>
-            </div>
-            <div>
-              <h2>Text</h2>
             </div>
           </div>
         </div>
-
         <p>Please tell us your story below:</p>
         <textarea
           className="story-input"

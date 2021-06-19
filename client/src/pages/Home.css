@@ -48,7 +48,7 @@ header h1 {
   grid-template-columns: repeat(2, 1fr);
   place-items: start;
   margin-left: 7em;
-  margin-top: 10em;
+  margin-top: 9em;
   gap: 2em;
 }
 .search-input-wrapper {
@@ -118,6 +118,7 @@ textarea,
   color: white;
 }
 .select-country {
+  margin-top: -0.25em;
   display: flex;
   transform: skewY(6deg);
   width: 100%;
@@ -186,6 +187,36 @@ footer {
   width: 95%;
   margin: auto;
   padding: auto;
+}
+
+.radio-container {
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 0.2em;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  margin-top: 1em;
+}
+
+.radio-input {
+  display: none;
+}
+
+.radio-label {
+  padding: 0.3em 0.6em;
+  padding: 0.5em 1.2em;
+  font-size: 1em;
+  color: rgb(100, 44, 93);
+  background-color: #818385;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.radio-label:not(:last-of-type) {
+  border-right: 0.2em solid rgb(66, 49, 49);
+}
+
+.radio-input:checked + .radio-label {
+  background-color: #b7defc;;
 }
 
 @media screen and (min-width: 300px) and (max-width: 740px) {

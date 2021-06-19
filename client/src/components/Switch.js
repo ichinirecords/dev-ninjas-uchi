@@ -7,15 +7,15 @@ const Switch = () => {
       <div className='video'>
         <div>
           <input
-            className="react-switch-checkbox"
-            id= {`react-switch-new`}
+            className="switch-checkbox"
+            id={`video`}
             type="checkbox"
           />
           <label
-            className="react-switch-label"
-            htmlFor={`react-switch-new`}
+            className="switch-label"
+            htmlFor={`video`}
           >
-            <span className={`react-switch-button`} />
+            <span className={`switch-button`} />
           </label>
         </div>
         <div>
@@ -26,15 +26,15 @@ const Switch = () => {
       <div className='music'>
         <div>
           <input
-            className="react-switch-checkbox"
-            id={`react-switch-new`}
+            className="switch-checkbox"
+            id={`image`}
             type="checkbox"
           />
           <label
-            className="react-switch-label"
-            htmlFor={`react-switch-new`}
+            className="switch-label"
+            htmlFor={`image`}
           >
-            <span className={`react-switch-button`} />
+            <span className={`switch-button`} />
           </label>
         </div>
         <div>
@@ -44,15 +44,15 @@ const Switch = () => {
       <div className='image'>
         <div>
           <input
-            className="react-switch-checkbox"
-            id={`react-switch-new`}
+            className="switch-checkbox"
+            id={`music`}
             type="checkbox"
           />
           <label
-            className="react-switch-label"
-            htmlFor={`react-switch-new`}
+            className="switch-label"
+            htmlFor={`music`}
           >
-            <span className={`react-switch-button`} />
+            <span className={`switch-button`} />
           </label>
         </div>
         <div>
@@ -62,15 +62,15 @@ const Switch = () => {
       <div className='text'>
         <div>
           <input
-            className="react-switch-checkbox"
-            id={`react-switch-new`}
+            className="switch-checkbox"
+            id={`text`}
             type="checkbox"
           />
           <label
-            className="react-switch-label"
-            htmlFor={`react-switch-new`}
+            className="switch-label"
+            htmlFor={`text`}
           >
-            <span className={`react-switch-button`} />
+            <span className={`switch-button`} />
           </label>
         </div>
         <div>
