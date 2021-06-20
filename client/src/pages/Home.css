@@ -210,11 +210,16 @@ footer {
 }
 
 .radio-container {
-  display: inline-flex;
+  display: flex;
+  justify-content: space-evenly;
   overflow: hidden;
   border-radius: 0.2em;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-  margin-top: 1em;
+  font-size: larger;
+  width: 100%;
+  gap: auto;
+  text-align: center;
+  background-color: #aeb0b3;
 }
 
 .radio-input {
@@ -222,21 +227,29 @@ footer {
 }
 
 .radio-label {
-  padding: 0.3em 0.6em;
-  padding: 0.5em 1.2em;
+  padding: 0.5em 1.5em;
   font-size: 1em;
   color: rgb(100, 44, 93);
-  background-color: #818385;
+  background-color: #aeb0b3;
   cursor: pointer;
   transition: background 0.1s;
 }
 
-.radio-label:not(:last-of-type) {
-  border-right: 0.2em solid rgb(66, 49, 49);
-}
-
 .radio-input:checked + .radio-label {
   background-color: #b7defc;;
+}
+
+.radio-label:not(:last-of-type) {
+  border-right: 0.5em solid rgb(66, 49, 49);
+}
+.radio-label:not(:last-of-type) {
+  border-right: 0.5em solid #7d69af;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+  width: 100%;
 }
 
 @media screen and (min-width: 300px) and (max-width: 740px) {
