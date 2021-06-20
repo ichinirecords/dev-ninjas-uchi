@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminStoryCards = ({ user, approveMode }) => {
+const AdminStoryCards = ({ user, approveMode}) => {
   const classes = useStyles();
 
   const [submittedArtwork, setSubmittedArtwork] = useState([]);
@@ -149,9 +150,18 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     {artwork.content_text}
                   </ReactReadMoreReadLess>
                 </Typography>
-                <Button color="primary" className="about">
-                  Edit
-                </Button>
+                <Link
+                  to={{
+                    pathname: "/edit",
+                    state: {
+                      artwork: artwork
+                    },
+                  }}
+                >
+                  <Button color="primary" className="about">
+                    Edit
+                  </Button>
+                </Link>
                 {artwork.artwork_status !== "approved" && (
                   <>
                     <Button

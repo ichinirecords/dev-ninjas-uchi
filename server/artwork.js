@@ -75,6 +75,7 @@ export const getArtwork = (req, res) => {
   let getQuery = `SELECT * FROM artwork`;
   if (Object.keys(req.query).length > 0) getQuery += " WHERE ";
   if (status) getQuery += `artwork_status = '${status}'`;
+  getQuery += " ORDER BY created_on;"
   db.query(getQuery)
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
