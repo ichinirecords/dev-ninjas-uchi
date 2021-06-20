@@ -12,7 +12,7 @@ const AdminPanel = ({ user, setUser }) => {
   const [approveMode, setApproveMode] = useState(true);
 
   useEffect(() => {
-    fetch("/api/ping")
+    fetch("/api/ping", { credentials: "include" })
       .then((res) => {
         if (res.status === 401) {
           setUser("");

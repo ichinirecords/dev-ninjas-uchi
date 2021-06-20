@@ -1,5 +1,4 @@
 import { MapContainer, TileLayer } from "react-leaflet";
-//import "leaflet/dist/leaflet.css";
 import "./MapForm.css";
 import LeafletControlGeocoder from "./LeafletControlGeocoder"
 
