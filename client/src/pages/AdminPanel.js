@@ -98,12 +98,9 @@ const AdminPanel = ({ user, setUser }) => {
             >
               {approveMode ? "See all artwork" : "See only artwork to approve"}
             </Button>
-            <AdminStoryCards user={user} approveMode={approveMode} />
+            <AdminStoryCards user={user} approveMode={approveMode}/>
           </>
         )}
-
-        {/* Just testing, to remove in the future */}
-        <MapForm />
       </main>
       <footer>
         <div
