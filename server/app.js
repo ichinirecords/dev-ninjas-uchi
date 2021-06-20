@@ -20,7 +20,7 @@ let sessionOptions = {
   resave: true,
   saveUninitialized: true,
   cookie: {
-    sameSite: "none",
+    // sameSite: "none",
     // secure: true,
     maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
   },
@@ -28,6 +28,7 @@ let sessionOptions = {
 
 if (process.env.MODE !== "dev") {
   sessionOptions.cookie.secure = true;
+  sessionOptions.cookie.sameSite = "none";
 }
 
 app.use(express.json());

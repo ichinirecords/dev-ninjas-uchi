@@ -5,39 +5,35 @@ import ArtistsStoryCards from "../components/ArtistsStoryCards";
 import AppHeader from "../components/AppHeader";
 import Educational from "../components/Educational";
 import DonateLink from "../components/DonateLink";
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
+import Map from "../components/Map";
+import HomeTab from "../components/HomeTab";
 
 export function Home() {
-	const [message, setMessage] = useState("Loading...");
+  const [approvedArtwork, setApprovedArtwork] = useState([]);
+  const [view, setView] = useState("listing")
 
-	useEffect(() => {
-		fetch("/api")
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error(res.statusText);
-				}
-				return res.json();
-			})
-			.then((body) => {
-				setMessage(body.message);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-	}, []);
+  useEffect(() => {
+    fetch("/api/artwork?status=approved")
+      .then((res) => res.json())
+      .then((data) => setApprovedArtwork(data))
+      .catch((err) => console.log(err));
+  }, []);
 
-	return (
-		<>
-			<Sticky enabled={true}>
-				<DonateLink />
-			</Sticky>
-			<main className="main" role="main">
-				<AppHeader />
-				<ArtistsStoryCards />
-			</main>
-			<Footer />
-		</>
-	);
+  return (
+    <>
+      <Sticky enabled={true}>
+        <DonateLink />
+      </Sticky>
+      <main className="main" role="main">
+        <AppHeader />
+		<HomeTab setView={setView} />
+        {view === "listing" && <ArtistsStoryCards approvedArtwork={approvedArtwork} />}
+        {view === "map" && <Map approvedArtwork={approvedArtwork} /> }
+      </main>
+      <Footer />
+    </>
+  );
 }
 
 export default Home;

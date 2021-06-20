@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -22,17 +22,8 @@ const useStyles = makeStyles({
   },
 });
 
-const ArtistsStoryCards = () => {
+const ArtistsStoryCards = ({approvedArtwork}) => {
   const classes = useStyles();
-
-  const [approvedArtwork, setApprovedArtwork] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/artwork?status=approved")
-      .then((res) => res.json())
-      .then((data) => setApprovedArtwork(data))
-      .catch((err) => console.log(err));
-  }, []);
 
   return (
     <div className="cards-wrapper">
