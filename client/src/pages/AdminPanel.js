@@ -15,7 +15,7 @@ const AdminPanel = ({ user, setUser }) => {
     fetch("/api/ping", { credentials: "include" })
       .then((res) => {
         if (res.status === 401) {
-          setUser("");
+          history.push("/login");
         } else {
           return res.json();
         }
@@ -36,8 +36,6 @@ const AdminPanel = ({ user, setUser }) => {
   return (
     <>
       <main className="main" role="main">
-        {!user && <div>User not logged in</div>}
-
         {user && user.username && (
           <>
             <header>
