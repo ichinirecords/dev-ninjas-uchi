@@ -55,11 +55,7 @@ const ArtPopup = ({
           {title}
         </Typography>
         <Typography className={classes.pos} style={{ fontWeight: "700" }}>
-          Name: {artist_name}
-          <br />
-          Country: {country}
-          <br />
-          City: {city}
+          By {artist_name} from {city}, {country}
         </Typography>
         <Typography variant="body1">
           <ReactReadMoreReadLess
