@@ -5,7 +5,7 @@ import nodemailer from "nodemailer";
 import db from "./db";
 
 // Get all admin emails
-const getAdminEmails = async () => {
+export const getAdminEmails = async () => {
   let emailQuery = `SELECT email FROM admins;`;
   try {
     const queryResult = await db.query(emailQuery);

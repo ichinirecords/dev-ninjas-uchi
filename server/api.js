@@ -1,6 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
-import admins from "./admins";
+import {login, logout, ping, requestReset} from "./admins";
 import { artUpload } from "./upload";
 import { getArtwork, updateArtwork, deleteArtwork } from "./artwork";
 import db from "./db";
@@ -14,11 +14,13 @@ router.get("/", (_, res) => {
 
 router.post("/upload", artUpload);
 
-router.post("/login", passport.authenticate("local"), admins.login);
+router.post("/login", passport.authenticate("local"), login);
 
-router.get("/logout", admins.logout);
+router.get("/logout", logout);
 
-router.get("/ping", requiresLogin, admins.ping);
+router.get("/ping", requiresLogin, ping);
+
+router.post("/request-reset", requestReset)
 
 router.get("/artwork", getArtwork);
 
