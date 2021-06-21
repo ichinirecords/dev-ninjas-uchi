@@ -1,7 +1,9 @@
 require("dotenv").config();
-import { getAdminEmails } from "./notifications";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
+
+import { getAdminEmails } from "./notifications";
+import db from "./db";
 
 export const login = (req, res) => {
   const { user } = req;
@@ -21,12 +23,13 @@ export const ping = (req, res) => {
   res.send(user);
 };
 
-const getUserDetails = async (email) => {
-  let detailsQuery = `SELECT * FROM admins WHERE email=$1;`;
+const getUserDetails = async (field, type) => {
+  let detailsQuery = `SELECT * FROM admins WHERE ${type}=$1;`;
   try {
-    const queryResult = await db.query(detailsQuery, [email]);
+    const queryResult = await db.query(detailsQuery, [field]);
     const details = await queryResult.rows;
-    return details[0];
+    const result = await details[0];
+    return result;
   } catch {
     (error) => console.log(error);
   }
@@ -36,9 +39,10 @@ export const requestReset = async (req, res) => {
   const email = req.body.email;
   const adminEmails = await getAdminEmails();
   if (adminEmails.includes(email)) {
-    const userDetails = getUserDetails(email);
+    const userDetails = await getUserDetails(email, "email");
     const salt = bcrypt.genSaltSync();
-    const hash = bcrypt.hashSync(email + userDetails.pass + new Date(), salt);
+    const token = userDetails.email + userDetails.pass + String(new Date());
+    const hash = bcrypt.hashSync(token, salt);
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -63,4 +67,20 @@ export const requestReset = async (req, res) => {
     });
   }
   res.send("request processed");
+};
+
+export const resetPassword = async (req, res) => {
+  const id = req.query.id;
+  const token = req.query.token;
+  const userDetails = await getUserDetails(id, "id");
+  const newToken = userDetails.email + userDetails.pass + String(new Date());
+  bcrypt.compare(newToken, token, (err, res) => {
+    // res == true or res == false
+    if (res) {
+      console.log("correct info");
+    } else {
+      console.log("incorrect info");
+    }
+  });
+  res.send("compared");
 };

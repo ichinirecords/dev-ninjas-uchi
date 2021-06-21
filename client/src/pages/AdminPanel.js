@@ -3,7 +3,6 @@ import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import CopyrightIcon from "@material-ui/icons/Copyright";
 import AdminStoryCards from "../components/AdminStoryCards";
-import MapForm from "../components/MapForm";
 import "./AdminPanel.css";
 
 const AdminPanel = ({ user, setUser }) => {
