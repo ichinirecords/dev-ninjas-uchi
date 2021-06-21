@@ -31,6 +31,7 @@ const Reset = () => {
   const [isValid, setIsValid] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const userId = window.location.search.slice(4,5);
 
   const classes = useStyles();
   let history = useHistory();
@@ -46,12 +47,12 @@ const Reset = () => {
   const handleReset = (e) => {
     e.preventDefault();
     if (newPassword === confirmPassword) {
-      fetch(`/api/admin`, {
-        method: "POST",
+      fetch(`/api/admin/${userId}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ password: newPassword }),
+        body: JSON.stringify({ pass: newPassword }),
       }).then((res) => {
         if (res.status === 200) {
           alert(
@@ -86,6 +87,7 @@ const Reset = () => {
                 id="newPassword"
                 label="New password"
                 name="newPassword"
+                type="password"
                 autoFocus
                 onChange={(e) => setNewPassword(e.target.value)}
               />
@@ -97,6 +99,7 @@ const Reset = () => {
                 id="confirmedPassword"
                 label="Confirmed password"
                 name="confirmedPassword"
+                type="password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <Button

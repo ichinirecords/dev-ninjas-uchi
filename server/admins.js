@@ -55,7 +55,7 @@ export const requestReset = async (req, res) => {
       to: email,
       subject: "Uchi password reset link",
       html: `Someone requested a password reset for this Uchi account. If it wasn't you, no need to do anything. If you required a password reset, 
-				go to <a href="https://dev-ninjas-uchi.herokuapp.com/api/reset?id=${userDetails.id}&token=${hash}">
+				go to <a href="https://dev-ninjas-uchi.herokuapp.com/reset?id=${userDetails.id}&token=${hash}">
 				https://dev-ninjas-uchi.herokuapp.com/api/reset?id=${userDetails.id}&token=${hash}</a> to reset your email. This link will only be valid for today.`,
     };
     transporter.sendMail(mailOptions, function (error, info) {
@@ -69,7 +69,7 @@ export const requestReset = async (req, res) => {
   res.send("request processed");
 };
 
-export const resetPassword = async (req, res) => {
+export const verifyToken = async (req, res) => {
   const id = req.query.id;
   const token = req.query.token;
   const userDetails = await getUserDetails(id, "id");
@@ -77,10 +77,25 @@ export const resetPassword = async (req, res) => {
   bcrypt.compare(newToken, token, (err, result) => {
     // res == true or res == false
 	if (err) return res.status(500).send("could not complete password reset")
-	if (result) {
-		return res.send("Correct info")
-		// Redirect to reset form, which requires login. Attach req.user to request?
-	}
+	if (result) return res.send("Correct info")
 	return res.status(401).send("Incorrect info")
   });
+};
+
+export const resetPassword = async (req, res) => {
+  const id = req.params.id;
+  const newPassword = req.body.pass;
+  const salt = bcrypt.genSaltSync();
+  const hash = bcrypt.hashSync(newPassword, salt);
+  const updateQuery = `UPDATE admins SET pass='${hash}' WHERE id=$1;`
+  try {
+    const queryResult = await db.query(updateQuery, [id]);
+    if (queryResult.rowCount === 1) {
+		return res.sendStatus(200)
+	} else {
+		return res.sendStatus(500)
+	}
+  } catch {
+    (error) => res.status(500).send(error);
+  }
 };

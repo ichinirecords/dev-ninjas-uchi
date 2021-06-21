@@ -1,6 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
-import {login, logout, ping, requestReset, resetPassword} from "./admins";
+import {login, logout, ping, requestReset, verifyToken, resetPassword} from "./admins";
 import { artUpload } from "./upload";
 import { getArtwork, updateArtwork, deleteArtwork } from "./artwork";
 import db from "./db";
@@ -22,7 +22,9 @@ router.get("/ping", requiresLogin, ping);
 
 router.post("/request-reset", requestReset)
 
-router.get("/reset", resetPassword)
+router.get("/reset", verifyToken)
+
+router.put("/admin/:id", resetPassword);
 
 router.get("/artwork", getArtwork);
 
