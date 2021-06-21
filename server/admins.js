@@ -74,13 +74,13 @@ export const resetPassword = async (req, res) => {
   const token = req.query.token;
   const userDetails = await getUserDetails(id, "id");
   const newToken = userDetails.email + userDetails.pass + String(new Date());
-  bcrypt.compare(newToken, token, (err, res) => {
+  bcrypt.compare(newToken, token, (err, result) => {
     // res == true or res == false
-    if (res) {
-      console.log("correct info");
-    } else {
-      console.log("incorrect info");
-    }
+	if (err) return res.status(500).send("could not complete password reset")
+	if (result) {
+		return res.send("Correct info")
+		// Redirect to reset form, which requires login. Attach req.user to request?
+	}
+	return res.status(401).send("Incorrect info")
   });
-  res.send("compared");
 };
