@@ -3,12 +3,14 @@ import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import CopyrightIcon from "@material-ui/icons/Copyright";
 import AdminStoryCards from "../components/AdminStoryCards";
+import NewAdmin from "../components/NewAdmin";
 import "./AdminPanel.css";
 
 const AdminPanel = ({ user, setUser }) => {
   let history = useHistory();
 
   const [approveMode, setApproveMode] = useState(true);
+  const [createMode, setCreateMode] = useState(false);
 
   useEffect(() => {
     fetch("/api/ping", { credentials: "include" })
@@ -78,6 +80,22 @@ const AdminPanel = ({ user, setUser }) => {
               </Button>
             </header>
             <h1 id="welcome">Welcome, {user.username}</h1>
+            <Button
+              onClick={() => setCreateMode(!createMode)}
+              variant="contained"
+              style={{
+                backgroundColor: "#A4237F",
+                fontWeight: "normal",
+                border: "5px solid #7D69AF",
+                boxSizing: "border-box",
+                borderRadius: "5px",
+                fontFamily: "Righteous",
+                padding: "0.2em 1.75em",
+              }}
+            >
+              Create new admin
+            </Button>
+            {createMode && <NewAdmin setCreateMode={setCreateMode} />}
             <h2 className="admin-title">
               {approveMode ? "Artwork to approve" : "All artwork"}
             </h2>
@@ -97,7 +115,7 @@ const AdminPanel = ({ user, setUser }) => {
             >
               {approveMode ? "See all artwork" : "See only artwork to approve"}
             </Button>
-            <AdminStoryCards user={user} approveMode={approveMode}/>
+            <AdminStoryCards user={user} approveMode={approveMode} />
           </>
         )}
       </main>
