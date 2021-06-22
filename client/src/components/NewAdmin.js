@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "300px",
     marginTop: theme.spacing(1),
     backgroundColor: "white",
-	borderRadius: "5px",
-	padding: "1rem"
+    borderRadius: "5px",
+    padding: "1rem",
   },
   formContainer: {
     width: "100%",
@@ -27,20 +27,24 @@ const NewAdmin = ({ setCreateMode }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`/api/admin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: username, email: email }),
-    }).then((res) => {
-      if (res.status === 200) {
-        alert("New account created successfully");
-        setCreateMode(false);
-      } else {
-        alert("Account creation was not successful");
-      }
-    });
+    if (username.length > 0 && email.length > 0) {
+      fetch(`/api/admin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: username, email: email }),
+      }).then((res) => {
+        if (res.status === 200) {
+          alert("New account created successfully");
+          setCreateMode(false);
+        } else {
+          alert("Account creation was not successful");
+        }
+      });
+    } else {
+      alert("Please fill in both fields");
+    }
   };
   return (
     <div className={classes.formContainer}>
