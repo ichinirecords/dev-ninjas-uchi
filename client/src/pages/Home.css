@@ -24,14 +24,6 @@ header h1 {
   color: mediumpurple;
   font-family: 'Righteous', cursive;
 }
-.intro {
-  display: grid;
-  place-items: center start;
-  margin: 1.25em 0 0 0.5em;
-  font-size: 5em;
-  color: mediumpurple;
-  font-family: 'Righteous', cursive;
-}
 
 .header-contents {
   display: grid;

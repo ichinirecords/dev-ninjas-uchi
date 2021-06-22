@@ -4,6 +4,7 @@ import Switch from "./Switch";
 // import { Link } from "react-router-dom";
 // import { Button } from "@material-ui/core";
 import UploadModal from './UploadModal';
+import UchiIntro from './UchiIntro';
 
 const AppHeader = () => {
   return (
@@ -59,6 +60,7 @@ const AppHeader = () => {
         Upload
       </Button> */}
       <UploadModal />
+      <UchiIntro/>
     </header>
   );
 

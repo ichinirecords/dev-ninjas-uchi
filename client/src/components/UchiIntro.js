@@ -2,39 +2,59 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import LoremIpsum from 'react-lorem-ipsum';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
+    backgroundColor: 'black',
+    height: '30vh',
+    width: '100%',
     position: 'relative',
-    height: '30vh'
+    borderBottom: 'solid crimson'
+  },
+  Toolbar: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 5fr 0.5fr',
+    gap: '2em'
   },
   title: {
+    display: 'grid',
+    placeItems: 'center',
+    fontSize: '5em',
+    fontFamily: 'Righteous',
     marginLeft: theme.spacing(2),
-    flex: 1,
   },
+  Typography: {
+    textAlign: 'justify',
+    textJustify: 'inter-word',
+    fontFamily: 'Righteous',
+    fontSize: '1em',
+  },
+  Button: {
+    whiteSpace: 'nowrap',
+    position: 'absolute',
+    top: '1.5em',
+    right: '1em',
+    fontWeight: 'bold',
+    fontSize: '1em',
+    fontFamily: 'Righteous',
+    color: 'inherit'
+  }
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog() {
+const UchiIntro = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -42,38 +62,41 @@ export default function FullScreenDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Intro
-      </Button>
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-              <CloseIcon />
-            </IconButton>
-            {/* <Typography variant="h6" className={classes.title}>
-              Sound
-            </Typography> */}
-            <h2 className='intro'>UCHI</h2>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              save
+          <Toolbar className={classes.Toolbar}>
+            <h2 className={classes.title}>UCHI</h2>
+            <Typography className={classes.Typography}>
+              <LoremIpsum p={2} avgSentencesPerParagraph={6} random={false} />
+            </Typography>
+            <Button className={classes.Button} onClick={handleClose}>
+              Main Site
             </Button>
           </Toolbar>
         </AppBar>
         <List>
           <ListItem>
-            <img src='https://render.fineartamerica.com/images/rendered/search/print/images/artworkimages/medium/1/world-map-urban-watercolor-michael-tompsett.jpg' alt='world map' style={{
+            <img src='https://cdn.pixabay.com/photo/2014/03/25/16/34/world-map-297446_1280.png' alt='world map' style={{
               width: '100%',
-              height: '70vh'
+              height: '70vh',
             }}></img>
           </ListItem>
           <ListItem>
+            <Typography className={classes.Typography} style={{ margin: '0 2em 0 2em' }}>
+              <LoremIpsum p={5} />
+            </Typography>
           </ListItem>
-          <Divider />
           <ListItem>
+           <div className='center'>
+              <Button variant='contained' style={{ color: 'white', background: 'black', marginBottom: '2em', fontFamily: 'Righteous' }} onClick={handleClose}>
+                Main Site
+              </Button>
+           </div>
           </ListItem>
         </List>
       </Dialog>
     </div>
   );
 }
+
+export default UchiIntro;
