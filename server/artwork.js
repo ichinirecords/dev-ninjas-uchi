@@ -19,7 +19,6 @@ const validUpdateFields = [
 
 const filterValidUpdateFields = (newFields) => {
   let validFields = {};
-  console.log(newFields);
   for (let i in newFields) {
     if (
       i === "artwork_status" &&
