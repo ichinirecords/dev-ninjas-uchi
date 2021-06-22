@@ -13,6 +13,7 @@ import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
 import MapForm from './MapForm';
 import { useHistory } from "react-router-dom";
+import UploadModalAlerts from './UploadModalAlerts';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -46,6 +47,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const UploadModal = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [successAlert, setSuccessAlert] = useState(false);
   const history = useHistory();
   const [uploadForm, setUploadForm] = useState({
     title: "",
@@ -57,6 +60,7 @@ const UploadModal = () => {
   const handleChange = (e) => {
     setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
   };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const validate = Object.values(uploadForm).every((key) => key.length > 1);
@@ -68,11 +72,13 @@ const UploadModal = () => {
         },
         body: JSON.stringify({ ...uploadForm, ...coordUploadForm }),
       }).then(() => {
-        alert("Your story is successfully uploaded, waiting to be verified");
+        setSuccessAlert(true);
+        setTimeout(function () { setOpen(false); }, 6000);
       });
       history.push("/");
     } else {
-      alert("Please fill in all fields");
+      setErrorAlert(true);
+      setTimeout(function () { setErrorAlert(false); }, 6000);
     }
   };
 
@@ -107,37 +113,15 @@ const UploadModal = () => {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Please choose the media type you want to upload and fill out the form below
+              Please fill out the form below and choose the media type you want to upload
             </Typography>
             <Button autoFocus color="inherit" onClick={handleSubmit}>
               Submit
             </Button>
           </Toolbar>
         </AppBar>
+        <UploadModalAlerts error={errorAlert} setError={setErrorAlert} success={successAlert} setSuccess={setSuccessAlert} />
         <List className={classes.form}>
-          <ListItem>
-            <div className='center'>
-              <div className="radio-container">
-                <input className="radio-input" id={`upload_video`} type="radio" name="media-type" />
-                <label className="radio-label" htmlFor={`upload_video`}>
-                  Video
-                </label>
-                <input className="radio-input" id={`upload_image`} type="radio" name="media-type" />
-                <label className="radio-label" htmlFor={`upload_image`}>
-                  Image
-                </label>
-                <input className="radio-input" id={`upload_music`} type="radio" name="media-type" />
-                <label className="radio-label" htmlFor={`upload_music`}>
-                  Music
-                </label>
-                <input className="radio-input" id={`upload_text`} type="radio" name="media-type" />
-                <label className="radio-label" htmlFor={`upload_text`}>
-                  Text
-                </label>
-              </div>
-            </div>
-          </ListItem>
-          <br />
           <ListItem >
             <TextField
               autoFocus
@@ -166,7 +150,32 @@ const UploadModal = () => {
             />
           </ListItem>
           <ListItem>
+            Please locate the name of your country or city on the map
+          </ListItem>
+          <ListItem>
             <MapForm setCoordUploadForm={setCoordUploadForm} />
+          </ListItem>
+          <ListItem>
+            <div className='center'>
+              <div className="radio-container">
+                <input className="radio-input" id={`upload_video`} type="radio" name="media-type" />
+                <label className="radio-label" htmlFor={`upload_video`}>
+                  Video
+                </label>
+                <input className="radio-input" id={`upload_image`} type="radio" name="media-type" />
+                <label className="radio-label" htmlFor={`upload_image`}>
+                  Image
+                </label>
+                <input className="radio-input" id={`upload_music`} type="radio" name="media-type" />
+                <label className="radio-label" htmlFor={`upload_music`}>
+                  Music
+                </label>
+                <input className="radio-input" id={`upload_text`} type="radio" name="media-type" />
+                <label className="radio-label" htmlFor={`upload_text`}>
+                  Text
+                </label>
+              </div>
+            </div>
           </ListItem>
           <ListItem>
             <TextField
