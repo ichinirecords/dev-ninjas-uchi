@@ -1,8 +1,9 @@
 import React from "react";
 import SelectCountry from "./SelectCountry";
 import Switch from "./Switch";
-import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
+// import { Link } from "react-router-dom";
+// import { Button } from "@material-ui/core";
+import UploadModal from './UploadModal';
 
 const AppHeader = () => {
   return (
@@ -45,8 +46,9 @@ const AppHeader = () => {
           <Switch />
         </div>
       </div>
-      <Button component={Link} to="/upload" variant='contained' className='upload-btn' style={{
+      {/* <Button component={Link} to="/upload" variant='contained' className='upload-btn' style={{
         backgroundColor: '#A4237F', 
+        color: 'white',
         fontWeight: 'normal', 
         border: '5px solid #7D69AF', 
         boxSizing: 'border-box',
@@ -55,7 +57,8 @@ const AppHeader = () => {
         padding: '0.2em 1.75em'
       }}>
         Upload
-      </Button>
+      </Button> */}
+      <UploadModal />
     </header>
   );
 

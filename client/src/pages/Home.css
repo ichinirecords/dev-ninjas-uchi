@@ -24,6 +24,15 @@ header h1 {
   color: mediumpurple;
   font-family: 'Righteous', cursive;
 }
+.intro {
+  display: grid;
+  place-items: center start;
+  margin: 1.25em 0 0 0.5em;
+  font-size: 5em;
+  color: mediumpurple;
+  font-family: 'Righteous', cursive;
+}
+
 .header-contents {
   display: grid;
   grid-template-columns: 9rem auto;
@@ -48,7 +57,7 @@ header h1 {
   grid-template-columns: repeat(2, 1fr);
   place-items: start;
   margin-left: 7em;
-  margin-top: 10em;
+  margin-top: 9em;
   gap: 2em;
 }
 .search-input-wrapper {
@@ -118,6 +127,7 @@ textarea,
   color: white;
 }
 .select-country {
+  margin-top: -0.25em;
   display: flex;
   transform: skewY(6deg);
   width: 100%;
@@ -206,6 +216,57 @@ footer {
   width: 95%;
   margin: auto;
   padding: auto;
+}
+
+.radio-container {
+  display: flex;
+  justify-content: space-evenly;
+  overflow: hidden;
+  border-radius: 0.2em;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  font-size: larger;
+  width: 100%;
+  gap: auto;
+  text-align: center;
+  background-color: #aeb0b3;
+}
+
+.radio-input {
+  display: none;
+}
+
+.radio-label {
+  padding: 0.5em 1.5em;
+  font-size: 1em;
+  color: rgb(100, 44, 93);
+  background-color: #aeb0b3;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.radio-input:checked + .radio-label {
+  background-color: #b7defc;;
+}
+
+.radio-label:not(:last-of-type) {
+  border-right: 0.5em solid rgb(66, 49, 49);
+}
+.radio-label:not(:last-of-type) {
+  border-right: 0.5em solid #7d69af;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+.d-none {
+  display: none !important;
+}
+.error-alert, .success-alert {
+  display: block;
+  margin: auto;
+  width: 60%;
 }
 
 @media screen and (min-width: 300px) and (max-width: 740px) {

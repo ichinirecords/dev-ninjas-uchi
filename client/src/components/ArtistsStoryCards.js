@@ -6,7 +6,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ReactReadMoreReadLess from "react-read-more-read-less";
-import { loremIpsum, name, surname, fullname, username } from 'react-lorem-ipsum'
+import { loremIpsum, name, surname, fullname, username } from 'react-lorem-ipsum';
 
 const useStyles = makeStyles({
   root: {
