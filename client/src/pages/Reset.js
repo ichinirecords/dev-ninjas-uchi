@@ -31,7 +31,10 @@ const Reset = () => {
   const [isValid, setIsValid] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const userId = window.location.search.slice(4,5);
+  const userId = window.location.search.slice(
+    window.location.search.indexOf("id=") + 3,
+    window.location.search.indexOf("&")
+  );
 
   const classes = useStyles();
   let history = useHistory();
