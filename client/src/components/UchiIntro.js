@@ -35,6 +35,12 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Righteous',
     marginLeft: theme.spacing(2),
   },
+  body: {
+    width: '100%',
+    margin: '0',
+    padding: '0',
+    position: 'absolute'
+  },
   Typography: {
     textAlign: 'justify',
     textJustify: 'inter-word',
@@ -53,18 +59,9 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     backgroundColor: 'darkRed',
     fontFamily: 'Righteous',
-    color: 'inherit',
+    color: 'antiquewhite',
     '&:hover': {
       backgroundColor: 'crimson',
-    },
-  },
-  button: {
-    marginBottom: '2em',
-    fontFamily: 'Righteous',
-    background: 'black',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: '#333',
     },
   },
 }));
@@ -97,7 +94,7 @@ const UchiIntro = () => {
             </Button>
           </Toolbar>
         </AppBar>
-        <List>
+        <List className={classes.body}>
           <ListItem>
             <img src='https://cdn.pixabay.com/photo/2014/03/25/16/34/world-map-297446_1280.png' alt='world map' style={{
               width: '100%',
@@ -105,17 +102,22 @@ const UchiIntro = () => {
             }}></img>
           </ListItem>
           <ListItem>
-            <Typography className={classes.Typography} style={{ margin: '0 2em 0 2em' }}>
+            <Typography className={classes.Typography} style={{ margin: '0 2em 0 2em', borderStyle: 'none' }}>
               <LoremIpsum p={5} />
             </Typography>
           </ListItem>
           <ListItem>
-            <div className='center'>
-              <Button className={classes.button} variant='contained' onClick={handleClose}>
-                Main Site
-              </Button>
-            </div>
+          <div className='footer-outer-div'>
+              <div className='center'>
+                <Button className={classes.Button} variant='contained' onClick={handleClose}>
+                  Main Site
+                </Button>
+              </div>
+          </div>
           </ListItem>
+          {/* <ListItem>
+            <IntroFooter />
+          </ListItem> */}
         </List>
       </Dialog>
     </div>

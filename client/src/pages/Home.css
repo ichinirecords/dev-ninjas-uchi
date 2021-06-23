@@ -8,7 +8,7 @@ body {
   font-family: 'Righteous', cursive;
   font-weight: normal;
   background-color: white;
-  margin-bottom: -100px;
+  /* margin-bottom: -100px; */
 }
 header {
   position: relative;
@@ -263,6 +263,16 @@ footer {
 
 .lorem {
   width: 95%;
+}
+.footer-outer-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  height: 7em;
+  background-color: black;
+  white-space: inherit;
 }
 
 @media screen and (min-width: 300px) and (max-width: 740px) {
