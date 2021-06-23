@@ -41,7 +41,8 @@ export const requestReset = async (req, res) => {
   if (adminEmails.includes(email)) {
     const userDetails = await getUserDetails(email, "email");
     const salt = bcrypt.genSaltSync();
-    const token = userDetails.email + userDetails.pass;
+    const token =
+      userDetails.email + userDetails.pass + new Date().toLocaleDateString();
     const hash = bcrypt.hashSync(token, salt);
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -56,7 +57,7 @@ export const requestReset = async (req, res) => {
       subject: "Uchi password reset link",
       html: `Someone requested a password reset for this Uchi account. If it wasn't you, no need to do anything. If you required a password reset, 
 				go to <a href="https://dev-ninjas-uchi.herokuapp.com/reset?id=${userDetails.id}&token=${hash}">
-				https://dev-ninjas-uchi.herokuapp.com/api/reset?id=${userDetails.id}&token=${hash}</a> to reset your password.`,
+				https://dev-ninjas-uchi.herokuapp.com/api/reset?id=${userDetails.id}&token=${hash}</a> to reset your password. This link is only valid for today.`,
     };
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
@@ -74,10 +75,13 @@ export const verifyToken = async (req, res) => {
   const token = req.query.token;
   const type = req.query.type;
   const userDetails = await getUserDetails(id, "id");
-  const newToken =
-    type === "newaccount"
-      ? userDetails.email
-      : userDetails.email + userDetails.pass;
+  let newToken;
+  if (type === "newaccount" && userDetails.pass === null) {
+	  newToken = userDetails.email + new Date().toLocaleDateString();
+  } else {
+	  newToken = userDetails.email + userDetails.pass + new Date().toLocaleDateString();
+  }
+  console.log(userDetails.pass)
   bcrypt.compare(newToken, token, (err, result) => {
     // res == true or res == false
     if (err) return res.status(500).send("could not complete password reset");
@@ -107,13 +111,15 @@ export const resetPassword = async (req, res) => {
 export const createNewAdmin = async (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
+  const adminEmails = await getAdminEmails();
+  if (adminEmails.includes(email)) return res.sendStatus(400)
   const createQuery = `INSERT INTO admins (username, email) VALUES ($1, $2);`;
   try {
     const queryResult = await db.query(createQuery, [username, email]);
     if (queryResult.rowCount === 1) {
       const userDetails = await getUserDetails(email, "email");
       const salt = bcrypt.genSaltSync();
-      const token = userDetails.email;
+      const token = userDetails.email + new Date().toLocaleDateString();
       const hash = bcrypt.hashSync(token, salt);
       let transporter = nodemailer.createTransport({
         service: "gmail",
@@ -128,7 +134,7 @@ export const createNewAdmin = async (req, res) => {
         subject: "Uchi account created",
         html: `Someone created an account for you on Uchi. To choose your new password, 
 				go to <a href="https://dev-ninjas-uchi.herokuapp.com/reset?id=${userDetails.id}&type=newaccount&token=${hash}">
-				https://dev-ninjas-uchi.herokuapp.com/api/reset?id=${userDetails.id}&type=newaccount&token=${hash}</a> to reset your password.`,
+				https://dev-ninjas-uchi.herokuapp.com/api/reset?id=${userDetails.id}&type=newaccount&token=${hash}</a> to reset your password. This link is only valid for today`,
       };
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
