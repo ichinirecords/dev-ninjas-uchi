@@ -13,20 +13,25 @@ import LoremIpsum from 'react-lorem-ipsum';
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: 'black',
-    height: '30vh',
     width: '100%',
     position: 'relative',
-    borderBottom: 'solid crimson'
+    borderBottom: 'solid darkRed',
+    borderBottomWidth: 'thick',
+    display: 'grid',
+    placeItems: 'center',
+    color: 'antiquewhite'
   },
   Toolbar: {
     display: 'grid',
-    gridTemplateColumns: '1fr 5fr 0.5fr',
+    gridTemplateColumns: '1fr 5fr 0.6fr',
     gap: '2em'
   },
   title: {
     display: 'grid',
     placeItems: 'center',
+    margin: 'auto',
     fontSize: '5em',
+    color: 'antiquewhite',
     fontFamily: 'Righteous',
     marginLeft: theme.spacing(2),
   },
@@ -35,17 +40,33 @@ const useStyles = makeStyles((theme) => ({
     textJustify: 'inter-word',
     fontFamily: 'Righteous',
     fontSize: '1em',
+    borderStyle: 'solid',
+    borderColor: 'antiquewhite',
+    borderRadius: '1.5em',
+    display: 'grid',
+    placeItems: 'center',
+    margin: 'auto',
+    borderWidth: 'thick',
+    height: '95%'
   },
   Button: {
     whiteSpace: 'nowrap',
-    position: 'absolute',
-    top: '1.5em',
-    right: '1em',
-    fontWeight: 'bold',
-    fontSize: '1em',
+    backgroundColor: 'darkRed',
     fontFamily: 'Righteous',
-    color: 'inherit'
-  }
+    color: 'inherit',
+    '&:hover': {
+      backgroundColor: 'crimson',
+    },
+  },
+  button: {
+    marginBottom: '2em',
+    fontFamily: 'Righteous',
+    background: 'black',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#333',
+    },
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -65,11 +86,13 @@ const UchiIntro = () => {
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
           <Toolbar className={classes.Toolbar}>
-            <h2 className={classes.title}>UCHI</h2>
+            <h1 className={classes.title}>UCHI</h1>
             <Typography className={classes.Typography}>
-              <LoremIpsum p={2} avgSentencesPerParagraph={6} random={false} />
+              <div className='lorem'>
+                <LoremIpsum style={{ borderColor: 'white' }} p={2} avgSentencesPerParagraph={6} random={false} />
+              </div>
             </Typography>
-            <Button className={classes.Button} onClick={handleClose}>
+            <Button variant='contained' className={classes.Button} onClick={handleClose}>
               Main Site
             </Button>
           </Toolbar>
@@ -87,11 +110,11 @@ const UchiIntro = () => {
             </Typography>
           </ListItem>
           <ListItem>
-           <div className='center'>
-              <Button variant='contained' style={{ color: 'white', background: 'black', marginBottom: '2em', fontFamily: 'Righteous' }} onClick={handleClose}>
+            <div className='center'>
+              <Button className={classes.button} variant='contained' onClick={handleClose}>
                 Main Site
               </Button>
-           </div>
+            </div>
           </ListItem>
         </List>
       </Dialog>

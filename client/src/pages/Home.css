@@ -15,7 +15,7 @@ header {
   height: 300px;
   overflow: hidden;
 }
-header h1 {
+.brand-name {
   display: grid;
   place-items: center start;
   margin: 1.25em 0 0 0.5em;
@@ -38,7 +38,7 @@ header h1 {
   margin: auto;
   justify-content: left;
 }
-.page-title {
+.title-container {
   display: grid;
   place-items: start;
   margin-left: -2.5em;
@@ -259,6 +259,10 @@ footer {
   display: block;
   margin: auto;
   width: 60%;
+}
+
+.lorem {
+  width: 95%;
 }
 
 @media screen and (min-width: 300px) and (max-width: 740px) {
