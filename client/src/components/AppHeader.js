@@ -25,8 +25,8 @@ const AppHeader = () => {
         }}
       >
         <div className="header-contents">
-          <div className="page-title">
-            <h1>UCHI</h1>
+          <div className="title-container">
+            <h1 className='brand-name'>UCHI</h1>
           </div>
           <div className="search-select">
             <div key="input-form" className="search-input-wrapper">
