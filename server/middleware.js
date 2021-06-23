@@ -23,6 +23,7 @@ export const configuredHelmet = () =>
           "stamen-tiles-c.a.ssl.fastly.net",
           "stamen-tiles-d.a.ssl.fastly.net",
           "unpkg.com",
+		  "cdn.pixabay.com"
         ],
         scriptSrc: [
           "'self'",
