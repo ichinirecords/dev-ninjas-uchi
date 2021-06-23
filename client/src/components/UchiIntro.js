@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottomWidth: 'thick',
     display: 'grid',
     placeItems: 'center',
-    color: 'antiquewhite'
+    color: 'antiqueWhite'
   },
   Toolbar: {
     display: 'grid',
@@ -31,15 +31,9 @@ const useStyles = makeStyles((theme) => ({
     placeItems: 'center',
     margin: 'auto',
     fontSize: '5em',
-    color: 'antiquewhite',
+    color: 'antiqueWhite',
     fontFamily: 'Righteous',
     marginLeft: theme.spacing(2),
-  },
-  body: {
-    width: '100%',
-    margin: '0',
-    padding: '0',
-    position: 'absolute'
   },
   Typography: {
     textAlign: 'justify',
@@ -47,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Righteous',
     fontSize: '1em',
     borderStyle: 'solid',
-    borderColor: 'antiquewhite',
+    borderColor: 'antiqueWhite',
     borderRadius: '1.5em',
     display: 'grid',
     placeItems: 'center',
@@ -59,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     backgroundColor: 'darkRed',
     fontFamily: 'Righteous',
-    color: 'antiquewhite',
+    color: 'antiqueWhite',
     '&:hover': {
       backgroundColor: 'crimson',
     },
@@ -115,9 +109,6 @@ const UchiIntro = () => {
               </div>
           </div>
           </ListItem>
-          {/* <ListItem>
-            <IntroFooter />
-          </ListItem> */}
         </List>
       </Dialog>
     </div>
