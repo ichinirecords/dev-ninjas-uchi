@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
+import './ArtistsStoryCards.css';
 
 const useStyles = makeStyles({
   root: {
