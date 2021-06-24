@@ -3,7 +3,6 @@ import Sticky from "react-stickynode";
 import "./Home.css";
 import ArtistsStoryCards from "../components/ArtistsStoryCards";
 import AppHeader from "../components/AppHeader";
-import Educational from "../components/Educational";
 import DonateLink from "../components/DonateLink";
 import Footer from "../components/Footer";
 import Map from "../components/Map";
