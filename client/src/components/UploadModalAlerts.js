@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UploadModalAlerts = ({ error, setError, success, setSuccess }) => {
+const UploadModalAlerts = ({ error, setError, success, setSuccess, story, setStory }) => {
   const classes = useStyles();
 
   return (
@@ -20,7 +20,10 @@ const UploadModalAlerts = ({ error, setError, success, setSuccess }) => {
         <AlertTitle>Error</AlertTitle>
         Failed to submit! —  <strong>Please fill in the empty field/s!</strong>
       </Alert>
-
+      <Alert className={story ? 'error-alert' : 'd-none'} severity='error' onClose={() => setStory(false)}>
+        <AlertTitle>Error</AlertTitle>
+        Failed to submit! —  <strong>Please enter or upload your story!</strong>
+      </Alert>
       <Alert className={success ? 'success-alert' : 'd-none'} onClose={() => setSuccess(false)} severity="success">
         <AlertTitle>Success</AlertTitle>
         <strong>Your story is successfully uploaded, waiting to be verified!</strong>

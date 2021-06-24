@@ -26,7 +26,7 @@ export function Home() {
       </Sticky>
       <main className="main" role="main">
         <AppHeader />
-      <HomeTab setView={setView} />
+        <HomeTab setView={setView} />
         {view === "listing" && <ArtistsStoryCards approvedArtwork={approvedArtwork} />}
         {view === "map" && <Map approvedArtwork={approvedArtwork} /> }
       </main>
