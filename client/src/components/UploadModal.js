@@ -54,6 +54,7 @@ const UploadModal = () => {
 	const [uploadForm, setUploadForm] = useState({
 		title: "",
 		artist_name: "",
+		content_type: "",
 		story: "",
 	});
 
@@ -67,38 +68,42 @@ const UploadModal = () => {
 		setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
 	};
 
+	const handleTypeChange = (e) => {
+		setUploadForm({ ...uploadForm, content_type: e.target.value });
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const validate = Object.values(uploadForm).every((key) => key.length > 1);
+		// const validate = Object.values(uploadForm).every((key) => key.length > 1);
+		const validate = true;
 		if (validate) {
+			const formData = new FormData();
+			formData.append("image", file);
+			console.log(file);
+			for (let value of formData.values()) {
+				console.log(value);
+			}
+			for(let key in uploadForm){
+				formData.append(key, uploadForm[key]);
+			}
+			for (let key in coordUploadForm) {
+				formData.append(key, coordUploadForm[key]);
+			}
+			for (let value of formData.values()) {
+				console.log(value);
+			}
 			fetch("/api/upload", {
 				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ ...uploadForm, ...coordUploadForm }),
+				// headers: {
+				// 	"Content-Type": "application/json",
+				// },
+				body: formData,
 			}).then(() => {
 				setSuccessAlert(true);
 				setTimeout(function () {
 					setOpen(false);
 				}, 6000);
 			});
-
-			const formData = new FormData();
-			formData.append("image", file);
-			formData.append("description", uploadForm.story);
-
-			fetch("/api/media", {
-				method: "POST",
-				// headers: { "Content-Type": "multipart/form-data" },
-				body: formData,
-			})
-				.then((data) => {
-					console.log("image uploaded", data);
-				})
-				.catch((e) => {
-					console.log(e);
-				});
 
 			history.push("/");
 		} else {
@@ -210,6 +215,8 @@ const UploadModal = () => {
 									id={"upload_video"}
 									type="radio"
 									name="media-type"
+									value="video"
+									onClick={handleTypeChange}
 								/>
 								<label className="radio-label" htmlFor={"upload_video"}>
                   Video
@@ -219,6 +226,8 @@ const UploadModal = () => {
 									id={"upload_image"}
 									type="radio"
 									name="media-type"
+									value="image"
+									onClick={handleTypeChange}
 								/>
 								<label className="radio-label" htmlFor={"upload_image"}>
                   Image
@@ -228,6 +237,8 @@ const UploadModal = () => {
 									id={"upload_music"}
 									type="radio"
 									name="media-type"
+									value="music"
+									onClick={handleTypeChange}
 								/>
 								<label className="radio-label" htmlFor={"upload_music"}>
                   Music
@@ -237,6 +248,8 @@ const UploadModal = () => {
 									id={"upload_text"}
 									type="radio"
 									name="media-type"
+									value="text"
+									onClick={handleTypeChange}
 								/>
 								<label className="radio-label" htmlFor={"upload_text"}>
                   Text

@@ -2,7 +2,7 @@ import { Router } from "express";
 import passport from "passport";
 import { login, logout, ping, requestReset, verifyToken, resetPassword, createNewAdmin } from "./admins";
 import { artUpload } from "./upload";
-import { mediaUpload } from "./media";
+// import { mediaUpload } from "./media";
 import { getArtwork, updateArtwork, deleteArtwork } from "./artwork";
 import db from "./db";
 import { requiresLogin } from "./middleware";
@@ -15,9 +15,9 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-router.post("/upload", artUpload);
+router.post("/upload", upload.single("image"), artUpload);
 
-router.post("/media", upload.single("image"), mediaUpload);
+// router.post("/media", upload.single("image"), mediaUpload);
 
 router.post("/login", passport.authenticate("local"), login);
 
