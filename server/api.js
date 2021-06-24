@@ -1,10 +1,13 @@
 import { Router } from "express";
 import passport from "passport";
-import {login, logout, ping, requestReset, verifyToken, resetPassword, createNewAdmin} from "./admins";
+import { login, logout, ping, requestReset, verifyToken, resetPassword, createNewAdmin } from "./admins";
 import { artUpload } from "./upload";
+import { mediaUpload } from "./media";
 import { getArtwork, updateArtwork, deleteArtwork } from "./artwork";
 import db from "./db";
 import { requiresLogin } from "./middleware";
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 const router = new Router();
 
@@ -14,15 +17,17 @@ router.get("/", (_, res) => {
 
 router.post("/upload", artUpload);
 
+router.post("/media", upload.single("image"), mediaUpload);
+
 router.post("/login", passport.authenticate("local"), login);
 
 router.get("/logout", logout);
 
 router.get("/ping", requiresLogin, ping);
 
-router.post("/request-reset", requestReset)
+router.post("/request-reset", requestReset);
 
-router.get("/reset", verifyToken)
+router.get("/reset", verifyToken);
 
 router.post("/admin", createNewAdmin);
 

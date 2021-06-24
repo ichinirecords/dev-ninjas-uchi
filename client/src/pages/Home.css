@@ -237,6 +237,9 @@ footer {
   border-right: 0.5em solid #7d69af;
 }
 
+.media{
+  border-color: green;
+}
 .center {
   display: grid;
   place-items: center;
