@@ -11,7 +11,7 @@ export const artUpload = (req, res) => {
 	const newArtCountry = req.body.country;
 	const newArtStory = req.body.story;
 	const newLat = req.body.lat;
-	const newLon = req.body.lon
+	const newLon = req.body.lon;
 	db.query(newQuery, [
 		newArtTitle,
 		newArtName,
@@ -21,7 +21,7 @@ export const artUpload = (req, res) => {
 		"submitted",
 		new Date(),
 		newLat,
-		newLon
+		newLon,
 	])
 		.then(() => res.sendStatus(201));
 };
