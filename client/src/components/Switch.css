@@ -1,5 +1,5 @@
 .radio-switch {
-  transform: skewY(7deg);
+  transform: skewY(6deg);
   display: grid;
   place-items: start;
   grid-template-columns: repeat(2, 1fr);
@@ -19,21 +19,21 @@ h2 {
   margin-left: -0.5em;
 }
 
-.react-switch-label {
+.switch-label {
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   width: 30px;
   height: 22px;
-  background: white;
+  background: rgb(179, 177, 177);
   border-radius: 100px;
   border-style: solid;
   position: relative;
   transition: background-color .2s;
 }
 
-.react-switch-label .react-switch-button {
+.switch-label .switch-button {
   content: 'Video';
   position: absolute;
   top: 0;
@@ -42,19 +42,24 @@ h2 {
   height: 22px;
   border-radius: 30px;
   transition: 0.2s;
-  background: #A4237F;
+  background: rgb(99, 97, 97);
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
 }
 
-.react-switch-checkbox {
+.switch-checkbox {
   opacity: 0;
 }
 
-.react-switch-checkbox:checked + .react-switch-label .react-switch-button {
+.switch-checkbox:checked + .switch-label .switch-button {
   left: calc(100% - 2px);
   transform: translateX(-100%);
+  background: #A4237F;
 }
 
-.react-switch-label:active .react-switch-button {
-  width: 60px;
+.switch-label:active .switch-button {
+  width: 30px;
+}
+
+.switch-checkbox:checked + .switch-label {
+  background: white;
 }

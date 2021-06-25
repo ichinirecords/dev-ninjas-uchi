@@ -18,7 +18,12 @@ export const configuredHelmet = () =>
           "a.tile.openstreetmap.org",
           "b.tile.openstreetmap.org",
           "c.tile.openstreetmap.org",
-		  "unpkg.com"
+          "stamen-tiles-a.a.ssl.fastly.net",
+          "stamen-tiles-b.a.ssl.fastly.net",
+          "stamen-tiles-c.a.ssl.fastly.net",
+          "stamen-tiles-d.a.ssl.fastly.net",
+          "unpkg.com",
+		  "cdn.pixabay.com"
         ],
         scriptSrc: [
           "'self'",

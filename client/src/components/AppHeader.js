@@ -1,8 +1,10 @@
 import React from "react";
 import SelectCountry from "./SelectCountry";
 import Switch from "./Switch";
-import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
+// import { Link } from "react-router-dom";
+// import { Button } from "@material-ui/core";
+import UploadModal from './UploadModal';
+import UchiIntro from './UchiIntro';
 
 const AppHeader = () => {
   return (
@@ -18,13 +20,13 @@ const AppHeader = () => {
           width: "100 %",
           height: "100 %",
           backgroundImage: "linear-gradient(white, white)",
-          transform: "skewY(-7deg)",
+          transform: "skewY(-6deg)",
           transformOrigin: "top left",
         }}
       >
         <div className="header-contents">
-          <div className="page-title">
-            <h1>UCHI</h1>
+          <div className="title-container">
+            <h1 className='brand-name'>UCHI</h1>
           </div>
           <div className="search-select">
             <div key="input-form" className="search-input-wrapper">
@@ -45,8 +47,9 @@ const AppHeader = () => {
           <Switch />
         </div>
       </div>
-      <Button component={Link} to="/upload" variant='contained' className='upload-btn' style={{
+      {/* <Button component={Link} to="/upload" variant='contained' className='upload-btn' style={{
         backgroundColor: '#A4237F', 
+        color: 'white',
         fontWeight: 'normal', 
         border: '5px solid #7D69AF', 
         boxSizing: 'border-box',
@@ -55,7 +58,9 @@ const AppHeader = () => {
         padding: '0.2em 1.75em'
       }}>
         Upload
-      </Button>
+      </Button> */}
+      <UploadModal />
+      <UchiIntro/>
     </header>
   );
 

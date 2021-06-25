@@ -19,7 +19,6 @@ const validUpdateFields = [
 
 const filterValidUpdateFields = (newFields) => {
   let validFields = {};
-  console.log(newFields);
   for (let i in newFields) {
     if (
       i === "artwork_status" &&
@@ -75,6 +74,7 @@ export const getArtwork = (req, res) => {
   let getQuery = `SELECT * FROM artwork`;
   if (Object.keys(req.query).length > 0) getQuery += " WHERE ";
   if (status) getQuery += `artwork_status = '${status}'`;
+  getQuery += " ORDER BY created_on;"
   db.query(getQuery)
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));

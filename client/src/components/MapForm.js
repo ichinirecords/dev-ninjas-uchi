@@ -1,9 +1,8 @@
 import { MapContainer, TileLayer } from "react-leaflet";
-//import "leaflet/dist/leaflet.css";
 import "./MapForm.css";
 import LeafletControlGeocoder from "./LeafletControlGeocoder"
 
-const MapForm = () => {
+const MapForm = ({ setCoordUploadForm }) => {
   const position = [51.505, -0.09];
 
   return (
@@ -12,7 +11,9 @@ const MapForm = () => {
         attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <LeafletControlGeocoder />
+      <LeafletControlGeocoder
+        setCoordUploadForm={setCoordUploadForm}
+      />
     </MapContainer>
   );
 };

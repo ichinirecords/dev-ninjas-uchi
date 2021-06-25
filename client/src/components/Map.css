@@ -1,0 +1,11 @@
+.leaflet-popup-content {
+  /* max-width: 240px;
+  max-height: 240px;
+  overflow-y: scroll; */
+  background-color: "#bfacf0";
+  padding: 0;
+}
+
+.leaflet-popup-content-wrapper {
+	background-color: "#bfacf0";
+}

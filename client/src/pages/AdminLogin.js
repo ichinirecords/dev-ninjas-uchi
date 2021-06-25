@@ -131,18 +131,18 @@ const AdminLogin = ({setUser}) => {
             >
               Login
             </Button>
-            {/* <Grid container>
+            <Grid container>
               <Grid item xs>
-                <Link href='#' variant='body2'>
+                <Link href='/request-reset' variant='body2'>
                   Forgot password?
                 </Link>
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <Link href='#' variant='body2'>
                   {"Don't have an admin account? Sign Up"}
                 </Link>
-              </Grid>
-            </Grid> */}
+              </Grid> */}
+            </Grid>
           </form>
         </div>
         <Box mt={8}>

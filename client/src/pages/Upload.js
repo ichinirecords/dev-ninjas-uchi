@@ -1,31 +1,34 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import MapForm from "../components/MapForm";
 const Upload = () => {
 	const history = useHistory();
 	const [uploadForm, setUploadForm] = useState({
 		title: "",
 		artist_name: "",
-		city: "",
-		country: "",
 		story: "",
 	});
+	const [coordUploadForm, setCoordUploadForm] = useState({});
 	const handleChange = (e) => {
 		setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		fetch("/api/upload", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(uploadForm),
-		})
-			.then(() =>{
+		const validate = Object.values(uploadForm).every((key) => key.length > 1);
+		if (validate) {
+			fetch("/api/upload", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ ...uploadForm, ...coordUploadForm }),
+			}).then(() => {
 				alert("Your story is successfully uploaded, waiting to be verified");
 			});
-		setUploadForm("");
-		history.push("/");
+			history.push("/");
+		} else {
+			alert("Please fill in all fields");
+		}
 	};
 	return (
 		<div className="upload-form">
@@ -55,30 +58,58 @@ const Upload = () => {
 				</label>
 				<br />
 				<br />
-				<label className="has-float-label">
-					<input
-						type="text"
-						name="city"
-						value={uploadForm.city}
-						onChange={handleChange}
-						placeholder="Town/City"
-					/>
-					<span>Town/city</span>
-				</label>
 				<br />
 				<br />
-				<label className="has-float-label">
-					<input
-						type="text"
-						name="country"
-						value={uploadForm.country}
-						onChange={handleChange}
-						placeholder="Country"
-					/>
-					<span>Country</span>
-				</label>
+				<MapForm setCoordUploadForm={setCoordUploadForm} />
 				<br />
-				<br />
+				<div>
+					<div>
+						<h3>Please choose the media type you want to upload</h3>
+						<div className="radio-container">
+							<input
+								className="radio-input"
+								id={"video"}
+								type="radio"
+								name="media-type"
+								value="video"
+							/>
+							<label className="radio-label" htmlFor={"video"}>
+                Video
+							</label>
+							<input
+								className="radio-input"
+								id={"image"}
+								type="radio"
+								name="media-type"
+								value="image"
+							/>
+							<label className="radio-label" htmlFor={"image"}>
+                Image
+							</label>
+							<input
+								className="radio-input"
+								id={"music"}
+								type="radio"
+								name="media-type"
+								value="music"
+							/>
+							<label className="radio-label" htmlFor={"music"}>
+                Music
+							</label>
+							<input
+								className="radio-input"
+								id={"text"}
+								type="radio"
+								name="media-type"
+								value="text"
+							/>
+							<label className="radio-label" htmlFor={"text"}>
+                Text
+							</label>
+						</div>
+					</div>
+				</div>
+
 				<p>Please tell us your story below:</p>
 				<textarea
 					className="story-input"
@@ -88,9 +119,12 @@ const Upload = () => {
 					onChange={handleChange}
 					placeholder=""
 				/>
-
 				<br />
 				<br />
+				<div className="media">
+					<p>Click on the Choose File button to upload a file:</p>
+					<input type="file" id="file" name="media" />
+				</div>
 				<button type="submit" className="btn">
           Submit
 				</button>

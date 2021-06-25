@@ -3,19 +3,20 @@ import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import CopyrightIcon from "@material-ui/icons/Copyright";
 import AdminStoryCards from "../components/AdminStoryCards";
-import MapForm from "../components/MapForm";
+import NewAdmin from "../components/NewAdmin";
 import "./AdminPanel.css";
 
 const AdminPanel = ({ user, setUser }) => {
   let history = useHistory();
 
   const [approveMode, setApproveMode] = useState(true);
+  const [createMode, setCreateMode] = useState(false);
 
   useEffect(() => {
-    fetch("/api/ping")
+    fetch("/api/ping", { credentials: "include" })
       .then((res) => {
         if (res.status === 401) {
-          setUser("");
+          history.push("/login");
         } else {
           return res.json();
         }
@@ -36,8 +37,6 @@ const AdminPanel = ({ user, setUser }) => {
   return (
     <>
       <main className="main" role="main">
-        {!user && <div>User not logged in</div>}
-
         {user && user.username && (
           <>
             <header>
@@ -57,7 +56,7 @@ const AdminPanel = ({ user, setUser }) => {
                 }}
               >
                 <div className="header-contents">
-                  <div className="page-title">
+                  <div className="brand-name">
                     <h1>UCHI</h1>
                   </div>
                   <div className="grid-empty-space"></div>
@@ -81,6 +80,22 @@ const AdminPanel = ({ user, setUser }) => {
               </Button>
             </header>
             <h1 id="welcome">Welcome, {user.username}</h1>
+            <Button
+              onClick={() => setCreateMode(!createMode)}
+              variant="contained"
+              style={{
+                backgroundColor: "#A4237F",
+                fontWeight: "normal",
+                border: "5px solid #7D69AF",
+                boxSizing: "border-box",
+                borderRadius: "5px",
+                fontFamily: "Righteous",
+                padding: "0.2em 1.75em",
+              }}
+            >
+              Create new admin
+            </Button>
+            {createMode && <NewAdmin setCreateMode={setCreateMode} />}
             <h2 className="admin-title">
               {approveMode ? "Artwork to approve" : "All artwork"}
             </h2>
@@ -103,9 +118,6 @@ const AdminPanel = ({ user, setUser }) => {
             <AdminStoryCards user={user} approveMode={approveMode} />
           </>
         )}
-
-        {/* Just testing, to remove in the future */}
-        <MapForm />
       </main>
       <footer>
         <div
