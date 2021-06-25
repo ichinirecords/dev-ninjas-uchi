@@ -37,10 +37,10 @@ const getSubmittedArtwork = async () => {
 const createEmailText = async () => {
   const artwork = await getSubmittedArtwork();
   let result = `<!DOCTYPE html>
-    <html><header><h1>Here is the outstanding artwork to submit</h1></header>
+    <html><header><h1>Here is the outstanding artwork to approve</h1></header>
 	<body>`;
   if (artwork.length === 0) {
-    result += "<div>No outstanding artwork to submit</div></body></html>";
+    result += "<div>No outstanding artwork to approve</div></body></html>";
   } else {
     result += `<table><thead><tr>
 			<th>Artwork title</th>
@@ -56,7 +56,7 @@ const createEmailText = async () => {
 			<td>${item.city}</td>
 			<td>${item.country}</td>
 			<td>${item.content_type}</td>
-			<td>${item.created_on}</td></tr>`;
+			<td>${new Date(item.created_on).toLocaleDateString()}</td></tr>`;
   });
   if (artwork.length > 0) {
     result += `</tbody></table><div>Go to <a href="https://dev-ninjas-uchi.herokuapp.com/login">login</a> to approve new submissions</div></body></html>`;
@@ -69,7 +69,8 @@ const getMailOptions = async () => {
   const htmlText = await createEmailText();
   return {
     from: process.env.EMAIL,
-    to: emails,
+    to: process.env.EMAIL,
+    bcc: emails,
     subject: "Uchi daily admin digest",
     text: "Testing content",
     html: htmlText,
