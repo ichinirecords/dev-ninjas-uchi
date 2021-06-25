@@ -1,6 +1,12 @@
 .leaflet-container {
 	/* height: 300px;
 	width: 450px; */
-	height: 50em;
+	height: 30em;
 	width: 100%;
+}
+
+@media only screen and (max-device-width: 1048px) {
+	.leaflet-container {
+		height: 35em;
+	}
 }

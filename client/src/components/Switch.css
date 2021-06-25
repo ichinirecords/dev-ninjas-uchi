@@ -63,3 +63,9 @@ h2 {
 .switch-checkbox:checked + .switch-label {
   background: white;
 }
+
+@media only screen and (max-device-width: 1038px) {
+  .radio-switch {
+    margin-top: 7em;
+  }
+}
