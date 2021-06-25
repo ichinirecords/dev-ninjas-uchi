@@ -10,6 +10,7 @@ export const configuredHelmet = () =>
           "nominatim.openstreetmap.org",
           "cdnjs.cloudflare.com",
           "fonts.gstatic.com",
+          "uchi-app-uploads.s3.eu-west-1.amazonaws.com",
         ],
         objectSrc: ["'none'"],
         imgSrc: [
@@ -23,7 +24,8 @@ export const configuredHelmet = () =>
           "stamen-tiles-c.a.ssl.fastly.net",
           "stamen-tiles-d.a.ssl.fastly.net",
           "unpkg.com",
-		  "cdn.pixabay.com"
+          "cdn.pixabay.com",
+          "uchi-app-uploads.s3.eu-west-1.amazonaws.com",
         ],
         scriptSrc: [
           "'self'",
