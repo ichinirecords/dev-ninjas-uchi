@@ -41,7 +41,6 @@ const AppHeader = () => {
               />
             </div>
             <div><SelectCountry /></div>
-            
           </div>
           <div className="grid-empty-space"></div>
           <Switch />
