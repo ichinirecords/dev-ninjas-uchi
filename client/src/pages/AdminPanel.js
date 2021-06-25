@@ -56,8 +56,8 @@ const AdminPanel = ({ user, setUser }) => {
                 }}
               >
                 <div className="header-contents">
-                  <div className="brand-name">
-                    <h1>UCHI</h1>
+                  <div className="title-container">
+                    <h1 className="brand-name">UCHI</h1>
                   </div>
                   <div className="grid-empty-space"></div>
                 </div>

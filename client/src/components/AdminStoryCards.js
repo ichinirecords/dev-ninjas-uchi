@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import ReactReadMoreReadLess from "react-read-more-read-less";
@@ -138,13 +139,13 @@ const AdminStoryCards = ({ user, approveMode }) => {
             return (
               <Card key={artwork.id} className={classes.root}>
                 <CardContent>
-                  {artwork.type === "image" && (
+                  {artwork.content_type === "image" && (
                     <CardMedia
                       className="card-img"
                       component="img"
                       alt="drawing colors"
                       height="240"
-                      image="https://cdn.pixabay.com/photo/2020/06/17/12/40/artistic-5309339_960_720.jpg"
+                      image={artwork.content_link}
                       title="drawing colors"
                     />
                   )}
