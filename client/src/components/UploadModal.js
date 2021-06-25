@@ -31,18 +31,29 @@ const useStyles = makeStyles((theme) => ({
 		margin: "auto",
 		justifyContent: "center",
 		alignItems: "center",
-		fontFamily: "Righteous",
+		fontFamily: "Righteous"
 	},
 	form: {
 		display: "grid",
-		width: "80%",
+		width: "50%",
+    margin: 'auto',
 		placeItems: "center",
-		margin: "5em 10% 0 10%",
+		margin: "4em 25% 0 25%",
 		fontFamily: "Righteous",
+    backgroundColor: '#d1c2f7'
 	},
-	subtitle: {
-		fontSize: "1.25em",
+	map_header: {
+		fontSize: "1.25em"
 	},
+  media: {
+    color: 'transparent',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '6em',
+    fontFamily: 'Righteous',
+    fontSize: '1.5rem'
+  }
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -50,24 +61,20 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const UploadModal = () => {
-
-	const [storyError, setStoryError] = useState(false);
-
-
 	const classes = useStyles();
+  const history = useHistory();
+  const [file, setFile] = useState();
 	const [open, setOpen] = useState(false);
 	const [errorAlert, setErrorAlert] = useState(false);
 	const [successAlert, setSuccessAlert] = useState(false);
-	const history = useHistory();
+  const [storyError, setStoryError] = useState(false);
+  const [coordUploadForm, setCoordUploadForm] = useState({});
 	const [uploadForm, setUploadForm] = useState({
 		title: "",
 		artist_name: "",
 		content_type: "",
 		story: "",
 	});
-
-	const [file, setFile] = useState();
-	const [coordUploadForm, setCoordUploadForm] = useState({});
 
 	const handleMediaUpload = (e) =>{
 		setFile(e.target.files[0]);
@@ -82,8 +89,8 @@ const UploadModal = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// const validate = Object.values(uploadForm).every((key) => key.length > 1);
-		const validate = true;
+		const validate = Object.values(uploadForm).every((key) => key.length > 1);
+		//const validate = true;
 		if (validate) {
 			const formData = new FormData();
 			formData.append("image", file);
@@ -112,15 +119,15 @@ const UploadModal = () => {
 					setOpen(false);
 				}, 6000);
 			});
-
 			history.push("/");
-		} else {
-			setErrorAlert(true);
-			setTimeout(function () {
-				setErrorAlert(false);
-			}, 6000);
-		}
-	};
+    } else if (uploadForm.title === '' || uploadForm.artist_name === '') {
+      setErrorAlert(true);
+      setTimeout(function () { setErrorAlert(false); }, 6000);
+    } else if (uploadForm.story === '') {
+      setStoryError(true);
+      setTimeout(function () { setStoryError(false); }, 6000);
+    }
+  };
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -164,13 +171,15 @@ const UploadModal = () => {
 						</Button>
 					</Toolbar>
 				</AppBar>
-				<UploadModalAlerts
-					error={errorAlert}
-					setError={setErrorAlert}
-					success={successAlert}
-					setSuccess={setSuccessAlert}
-				/>
-				<List className={classes.form}>
+				<List className={`${classes.form} upload-modal`}>
+          <ListItem>
+            <UploadModalAlerts
+              error={errorAlert}
+              setError={setErrorAlert}
+              success={successAlert}
+              setSuccess={setSuccessAlert}
+            />
+          </ListItem>
 					<ListItem>
 						<TextField
 							autoFocus
@@ -198,8 +207,8 @@ const UploadModal = () => {
 							onChange={handleChange}
 						/>
 					</ListItem>
-					<ListItem>
-            Please locate the name of your country or city on the map
+					<ListItem className={classes.map_header}>
+            Please enter the name of your country or city and locate it on the map
 					</ListItem>
 					<ListItem>
 						<MapForm setCoordUploadForm={setCoordUploadForm} />
@@ -254,13 +263,13 @@ const UploadModal = () => {
 							</div>
 						</div>
 					</ListItem>
-
 					<ListItem>
-						<UploadModalAlerts className={classes.alert} story={storyError} setStory={setStoryError} success={successAlert} setSuccess={setSuccessAlert} />
+						<UploadModalAlerts className={classes.alert} story={storyError} setStory={setStoryError}/>
 					</ListItem>
 					<ListItem>
-						<div>
+            <div className='center'>
 							<input
+                className={`${classes.media} media-input`}
 								type="file"
 								name="media"
 								accept="image/*"
@@ -288,13 +297,13 @@ const UploadModal = () => {
 						<Button style={{
 							margin: "2em",
 							fontFamily: "Righteous",
-						}} type='cancel' autoFocus color="secondary" variant='contained' onClick={handleClose}>
+						}} type='cancel' autoFocus color="secondary" variant='outlined' onClick={handleClose}>
               Cancel
 						</Button>
 						<Button style={{
 							margin: "2em",
 							fontFamily: "Righteous",
-						}} type='submit' autoFocus color="primary" variant='contained' onClick={handleSubmit}>
+						}} type='submit' autoFocus color="primary" variant='outlined' onClick={handleSubmit}>
               Submit
 						</Button>
 					</ListItem>
