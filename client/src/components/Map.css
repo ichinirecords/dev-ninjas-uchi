@@ -7,5 +7,13 @@
 }
 
 .leaflet-popup-content-wrapper {
-	background-color: "#bfacf0";
+  background-color: "#bfacf0";
+}
+
+.marker-cluster {
+  background-color: rgb(197, 139, 139);
+}
+
+.marker-cluster div {
+  background-color: rgb(223, 21, 21);
 }
