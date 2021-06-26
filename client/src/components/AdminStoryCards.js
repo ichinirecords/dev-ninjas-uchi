@@ -143,10 +143,31 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     <CardMedia
                       className="card-img"
                       component="img"
-                      alt="drawing colors"
+                      alt={artwork.title}
                       height="240"
                       image={artwork.content_link}
-                      title="drawing colors"
+                      title={artwork.title}
+                    />
+                  )}
+                  {artwork.content_type === "video" && (
+                    <CardMedia
+                      className="card-edit"
+                      component="iframe"
+                      alt={artwork.title}
+                      height="240px"
+                      width="auto"
+                      src={artwork.content_link}
+                      title={artwork.title}
+                    />
+                  )}
+                  {artwork.content_type === "music" && (
+                    <CardMedia
+                      className="card-edit"
+                      component="iframe"
+                      height="30"
+                      alt={artwork.title}
+                      image={artwork.content_link}
+                      title={artwork.title}
                     />
                   )}
                   <Typography
@@ -180,6 +201,10 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     >
                       {artwork.content_text}
                     </ReactReadMoreReadLess>
+                  </Typography>
+                  <Typography variant="body1">
+                    <strong>Status: </strong>
+                    {artwork.artwork_status}
                   </Typography>
                   <Link
                     to={{
