@@ -15,7 +15,7 @@ const Map = ({ approvedArtwork }) => {
     <MapContainer
       center={position}
       zoom={2}
-      style={{ height: "75vh", width: "85vw", marginLeft: "5vw" }}
+	  className="main-map"
       scrollWheelZoom={false}
     >
       <TileLayer
