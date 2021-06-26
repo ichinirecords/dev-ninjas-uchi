@@ -3,7 +3,6 @@ import { useHistory, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import CardMedia from "@material-ui/core/CardMedia";
 import ListItem from "@material-ui/core/ListItem";
 import MapForm from "../components/MapForm";
 
@@ -158,57 +157,48 @@ const Edit = ({ user, setUser }) => {
               </div>
             </ListItem>
 
-            {uploadForm.content_type === "text" && (
-              <ListItem>
-                <TextField
-                  label="Please edit the story here"
-                  placeholder="Please edit the story here"
-                  multiline
-                  variant="outlined"
-                  type="text"
-                  name="story"
-                  fullWidth
-                  value={uploadForm.content_text}
-                  onChange={handleChange}
-                />
-              </ListItem>
-            )}
+            {(uploadForm.content_type === "text" ||
+              uploadForm.content_type === "image") && (
+                <ListItem>
+                  <TextField
+                    label="Please edit the story here"
+                    placeholder="Please edit the story here"
+                    multiline
+                    variant="outlined"
+                    type="text"
+                    name="story"
+                    fullWidth
+                    value={uploadForm.content_text}
+                    onChange={handleChange}
+                  />
+                </ListItem>
+              )}
             {uploadForm.content_type === "image" && (
               <ListItem>
-                <CardMedia
-                  className="card-edit"
-                  component="img"
-                  alt={uploadForm.title}
-                  height="240px"
-                  width="auto"
-                  image={uploadForm.content_link}
-                  title={uploadForm.title}
-                />
+                <div style={{display:"flex", alignContent:"center", justifyItems:"center"}}>
+                  <img
+                    component="img"
+                    alt={uploadForm.title}
+                    height="240px"
+                    width="auto"
+					margin="auto"
+                    src={uploadForm.content_link}
+                  />
+                </div>
               </ListItem>
             )}
             {uploadForm.content_type === "video" && (
               <ListItem>
-                <CardMedia
-                  className="card-edit"
-                  component="iframe"
-                  alt={uploadForm.title}
-                  height="240px"
-                  width="auto"
-                  src={uploadForm.content_link}
-                  title={uploadForm.title}
-                />
+                <video width="100%" height="240" controls>
+                  <source src={uploadForm.content_link} type="video/mp4" />
+                </video>
               </ListItem>
             )}
             {uploadForm.content_type === "music" && (
               <ListItem>
-                <CardMedia
-                  className="card-edit"
-                  component="iframe"
-                  height="30"
-                  alt={uploadForm.title}
-                  image={uploadForm.content_link}
-                  title={uploadForm.title}
-                />
+                <audio controls style={{ display: "flex", width: "100%" }}>
+                  <source src={uploadForm.content_link} />
+                </audio>
               </ListItem>
             )}
             <ListItem>

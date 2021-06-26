@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
-import './ArtistsStoryCards.css';
+import "./ArtistsStoryCards.css";
 
 const useStyles = makeStyles({
   root: {
@@ -23,29 +23,30 @@ const useStyles = makeStyles({
     marginBottom: 3,
   },
   searchBar: {
-	marginLeft: 50,
-  }
+    marginLeft: 50,
+  },
 });
 
 const AdminStoryCards = ({ user, approveMode }) => {
   const classes = useStyles();
 
   const [submittedArtwork, setSubmittedArtwork] = useState([]);
-  const [filteredArtwork, setFilteredArtwork] = useState([])
+  const [filteredArtwork, setFilteredArtwork] = useState([]);
   const [search, setSearch] = useState("");
 
   const applySearch = (data) => {
     const filteredData = data.filter(
       (artwork) =>
         (artwork.title && artwork.title.toLowerCase().includes(search)) ||
-        (artwork.artist_name && artwork.artist_name.toLowerCase().includes(search))
+        (artwork.artist_name &&
+          artwork.artist_name.toLowerCase().includes(search))
     );
-	return filteredData;
+    return filteredData;
   };
 
-  useEffect(()=>{
-	setFilteredArtwork(applySearch(submittedArtwork));
-  }, [submittedArtwork, search])
+  useEffect(() => {
+    setFilteredArtwork(applySearch(submittedArtwork));
+  }, [submittedArtwork, search]);
 
   useEffect(() => {
     if (approveMode) {
@@ -124,15 +125,17 @@ const AdminStoryCards = ({ user, approveMode }) => {
 
   return (
     <>
-      {!approveMode && <TextField
-        className={classes.searchBar}
-        variant="filled"
-        margin="normal"
-        id="search"
-        label="Search by title or artist name"
-        name="email"
-        onChange={(e) => setSearch(e.target.value.toLowerCase())}
-      />}
+      {!approveMode && (
+        <TextField
+          className={classes.searchBar}
+          variant="filled"
+          margin="normal"
+          id="search"
+          label="Search by title or artist name"
+          name="email"
+          onChange={(e) => setSearch(e.target.value.toLowerCase())}
+        />
+      )}
       <div className="cards-wrapper">
         {filteredArtwork.length > 0 &&
           filteredArtwork.map((artwork, index) => {
@@ -150,25 +153,14 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     />
                   )}
                   {artwork.content_type === "video" && (
-                    <CardMedia
-                      className="card-edit"
-                      component="iframe"
-                      alt={artwork.title}
-                      height="240px"
-                      width="auto"
-                      src={artwork.content_link}
-                      title={artwork.title}
-                    />
+                    <video width="100%" height="240" controls>
+                      <source src={artwork.content_link} type="video/mp4" />
+                    </video>
                   )}
                   {artwork.content_type === "music" && (
-                    <CardMedia
-                      className="card-edit"
-                      component="iframe"
-                      height="30"
-                      alt={artwork.title}
-                      image={artwork.content_link}
-                      title={artwork.title}
-                    />
+                    <audio controls style={{ display: "flex", width: "100%" }}>
+                      <source src={artwork.content_link} />
+                    </audio>
                   )}
                   <Typography
                     variant="h3"
@@ -192,16 +184,19 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     <br />
                     City: {artwork.city}
                   </Typography>
-                  <Typography variant="body1">
-                    <ReactReadMoreReadLess
-                      className="read-more-read-less"
-                      charLimit={250}
-                      readMoreText={"Read more ▼"}
-                      readLessText={"Read less ▲"}
-                    >
-                      {artwork.content_text}
-                    </ReactReadMoreReadLess>
-                  </Typography>
+                  {(artwork.content_type === "text" ||
+                    artwork.content_type === "image") && (
+                    <Typography variant="body1">
+                      <ReactReadMoreReadLess
+                        className="read-more-read-less"
+                        charLimit={250}
+                        readMoreText={"Read more ▼"}
+                        readLessText={"Read less ▲"}
+                      >
+                        {artwork.content_text}
+                      </ReactReadMoreReadLess>
+                    </Typography>
+                  )}
                   <Typography variant="body1">
                     <strong>Status: </strong>
                     {artwork.artwork_status}
