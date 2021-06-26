@@ -1,4 +1,4 @@
-.leaflet-container {
+.form-map {
 	/* height: 300px;
 	width: 450px; */
 	height: 30em;
@@ -6,7 +6,7 @@
 }
 
 @media only screen and (max-device-width: 1048px) {
-	.leaflet-container {
+	.form-map {
 		height: 35em;
 	}
 }

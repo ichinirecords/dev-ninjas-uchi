@@ -272,7 +272,6 @@ const UploadModal = () => {
                 className={`${classes.media} media-input`}
 								type="file"
 								name="media"
-								accept="image/*"
 								onChange={handleMediaUpload}
 							/>
 						</div>

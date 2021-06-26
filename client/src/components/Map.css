@@ -7,5 +7,25 @@
 }
 
 .leaflet-popup-content-wrapper {
-	background-color: "#bfacf0";
+  background-color: "#bfacf0";
+}
+
+.marker-cluster {
+  background-color: rgb(197, 139, 139);
+}
+
+.marker-cluster div {
+  background-color: rgb(223, 21, 21);
+}
+
+.main-map {
+	height: 75vh;
+	width: 80vw;
+	margin-left: 5vw;
+}
+
+@media only screen and (max-device-width: 1048px) {
+	.main-map {
+		height: 45vh;
+	}
 }
