@@ -12,10 +12,8 @@ export const artUpload = async (req, res) => {
 	let contentLink = "";
 	if (contentType !== "text") {
 		const file = req.file;
-		console.log(file);
 		const result = await uploadFile(file);
 		await unlinkFile(file.path);
-		console.log(result);
 		contentLink = result.Location;
 	}
 	const newArtTitle = req.body.title;
