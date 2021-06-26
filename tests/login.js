@@ -6,6 +6,7 @@ fixture`Login`
 const welcomeDiv = Selector("#welcome");
 const loginLink = Selector("#login");
 const loginButton = Selector('#submit')
+const mainSiteButton = Selector('#main-site')
 
 test("Login with valid credentials", async (t) => {
    await t
@@ -38,6 +39,6 @@ test("Logout", async (t) => {
     .typeText("#username", "user1")
     .typeText("#password", "qwerty")
     .click("#submit")
-    .click(".about-and-login")
-    .expect(loginLink.exists).ok();
+    .click("#logout")
+    .expect(mainSiteButton.exists).ok();
 });

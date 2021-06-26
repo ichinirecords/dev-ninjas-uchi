@@ -63,6 +63,7 @@ const AdminPanel = ({ user, setUser }) => {
                 </div>
               </div>
               <Button
+			  	id="logout"
                 onClick={handleLogout}
                 variant="contained"
                 className="upload-btn"

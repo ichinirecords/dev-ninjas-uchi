@@ -81,7 +81,7 @@ export const getArtwork = (req, res) => {
     .catch((e) => console.error(e));
 };
 
-// function for DELETE endpoint
+// functions for DELETE endpoint
 
 export const deleteArtwork = (req, res) => {
   const id = req.params.id;
@@ -90,7 +90,6 @@ export const deleteArtwork = (req, res) => {
       if (result.rows.length > 0) {
         const fileLink = result.rows[0].content_link
 		const fileKey = fileLink.slice(fileLink.indexOf("amazonaws.com/") + 14);
-        console.log(fileKey);
         db.query("DELETE FROM artwork WHERE id=$1", [id])
           .then(() => {
             deleteFile(fileKey).then(() =>
