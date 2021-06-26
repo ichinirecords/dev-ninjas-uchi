@@ -229,6 +229,17 @@ const UploadModal = () => {
 								</label>
 								<input
 									className="radio-input"
+									id={"upload_music"}
+									type="radio"
+									name="media-type"
+									value="music"
+									onClick={handleTypeChange}
+								/>
+								<label className="radio-label" htmlFor={"upload_music"}>
+									Audio
+								</label>
+								<input
+									className="radio-input"
 									id={"upload_image"}
 									type="radio"
 									name="media-type"
@@ -237,17 +248,6 @@ const UploadModal = () => {
 								/>
 								<label className="radio-label" htmlFor={"upload_image"}>
                   Image
-								</label>
-								<input
-									className="radio-input"
-									id={"upload_music"}
-									type="radio"
-									name="media-type"
-									value="music"
-									onClick={handleTypeChange}
-								/>
-								<label className="radio-label" htmlFor={"upload_music"}>
-                  Music
 								</label>
 								<input
 									className="radio-input"
