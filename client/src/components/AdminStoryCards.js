@@ -186,7 +186,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                   </Typography>
                   {(artwork.content_type === "text" ||
                     artwork.content_type === "image") && (
-                    <Typography variant="body1">
+                    <Typography variant="body1" className="admin-card-story">
                       <ReactReadMoreReadLess
                         className="read-more-read-less"
                         charLimit={250}
@@ -233,7 +233,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                   )}
                   <Button
                     color="primary"
-                    className="about"
+                    className="about delete-button"
                     onClick={() => deleteArtwork(artwork.id)}
                   >
                     Delete

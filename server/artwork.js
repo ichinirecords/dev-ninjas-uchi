@@ -88,13 +88,17 @@ export const deleteArtwork = (req, res) => {
   db.query("SELECT * FROM artwork WHERE id=$1", [id])
     .then((result) => {
       if (result.rows.length > 0) {
-        const fileLink = result.rows[0].content_link
-		const fileKey = fileLink.slice(fileLink.indexOf("amazonaws.com/") + 14);
+        const fileLink = result.rows[0].content_link;
+        const fileKey = fileLink.slice(fileLink.indexOf("amazonaws.com/") + 14);
         db.query("DELETE FROM artwork WHERE id=$1", [id])
           .then(() => {
-            deleteFile(fileKey).then(() =>
-              res.json({ success: `Item ${id} deleted!` })
-            );
+            if (fileKey.length > 0) {
+              deleteFile(fileKey).then(() =>
+                res.json({ success: `Item ${id} deleted!` })
+              );
+            } else {
+              res.json({ success: `Item ${id} deleted!` });
+            }
           })
           .catch((e) => console.error(e));
       } else {

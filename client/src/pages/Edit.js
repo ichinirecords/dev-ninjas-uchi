@@ -66,7 +66,13 @@ const Edit = ({ user, setUser }) => {
 
   let initialForm = {};
   if (location.state) {
-    initialForm = location.state.artwork;
+    initialForm = Object.keys(location.state.artwork)
+      .filter(
+        (k) =>
+          String(location.state.artwork[k]).length > 0 &&
+          location.state.artwork[k] !== null
+      )
+      .reduce((a, k) => ({ ...a, [k]: location.state.artwork[k] }), {});
   }
 
   const [uploadForm, setUploadForm] = useState(initialForm);
@@ -166,7 +172,7 @@ const Edit = ({ user, setUser }) => {
                     multiline
                     variant="outlined"
                     type="text"
-                    name="story"
+                    name="content_text"
                     fullWidth
                     value={uploadForm.content_text}
                     onChange={handleChange}

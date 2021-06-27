@@ -82,6 +82,7 @@ const AdminPanel = ({ user, setUser }) => {
             </header>
             <h1 id="welcome">Welcome, {user.username}</h1>
             <Button
+			id="create-admin"
               onClick={() => setCreateMode(!createMode)}
               variant="contained"
               style={{
@@ -104,6 +105,7 @@ const AdminPanel = ({ user, setUser }) => {
               onClick={() => setApproveMode(!approveMode)}
               variant="contained"
               className="upload-btn"
+			  id="artwork-toggle"
               style={{
                 backgroundColor: "#A4237F",
                 fontWeight: "normal",
