@@ -31,32 +31,32 @@ const useStyles = makeStyles((theme) => ({
 		margin: "auto",
 		justifyContent: "center",
 		alignItems: "center",
-		fontFamily: "Righteous"
+		fontFamily: "Righteous",
 	},
 	form: {
 		display: "grid",
 		width: "50%",
-    margin: 'auto',
+		margin: "auto",
 		placeItems: "center",
 		margin: "4em 25% 0 25%",
 		fontFamily: "Righteous",
-    backgroundColor: '#d1c2f7'
+		backgroundColor: "#d1c2f7",
 	},
 	map_header: {
-		fontSize: "1.25em"
+		fontSize: "1.25em",
 	},
-  media: {
-		borderRadius: '0.25em',
-		margin: 'auto',
-		border: '1px solid #999',
-    fontFamily: 'Righteous',
-    fontSize: '1.8rem',
-		width: '100%'
-  }, 
+	media: {
+		borderRadius: "0.25em",
+		margin: "auto",
+		border: "1px solid #999",
+		fontFamily: "Righteous",
+		fontSize: "1.8rem",
+		width: "100%",
+	},
 	file_input_wrapper: {
-		width: '100%',
-		margin: '2em auto'
-	}
+		width: "100%",
+		margin: "2em auto",
+	},
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -65,13 +65,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const UploadModal = () => {
 	const classes = useStyles();
-  const history = useHistory();
-  const [file, setFile] = useState();
+	const history = useHistory();
+	const [file, setFile] = useState();
 	const [open, setOpen] = useState(false);
 	const [errorAlert, setErrorAlert] = useState(false);
 	const [successAlert, setSuccessAlert] = useState(false);
-  const [storyError, setStoryError] = useState(false);
-  const [coordUploadForm, setCoordUploadForm] = useState({});
+	const [storyError, setStoryError] = useState(false);
+	const [coordUploadForm, setCoordUploadForm] = useState({});
 	const [uploadForm, setUploadForm] = useState({
 		title: "",
 		artist_name: "",
@@ -93,7 +93,6 @@ const UploadModal = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const validate = Object.values(uploadForm).every((key) => key.length > 1);
-		//const validate = true;
 		if (validate) {
 			const formData = new FormData();
 			formData.append("image", file);
@@ -112,9 +111,6 @@ const UploadModal = () => {
 			}
 			fetch("/api/upload", {
 				method: "POST",
-				// headers: {
-				// 	"Content-Type": "application/json",
-				// },
 				body: formData,
 			}).then(() => {
 				setSuccessAlert(true);
@@ -123,14 +119,18 @@ const UploadModal = () => {
 				}, 6000);
 			});
 			history.push("/");
-    } else if (uploadForm.title === '' || uploadForm.artist_name === '') {
-      setErrorAlert(true);
-      setTimeout(function () { setErrorAlert(false); }, 6000);
-    } else if (uploadForm.story === '') {
-      setStoryError(true);
-      setTimeout(function () { setStoryError(false); }, 6000);
-    }
-  };
+		} else if (uploadForm.title === "" || uploadForm.artist_name === "") {
+			setErrorAlert(true);
+			setTimeout(function () {
+				setErrorAlert(false);
+			}, 6000);
+		} else if (uploadForm.story === "") {
+			setStoryError(true);
+			setTimeout(function () {
+				setStoryError(false);
+			}, 6000);
+		}
+	};
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -175,14 +175,14 @@ const UploadModal = () => {
 					</Toolbar>
 				</AppBar>
 				<List className={`${classes.form} upload-modal`}>
-          <ListItem>
-            <UploadModalAlerts
-              error={errorAlert}
-              setError={setErrorAlert}
-              success={successAlert}
-              setSuccess={setSuccessAlert}
-            />
-          </ListItem>
+					<ListItem>
+						<UploadModalAlerts
+							error={errorAlert}
+							setError={setErrorAlert}
+							success={successAlert}
+							setSuccess={setSuccessAlert}
+						/>
+					</ListItem>
 					<ListItem>
 						<TextField
 							autoFocus
@@ -267,9 +267,9 @@ const UploadModal = () => {
 						</div>
 					</ListItem>
 					<ListItem>
-						<UploadModalAlerts className={classes.alert} story={storyError} setStory={setStoryError}/>
+						<UploadModalAlerts className={classes.alert} story={storyError} setStory={setStoryError} />
 					</ListItem>
-					{uploadForm.content_type !== 'text' && uploadForm.content_type !== '' && <ListItem>
+					{uploadForm.content_type !== "text" && uploadForm.content_type !== "" && <ListItem>
 						<div className={classes.file_input_wrapper}>
 							<input
 								className={`${classes.media} media-input`}
@@ -279,7 +279,7 @@ const UploadModal = () => {
 							/>
 						</div>
 					</ListItem>}
-					{(uploadForm.content_type === 'text' || uploadForm.content_type === 'image') && <ListItem>
+					{(uploadForm.content_type === "text" || uploadForm.content_type === "image") && <ListItem>
 						<TextField
 							label="Please type your story here"
 							placeholder="Please type your story here"
@@ -309,6 +309,11 @@ const UploadModal = () => {
 						}} type='submit' autoFocus color="primary" variant='outlined' onClick={handleSubmit}>
               Submit
 						</Button>
+					</ListItem>
+					<ListItem>
+						<p> If you require additional information or help, feel free to visit
+							<a href="https://refaid.com/" target="_blank" rel="noreferrer"> Refaid.com!</a>
+						</p>
 					</ListItem>
 				</List>
 			</Dialog>
