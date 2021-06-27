@@ -14,6 +14,7 @@ header {
   height: 300px;
   overflow: hidden;
 }
+
 .brand-name {
   display: grid;
   place-items: center start;
@@ -203,7 +204,7 @@ footer {
 .radio-container {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   font-size: larger;
-  margin: 2em 0 2em 0;
+  margin-top: 2em;
 }
 
 .radio-input {
@@ -264,15 +265,16 @@ footer {
 .custom-file-input {
   color: transparent;
 }
+
 .media-input::-webkit-file-upload-button {
   visibility: hidden;
+  width: 0.01em;
 }
+
 .media-input::before {
   content: 'Choose file';
   color: antiquewhite;
-  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
   background: -webkit-linear-gradient(top, #A4237F, #7d69af);
-  border: 1px solid #999;
   border-radius: 0.25em;
   padding: 0.2em 0.4em;
   outline: none;
@@ -280,19 +282,16 @@ footer {
   user-select: none;
   cursor: pointer;
   text-shadow: 1px 1px black;
+  width: auto;
 }
 .media-input:hover::before {
-  border-color: black;
+  background: -webkit-linear-gradient(top, #662052, #594688);
 }
 .media-input:active {
   outline: 0;
 }
 .media-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
-}
-
-body {
-  padding: 2em;
 }
 
 @media only screen and (max-device-width: 1048px) {
