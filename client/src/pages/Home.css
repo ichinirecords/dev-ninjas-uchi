@@ -69,6 +69,7 @@ header {
   outline: none;
   background-color: #7d69af;
   font-size: 1em;
+  color: white;
 }
 .upload-btn {
   float: right;
@@ -78,7 +79,7 @@ header {
 input,
 textarea,
 [contenteditable] {
-  caret-color: black;
+  caret-color: white;
   font-size: 2em;
 }
 .upload-form{
