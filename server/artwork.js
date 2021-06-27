@@ -1,4 +1,5 @@
 import db from "./db";
+const { deleteFile } = require("./s3_upload");
 
 // functions for PUT endpoint
 
@@ -74,7 +75,7 @@ export const getArtwork = (req, res) => {
   let getQuery = `SELECT * FROM artwork`;
   if (Object.keys(req.query).length > 0) getQuery += " WHERE ";
   if (status) getQuery += `artwork_status = '${status}'`;
-  getQuery += " ORDER BY id;"
+  getQuery += " ORDER BY id;";
   db.query(getQuery)
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
@@ -87,8 +88,15 @@ export const deleteArtwork = (req, res) => {
   db.query("SELECT * FROM artwork WHERE id=$1", [id])
     .then((result) => {
       if (result.rows.length > 0) {
+        const fileLink = result.rows[0].content_link
+		const fileKey = fileLink.slice(fileLink.indexOf("amazonaws.com/") + 14);
+        console.log(fileKey);
         db.query("DELETE FROM artwork WHERE id=$1", [id])
-          .then(() => res.json({ success: `Item ${id} deleted!` }))
+          .then(() => {
+            deleteFile(fileKey).then(() =>
+              res.json({ success: `Item ${id} deleted!` })
+            );
+          })
           .catch((e) => console.error(e));
       } else {
         res.sendStatus(404);

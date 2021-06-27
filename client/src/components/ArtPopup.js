@@ -22,9 +22,10 @@ const useStyles = makeStyles({
 const ArtPopup = ({
   id,
   title,
-  type,
+  content_type,
   artist_name,
   content_text,
+  content_link,
   city,
   country,
 }) => {
@@ -33,15 +34,25 @@ const ArtPopup = ({
   return (
     <Card key={id} className={classes.root}>
       <CardContent>
-        {type === "image" && (
+        {content_type === "image" && (
           <CardMedia
             className="card-img"
             component="img"
-            alt="drawing colors"
+            alt={title}
             height="240"
-            image="https://cdn.pixabay.com/photo/2020/06/17/12/40/artistic-5309339_960_720.jpg"
-            title="drawing colors"
+            image={content_link}
+            title={title}
           />
+        )}
+        {content_type === "video" && (
+          <video width="100%" height="240" controls>
+            <source src={content_link} type="video/mp4" />
+          </video>
+        )}
+        {content_type === "music" && (
+          <audio controls style={{ display: "flex", width: "100%" }}>
+            <source src={content_link} />
+          </audio>
         )}
         <Typography
           variant="h3"
@@ -57,16 +68,19 @@ const ArtPopup = ({
         <Typography className={classes.pos} style={{ fontWeight: "700" }}>
           By {artist_name} from {city}, {country}
         </Typography>
-        <Typography variant="body1">
-          <ReactReadMoreReadLess
-            className="read-more-read-less"
-            charLimit={250}
-            readMoreText={"Read more ▼"}
-            readLessText={"Read less ▲"}
-          >
-            {content_text}
-          </ReactReadMoreReadLess>
-        </Typography>
+        {(content_type === "text" ||
+          content_type === "image") && (
+          <Typography variant="body1">
+            <ReactReadMoreReadLess
+              className="read-more-read-less"
+              charLimit={250}
+              readMoreText={"Read more ▼"}
+              readLessText={"Read less ▲"}
+            >
+              {content_text}
+            </ReactReadMoreReadLess>
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );
