@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import SelectCountry from "./SelectCountry";
 import Switch from "./Switch";
-// import { Link } from "react-router-dom";
-// import { Button } from "@material-ui/core";
 import UploadModal from './UploadModal';
 import UchiIntro from './UchiIntro';
 
-const AppHeader = () => {
+const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
+  const [searchInput, setSearchInput] = useState('');
+  const filteredArtWork = approvedArtwork.filter(artWork => artWork.title.toLowerCase().includes(searchInput.toLowerCase()) || artWork.artist_name.toLowerCase().includes(searchInput.toLowerCase()) || artWork.content_text.toLowerCase().includes(searchInput.toLowerCase()));
+  
   return (
     <header>
       <div
@@ -36,8 +37,12 @@ const AppHeader = () => {
                 type="text"
                 className="search-bar"
                 placeholder="Search ..."
-              // value={searchInput}
-              // onChange={handleSearchInput}
+                onChange={(e) => {
+                  setSearchInput(e.target.value);
+                  setApprovedArtwork(filteredArtWork);
+                  if (e.target.value === '') setApprovedArtwork(backupData);
+                }}
+                value={searchInput}
               />
             </div>
             <div><SelectCountry /></div>
@@ -46,18 +51,6 @@ const AppHeader = () => {
           <Switch />
         </div>
       </div>
-      {/* <Button component={Link} to="/upload" variant='contained' className='upload-btn' style={{
-        backgroundColor: '#A4237F', 
-        color: 'white',
-        fontWeight: 'normal', 
-        border: '5px solid #7D69AF', 
-        boxSizing: 'border-box',
-        borderRadius: '5px', 
-        fontFamily: 'Righteous', 
-        padding: '0.2em 1.75em'
-      }}>
-        Upload
-      </Button> */}
       <UploadModal />
       <UchiIntro/>
     </header>
