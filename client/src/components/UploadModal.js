@@ -46,14 +46,17 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: "1.25em"
 	},
   media: {
-    color: 'transparent',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '6em',
+		borderRadius: '0.25em',
+		margin: 'auto',
+		border: '1px solid #999',
     fontFamily: 'Righteous',
-    fontSize: '1.5rem'
-  }
+    fontSize: '1.8rem',
+		width: '100%'
+  }, 
+	file_input_wrapper: {
+		width: '100%',
+		margin: '2em auto'
+	}
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -266,17 +269,17 @@ const UploadModal = () => {
 					<ListItem>
 						<UploadModalAlerts className={classes.alert} story={storyError} setStory={setStoryError}/>
 					</ListItem>
-					<ListItem>
-            <div className='center'>
+					{uploadForm.content_type !== 'text' && uploadForm.content_type !== '' && <ListItem>
+						<div className={classes.file_input_wrapper}>
 							<input
-                className={`${classes.media} media-input`}
+								className={`${classes.media} media-input`}
 								type="file"
 								name="media"
 								onChange={handleMediaUpload}
 							/>
 						</div>
-					</ListItem>
-					<ListItem>
+					</ListItem>}
+					{(uploadForm.content_type === 'text' || uploadForm.content_type === 'image') && <ListItem>
 						<TextField
 							label="Please type your story here"
 							placeholder="Please type your story here"
@@ -288,7 +291,8 @@ const UploadModal = () => {
 							value={uploadForm.story}
 							onChange={handleChange}
 						/>
-					</ListItem>
+					</ListItem>}
+
 					<ListItem style={{
 						display: "flex",
 						justifyContent: "center",
