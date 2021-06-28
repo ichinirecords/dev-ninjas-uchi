@@ -48,7 +48,7 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
             <div><SelectCountry /></div>
           </div>
           <div className="grid-empty-space"></div>
-          <Switch />
+          <Switch approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData}/>
         </div>
       </div>
       <UploadModal />
