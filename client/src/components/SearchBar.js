@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 
 const SearchBar = ({ setApprovedArtwork, backupData }) => {
   const [searchInput, setSearchInput] = useState('');
-  const tempArray = [...backupData];
 
   useEffect(() => {
-    const filteredArtWork = tempArray.filter((artWork) => {
+    const filteredArtWork = backupData.filter((artWork) => {
       return (artWork.title.toLowerCase().includes(searchInput)) ||
         (artWork.artist_name.toLowerCase().includes(searchInput)) ||
         (artWork.content_text.toLowerCase().includes(searchInput));
