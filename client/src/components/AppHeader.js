@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import SelectCountry from "./SelectCountry";
 import Switch from "./Switch";
 import UploadModal from './UploadModal';
 import UchiIntro from './UchiIntro';
+import SearchBar from './SearchBar';
 
 const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
-  const [searchInput, setSearchInput] = useState('');
-  const filteredArtWork = approvedArtwork.filter(artWork => artWork.title.toLowerCase().includes(searchInput.toLowerCase()) || artWork.artist_name.toLowerCase().includes(searchInput.toLowerCase()) || artWork.content_text.toLowerCase().includes(searchInput.toLowerCase()));
-  
   return (
     <header>
       <div
@@ -30,32 +28,17 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
             <h1 className='brand-name'>UCHI</h1>
           </div>
           <div className="search-select">
-            <div key="input-form" className="search-input-wrapper">
-              <i className="fas fa-search"></i>
-              <input
-                key="search-input "
-                type="text"
-                className="search-bar"
-                placeholder="Search ..."
-                onChange={(e) => {
-                  setSearchInput(e.target.value);
-                  setApprovedArtwork(filteredArtWork);
-                  if (e.target.value === '') setApprovedArtwork(backupData);
-                }}
-                value={searchInput}
-              />
-            </div>
-            <div><SelectCountry /></div>
+            <SearchBar setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
+            <SelectCountry /> 
           </div>
           <div className="grid-empty-space"></div>
-          <Switch approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData}/>
+          <Switch approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
         </div>
       </div>
       <UploadModal />
-      <UchiIntro/>
+      <UchiIntro />
     </header>
   );
-
 };
 
 export default AppHeader;
