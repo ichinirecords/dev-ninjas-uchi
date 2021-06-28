@@ -120,7 +120,6 @@ textarea,
   color: white;
 }
 .select-country {
-  margin-top: -0.25em;
   display: flex;
   transform: skewY(6deg);
   width: 100%;
