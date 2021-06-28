@@ -8,7 +8,7 @@ const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
   const [checkedState, setCheckedState] = useState(
     new Array(mediaTypes.length).fill(true)
   );
-  
+
   const handleCheckbox = (e, position) => {
     const updatedCheckedState = checkedState.map((checked, index) =>
       index === position ? !checked : checked
@@ -18,21 +18,20 @@ const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
       return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val), [])
         : arr.slice();
     };
-
     if (!e.target.checked) {
       const unchecked = tempArray.filter(artWork => artWork.content_type !== mediaTypes[position]);
       const flattened = flatDeep(unchecked, Infinity);
       setApprovedArtwork(flattened);
       setCheckedMediaTypes(flattened);
     } else if (e.target.checked) {
-      let array = [...backupData]
-      const checked = array.filter(artWork => artWork.content_type === mediaTypes[position]);
+      tempArray = [...backupData]
+      const checked = tempArray.filter(artWork => artWork.content_type === mediaTypes[position]);
       tempArray = [...checkedMediaTypes, ...checked]
       const flattened = flatDeep(tempArray, Infinity);
       setApprovedArtwork(flattened);
       setCheckedMediaTypes(flattened);
-    }
-  }
+    };
+  };
 
   return (
     <div className='radio-switch'>
@@ -47,9 +46,7 @@ const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
                 value={mediaType}
                 type="checkbox"
                 checked={checkedState[index]}
-                onChange={(e) => {
-                  handleCheckbox(e, index)
-                }}
+                onChange={(e) => handleCheckbox(e, index)}
               />
               <label
                 className="switch-label"
