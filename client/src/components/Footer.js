@@ -16,7 +16,7 @@ const Footer = () => {
           left: "0",
           width: "100 %",
           height: "100 %",
-          backgroundImage: "linear-gradient(white, white)",
+          backgroundImage: "linear-gradient(#a8546c, #a8546c)",
           transform: "skewY(-6deg)",
           transformOrigin: "bottom right",
         }}
@@ -27,7 +27,7 @@ const Footer = () => {
         }}>
           <div className='admin-link'>
             <Link href="#" to='/login' style={{
-              color: '#A4237F',
+              color: 'white',
               fontWeight: 'normal',
               fontFamily: 'Righteous',
             }}>

@@ -145,14 +145,14 @@ const UploadModal = () => {
 			<Button
 				className="upload-btn"
 				style={{
-					backgroundColor: "#A4237F",
-					color: "white",
+					backgroundColor: "#1c555c",
+					color: "antiquewhite",
 					fontWeight: "normal",
-					border: "5px solid #7D69AF",
+					border: "5px solid #7d69af",
 					boxSizing: "border-box",
-					borderRadius: "5px",
-					fontFamily: "Righteous",
-					padding: "0.2em 1.75em",
+					borderRadius: "7px",
+					fontFamily: "EB Garamond",
+					padding: "0.5em 1.75em",
 				}}
 				variant="outlined"
 				color="primary"
