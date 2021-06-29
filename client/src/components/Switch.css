@@ -18,14 +18,14 @@
 }
 h2 {
   margin-top: 0.8em;
-  margin-left: -0.5em;
+  margin-left: -0.3em;
 }
-.video h2 {
+/* .video h2 {
   margin-left: -0.4em;
 }
 .text h2 {
   margin-left: -0.2em;
-}
+} */
 
 .switch-label {
   display: flex;
