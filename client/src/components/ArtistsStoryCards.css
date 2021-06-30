@@ -1,7 +1,9 @@
+.container {
+  margin-top: 2em;
+}
 .cards-wrapper {
   display: grid;
   width: 90%;
-  /* place-items: start center; */
   gap: 2em;
   margin: auto;
 }

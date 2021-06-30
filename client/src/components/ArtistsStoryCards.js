@@ -6,6 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import ReactReadMoreReadLess from 'react-read-more-read-less';
 import './ArtistsStoryCards.css';
+import DonateLink from "./DonateLink";
+import Sticky from "react-stickynode";
 
 const useStyles = makeStyles({
   root: {
@@ -14,7 +16,7 @@ const useStyles = makeStyles({
   },
   title: {
     fontSize: 22,
-    fontFamily: 'EB Garamond', 
+    fontFamily: 'EB Garamond',
   },
   pos: {
     marginBottom: 3,
@@ -32,6 +34,9 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 
   return (
     <div className='container'>
+      <Sticky enabled={true}>
+        <DonateLink />
+      </Sticky>
       <div className='cards-wrapper'>
         {approvedArtwork.map((artwork) => {
           return (
@@ -52,7 +57,6 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
                   className={classes.title}
                   style={{
                     color: 'white',
-                    // textShadow: '1px 1px black',
                     fontWeight: 'bolder',
                   }}
                   gutterBottom
