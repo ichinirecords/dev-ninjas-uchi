@@ -18,7 +18,7 @@ import UploadModalAlerts from "./UploadModalAlerts";
 const useStyles = makeStyles((theme) => ({
 	appBar: {
 		position: "absolute",
-		height: "4em",
+		// height: "4em",
 		backgroundColor: "#7d69af",
 		fontFamily: "Righteous",
 		marginBottom: "2em",

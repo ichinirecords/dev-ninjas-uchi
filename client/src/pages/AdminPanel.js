@@ -39,7 +39,7 @@ const AdminPanel = ({ user, setUser }) => {
       <main className="main" role="main">
         {user && user.username && (
           <>
-            <header>
+            <header className='admin_panel_header'>
               <div
                 className="header_bg"
                 style={{

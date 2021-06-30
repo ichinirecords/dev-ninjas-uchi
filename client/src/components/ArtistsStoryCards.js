@@ -37,13 +37,13 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
           return (
             <Card key={artwork.id} className={classes.root}>
               <CardContent>
-                {artwork.type === 'image' && (
+                {artwork.content_type === 'image' && (
                   <CardMedia
                     className='card-img'
                     component='img'
                     alt='drawing colors'
                     height='240'
-                    image='https://cdn.pixabay.com/photo/2020/06/17/12/40/artistic-5309339_960_720.jpg'
+                    image={artwork.content_link}
                     title='drawing colors'
                   />
                 )}
@@ -71,7 +71,7 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
                 <Typography className={classes.text} variant='body1'>
                   <ReactReadMoreReadLess
                     className='read-more-read-less'
-                    charLimit={250}
+                    charLimit={50}
                     readMoreText={'Read more ▼'}
                     readLessText={'Read less ▲'}
                   >

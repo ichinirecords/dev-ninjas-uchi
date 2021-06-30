@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const SearchBar = ({ setApprovedArtwork, backupData }) => {
   const [searchInput, setSearchInput] = useState('');
+  console.log(backupData)
 
   useEffect(() => {
     const filteredArtWork = backupData.filter((artWork) => {
