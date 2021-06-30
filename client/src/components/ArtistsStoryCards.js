@@ -10,14 +10,21 @@ import './ArtistsStoryCards.css';
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    backgroundColor: '#bfacf0'
+    backgroundColor: '#46a69a',
   },
   title: {
     fontSize: 22,
+    fontFamily: 'EB Garamond',
   },
   pos: {
     marginBottom: 3,
+    fontFamily: 'EB Garamond',
+    fontSize: 18,
   },
+  text: {
+    fontFamily: 'Garamond',
+    fontSize: 18,
+  }
 });
 
 const ArtistsStoryCards = ({ approvedArtwork }) => {
@@ -44,8 +51,7 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
                   variant='h3'
                   className={classes.title}
                   style={{
-                    color: 'crimson',
-                    textShadow: '1px 1px honeydew',
+                    color: 'white',
                     fontWeight: 'bolder',
                   }}
                   gutterBottom
@@ -62,7 +68,7 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
                   <br />
                   City: {artwork.city}
                 </Typography>
-                <Typography variant='body1'>
+                <Typography className={classes.text} variant='body1'>
                   <ReactReadMoreReadLess
                     className='read-more-read-less'
                     charLimit={250}

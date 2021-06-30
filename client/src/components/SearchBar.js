@@ -18,7 +18,7 @@ const SearchBar = ({ setApprovedArtwork, backupData }) => {
     <div key="searchbar" className="search-input-wrapper">
       <i className="fas fa-search"></i>
       <input
-        type="search"
+        type="text"
         className="search-bar"
         placeholder="Search ..."
         value={searchInput}
