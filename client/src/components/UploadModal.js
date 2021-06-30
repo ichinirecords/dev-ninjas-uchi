@@ -66,18 +66,48 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const UploadModal = () => {
 	const classes = useStyles();
 	const history = useHistory();
-	const [file, setFile] = useState();
+	const [file, setFile] = useState("");
 	const [open, setOpen] = useState(false);
 	const [errorAlert, setErrorAlert] = useState(false);
 	const [successAlert, setSuccessAlert] = useState(false);
 	const [storyError, setStoryError] = useState(false);
-	const [coordUploadForm, setCoordUploadForm] = useState({});
-	const [uploadForm, setUploadForm] = useState({
+	const [coordUploadForm, setCoordUploadForm] = useState({
+		lat: "",
+	});
+
+	const initialFormValues = {
 		title: "",
 		artist_name: "",
 		content_type: "",
 		story: "",
-	});
+	};
+	const [uploadForm, setUploadForm] = useState(initialFormValues);
+
+	const validateForm = () =>{
+		if (uploadForm.content_type === "") {
+			return false;
+		}
+		if((uploadForm.content_type === "text"
+			|| uploadForm.content_type === "image")
+			&& Object.values(uploadForm).some((key) => key === "")) {
+			return false;
+		}
+		if(uploadForm.content_type !== "text" && file === ""){
+			return false;
+		}
+		if (
+			(uploadForm.content_type === "music"
+        || uploadForm.content_type === "video")
+      && (uploadForm.artist_name === ""
+        || uploadForm.title === "")
+		) {
+			return false;
+		}
+		if(coordUploadForm.lat === ""){
+			return false;
+		}
+		return true;
+	};
 
 	const handleMediaUpload = (e) =>{
 		setFile(e.target.files[0]);
@@ -92,7 +122,7 @@ const UploadModal = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const validate = Object.values(uploadForm).every((key) => key.length > 1);
+		const validate = validateForm();
 		if (validate) {
 			const formData = new FormData();
 			formData.append("image", file);
@@ -114,22 +144,28 @@ const UploadModal = () => {
 				body: formData,
 			}).then(() => {
 				setSuccessAlert(true);
+				setUploadForm(initialFormValues);
+				setFile("");
+				setCoordUploadForm({ lat: "" });
 				setTimeout(function () {
 					setOpen(false);
+					setSuccessAlert(false);
 				}, 6000);
 			});
 			history.push("/");
-		} else if (uploadForm.title === "" || uploadForm.artist_name === "") {
+		} else {
+		// if (uploadForm.title === "" || uploadForm.artist_name === "") {
 			setErrorAlert(true);
 			setTimeout(function () {
 				setErrorAlert(false);
 			}, 6000);
-		} else if (uploadForm.story === "") {
-			setStoryError(true);
-			setTimeout(function () {
-				setStoryError(false);
-			}, 6000);
 		}
+		// } else if (uploadForm.story === "") {
+		// 	setStoryError(true);
+		// 	setTimeout(function () {
+		// 		setStoryError(false);
+		// 	}, 6000);
+		// }
 	};
 
 	const handleClickOpen = () => {
