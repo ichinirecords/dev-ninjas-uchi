@@ -19,8 +19,14 @@ body {
   min-height: 100%;
   position: relative;
 }
+
 .app-header {
   margin-bottom: -5em;
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+.admin_panel_header {
   position: relative;
   overflow: hidden;
   height: 300px;
