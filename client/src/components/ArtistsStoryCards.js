@@ -6,8 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import ReactReadMoreReadLess from 'react-read-more-read-less';
 import './ArtistsStoryCards.css';
-import DonateLink from "./DonateLink";
-import Sticky from "react-stickynode";
 
 const useStyles = makeStyles({
   root: {
@@ -34,9 +32,6 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 
   return (
     <div className='container'>
-      <Sticky enabled={true}>
-        <DonateLink />
-      </Sticky>
       <div className='cards-wrapper'>
         {approvedArtwork.map((artwork) => {
           return (

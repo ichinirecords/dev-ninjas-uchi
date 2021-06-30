@@ -5,6 +5,8 @@ import UploadModal from './UploadModal';
 import UchiIntro from './UchiIntro';
 import SearchBar from './SearchBar';
 import logo from '../logo/uchi logo square jpeg.jpg';
+import DonateLink from "./DonateLink";
+import Sticky from "react-stickynode";
 
 const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
   return (
@@ -39,6 +41,9 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
       </div>
       <UploadModal />
       <UchiIntro />
+      <Sticky enabled={true}>
+        <DonateLink />
+      </Sticky>
     </header>
   );
 };
