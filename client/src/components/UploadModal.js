@@ -74,6 +74,7 @@ const UploadModal = () => {
 	const [coordUploadForm, setCoordUploadForm] = useState({
 		lat: "",
 	});
+	const [uploadingMessage, setUploadingMessage] = useState(false);
 
 	const initialFormValues = {
 		title: "",
@@ -122,6 +123,7 @@ const UploadModal = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
 		const validate = validateForm();
 		if (validate) {
 			const formData = new FormData();
@@ -139,10 +141,12 @@ const UploadModal = () => {
 			for (let value of formData.values()) {
 				console.log(value);
 			}
+			setUploadingMessage(true);
 			fetch("/api/upload", {
 				method: "POST",
 				body: formData,
 			}).then(() => {
+				setUploadingMessage(false);
 				setSuccessAlert(true);
 				setUploadForm(initialFormValues);
 				setFile("");
@@ -150,22 +154,15 @@ const UploadModal = () => {
 				setTimeout(function () {
 					setOpen(false);
 					setSuccessAlert(false);
-				}, 6000);
+				}, 3000);
 			});
 			history.push("/");
 		} else {
-		// if (uploadForm.title === "" || uploadForm.artist_name === "") {
 			setErrorAlert(true);
 			setTimeout(function () {
 				setErrorAlert(false);
-			}, 6000);
+			}, 3000);
 		}
-		// } else if (uploadForm.story === "") {
-		// 	setStoryError(true);
-		// 	setTimeout(function () {
-		// 		setStoryError(false);
-		// 	}, 6000);
-		// }
 	};
 
 	const handleClickOpen = () => {
@@ -196,16 +193,32 @@ const UploadModal = () => {
 			>
         Upload
 			</Button>
-			<Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+			<Dialog
+				fullScreen
+				open={open}
+				onClose={handleClose}
+				TransitionComponent={Transition}
+			>
 				<AppBar className={classes.appBar}>
 					<Toolbar>
-						<IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+						<IconButton
+							edge="start"
+							color="inherit"
+							onClick={handleClose}
+							aria-label="close"
+						>
 							<CloseIcon />
 						</IconButton>
 						<Typography variant="h6" className={classes.title}>
-              Please fill out the form below and choose the media type you want to upload
+              Please fill out the form below and choose the media type you want
+              to upload
 						</Typography>
-						<Button style={{ fontWeight: "bold", fontFamily: "Righteous" }} autoFocus color="inherit" onClick={handleSubmit}>
+						<Button
+							style={{ fontWeight: "bold", fontFamily: "Righteous" }}
+							autoFocus
+							color="inherit"
+							onClick={handleSubmit}
+						>
               Submit
 						</Button>
 					</Toolbar>
@@ -247,7 +260,8 @@ const UploadModal = () => {
 						/>
 					</ListItem>
 					<ListItem className={classes.map_header}>
-            Please enter the name of your country or city and locate it on the map
+            Please enter the name of your country or city and locate it on the
+            map
 					</ListItem>
 					<ListItem>
 						<MapForm setCoordUploadForm={setCoordUploadForm} />
@@ -275,7 +289,7 @@ const UploadModal = () => {
 									onClick={handleTypeChange}
 								/>
 								<label className="radio-label" htmlFor={"upload_music"}>
-									Audio
+                  Audio
 								</label>
 								<input
 									className="radio-input"
@@ -303,52 +317,91 @@ const UploadModal = () => {
 						</div>
 					</ListItem>
 					<ListItem>
-						<UploadModalAlerts className={classes.alert} story={storyError} setStory={setStoryError} />
-					</ListItem>
-					{uploadForm.content_type !== "text" && uploadForm.content_type !== "" && <ListItem>
-						<div className={classes.file_input_wrapper}>
-							<input
-								className={`${classes.media} media-input`}
-								type="file"
-								name="media"
-								onChange={handleMediaUpload}
-							/>
-						</div>
-					</ListItem>}
-					{(uploadForm.content_type === "text" || uploadForm.content_type === "image" || uploadForm.content_type === "video")  && <ListItem>
-						<TextField
-							label="Please type your story here"
-							placeholder="Please type your story here"
-							multiline
-							variant="outlined"
-							type='text'
-							name='story'
-							fullWidth
-							value={uploadForm.story}
-							onChange={handleChange}
+						<UploadModalAlerts
+							className={classes.alert}
+							uploadingMessage={uploadingMessage}
+							setUploadingMessage={setUploadingMessage}
 						/>
-					</ListItem>}
+					</ListItem>
+					{uploadForm.content_type !== "text"
+            && uploadForm.content_type !== "" && (
+						<ListItem>
+							<div className={classes.file_input_wrapper}>
+								<input
+									className={`${classes.media} media-input`}
+									type="file"
+									name="media"
+									onChange={handleMediaUpload}
+								/>
+							</div>
+						</ListItem>
+					)}
+					{(uploadForm.content_type === "text"
+            || uploadForm.content_type === "image"
+            || uploadForm.content_type === "video") && (
+						<ListItem>
+							<TextField
+								label="Please type your story here"
+								placeholder="Please type your story here"
+								multiline
+								variant="outlined"
+								type="text"
+								name="story"
+								fullWidth
+								value={uploadForm.story}
+								onChange={handleChange}
+							/>
+						</ListItem>
+					)}
+					<ListItem>
+						<UploadModalAlerts
+							className={classes.alert}
+							story={storyError}
+							setStory={setStoryError}
+						/>
+					</ListItem>
 
-					<ListItem style={{
-						display: "flex",
-						justifyContent: "center",
-					}}>
-						<Button style={{
-							margin: "2em",
-							fontFamily: "Righteous",
-						}} type='cancel' autoFocus color="secondary" variant='outlined' onClick={handleClose}>
+					<ListItem
+						style={{
+							display: "flex",
+							justifyContent: "center",
+						}}
+					>
+						<Button
+							style={{
+								margin: "2em",
+								fontFamily: "Righteous",
+							}}
+							type="cancel"
+							autoFocus
+							color="secondary"
+							variant="outlined"
+							onClick={handleClose}
+						>
               Cancel
 						</Button>
-						<Button style={{
-							margin: "2em",
-							fontFamily: "Righteous",
-						}} type='submit' autoFocus color="primary" variant='outlined' onClick={handleSubmit}>
+						<Button
+							style={{
+								margin: "2em",
+								fontFamily: "Righteous",
+							}}
+							type="submit"
+							autoFocus
+							color="primary"
+							variant="outlined"
+							onClick={handleSubmit}
+						>
               Submit
 						</Button>
 					</ListItem>
 					<ListItem>
-						<p> If you require additional information or help, feel free to visit
-							<a href="https://refaid.com/" target="_blank" rel="noreferrer"> Refaid.com!</a>
+						<p>
+							{" "}
+              If you require additional information or help, feel free to visit
+							<a href="https://refaid.com/" target="_blank" rel="noreferrer">
+								{" "}
+                Refaid.com!
+							</a>
 						</p>
 					</ListItem>
 				</List>
