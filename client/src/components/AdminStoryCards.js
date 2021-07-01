@@ -132,7 +132,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
         <div
           key="searchbar"
           className="search-input-wrapper"
-          style={{ width: "300px", marginLeft: "70px"}}
+          style={{ width: "300px", marginLeft: "70px", marginBottom: "20px"}}
         >
           <i className="fas fa-search"></i>
           <input

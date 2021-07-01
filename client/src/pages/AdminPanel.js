@@ -94,7 +94,6 @@ const AdminPanel = ({ user, setUser }) => {
             <h1 id="welcome">Welcome, {user.username}</h1>
             <Button
               onClick={() => setCreateMode(!createMode)}
-              className="upload-btn"
               style={{
                 backgroundColor: "#1c555c",
                 color: "antiquewhite",
@@ -104,6 +103,7 @@ const AdminPanel = ({ user, setUser }) => {
                 borderRadius: "7px",
                 fontFamily: "EB Garamond",
                 padding: "0.5em 1.75em",
+				marginLeft: "20px"
               }}
               variant="outlined"
               color="primary"
@@ -111,28 +111,33 @@ const AdminPanel = ({ user, setUser }) => {
               Create new admin
             </Button>
             {createMode && <NewAdmin setCreateMode={setCreateMode} />}
-            <h2 className="admin-title">
-              {approveMode ? "Artwork to approve" : "All artwork"}
-            </h2>
-            <Button
-              onClick={() => setApproveMode(!approveMode)}
-              className="upload-btn"
-              style={{
-                backgroundColor: "#1c555c",
-                color: "antiquewhite",
-                fontWeight: "normal",
-                border: "5px solid #7d69af",
-                boxSizing: "border-box",
-                borderRadius: "7px",
-                fontFamily: "EB Garamond",
-                padding: "0.5em 1.75em",
-              }}
-              variant="outlined"
-              color="primary"
-            >
-              {approveMode ? "See all artwork" : "See only artwork to approve"}
-            </Button>
-            <AdminStoryCards user={user} approveMode={approveMode} />
+            <div style={{display: "flex", flexDirection: "column", alignItems:"center"}}>
+              <h2 className="admin-title">
+                {approveMode ? "Artwork to approve" : "All artwork"}
+              </h2>
+              <Button
+                onClick={() => setApproveMode(!approveMode)}
+                style={{
+                  backgroundColor: "#1c555c",
+                  color: "antiquewhite",
+                  fontWeight: "normal",
+                  border: "5px solid #7d69af",
+                  boxSizing: "border-box",
+                  borderRadius: "7px",
+                  fontFamily: "EB Garamond",
+                  padding: "0.5em 1.75em",
+				  maxWidth: "300px",
+				  marginBottom: "20px"
+                }}
+                variant="outlined"
+                color="primary"
+              >
+                {approveMode
+                  ? "See all artwork"
+                  : "See only artwork to approve"}
+              </Button>
+              <AdminStoryCards user={user} approveMode={approveMode} />
+            </div>
 
             <footer>
               <div
