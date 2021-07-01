@@ -5,7 +5,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
 import "./ArtistsStoryCards.css";
@@ -13,17 +12,31 @@ import "./ArtistsStoryCards.css";
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    backgroundColor: "#bfacf0",
     height: "auto",
+    backgroundColor: "#878694",
+    margin: "0 5%",
   },
   title: {
     fontSize: 22,
+    fontFamily: "EB Garamond",
+  },
+  image: {
+    width: "100%",
+    height: "280px",
+  },
+  video: {
+    width: "100%",
+    height: "280px",
   },
   pos: {
-    marginBottom: 3,
+    marginBottom: "0.75em",
+    fontFamily: "EB Garamond",
+    fontSize: 18,
   },
-  searchBar: {
-    marginLeft: 50,
+  text: {
+    fontFamily: "Garamond",
+    fontSize: 18,
+    minHeight: "60px",
   },
 });
 
@@ -126,25 +139,30 @@ const AdminStoryCards = ({ user, approveMode }) => {
   return (
     <>
       {!approveMode && (
-        <TextField
-          className={classes.searchBar}
-          variant="filled"
-          margin="normal"
-          id="search"
-          label="Search by title or artist name"
-          name="email"
-          onChange={(e) => setSearch(e.target.value.toLowerCase())}
-        />
+        <div
+          key="searchbar"
+          className="search-input-wrapper"
+          style={{ width: "300px", marginLeft: "70px", marginBottom: "20px"}}
+        >
+          <i className="fas fa-search"></i>
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search by artist name or title"
+            id="search"
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+          />
+        </div>
       )}
       <div className="cards-wrapper">
         {filteredArtwork.length > 0 &&
-          filteredArtwork.map((artwork, index) => {
+          filteredArtwork.map((artwork) => {
             return (
               <Card key={artwork.id} className={classes.root}>
                 <CardContent>
                   {artwork.content_type === "image" && (
                     <CardMedia
-                      className="card-img"
+                      className={`${classes.image} card-img`}
                       component="img"
                       alt={artwork.title}
                       height="240"
@@ -153,7 +171,12 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     />
                   )}
                   {artwork.content_type === "video" && (
-                    <video width="100%" height="240" controls>
+                    <video
+                      className={classes.video}
+                      width="100%"
+                      height="240"
+                      controls
+                    >
                       <source src={artwork.content_link} type="video/mp4" />
                     </video>
                   )}
@@ -162,21 +185,14 @@ const AdminStoryCards = ({ user, approveMode }) => {
                       <source src={artwork.content_link} />
                     </audio>
                   )}
-                  <Typography
-                    variant="h3"
-                    className={classes.title}
-                    style={{
-                      color: "crimson",
-                      textShadow: "1px 1px honeydew",
-                      fontWeight: "bolder",
-                    }}
-                    gutterBottom
-                  >
+
+                  <Typography gutterBottom variant="h5" component="h2">
                     {artwork.title}
                   </Typography>
                   <Typography
                     className={classes.pos}
-                    style={{ fontWeight: "700" }}
+                    variant="body2"
+                    component="p"
                   >
                     Name: {artwork.artist_name}
                     <br />
@@ -186,10 +202,10 @@ const AdminStoryCards = ({ user, approveMode }) => {
                   </Typography>
                   {(artwork.content_type === "text" ||
                     artwork.content_type === "image") && (
-                    <Typography variant="body1">
+                    <Typography className={classes.text} variant="body1">
                       <ReactReadMoreReadLess
                         className="read-more-read-less"
-                        charLimit={250}
+                        charLimit={50}
                         readMoreText={"Read more ▼"}
                         readLessText={"Read less ▲"}
                       >
@@ -209,21 +225,21 @@ const AdminStoryCards = ({ user, approveMode }) => {
                       },
                     }}
                   >
-                    <Button color="primary" className="about">
+                    <Button style={{ color: "white" }} className="about">
                       Edit
                     </Button>
                   </Link>
                   {artwork.artwork_status !== "approved" && (
                     <>
                       <Button
-                        color="primary"
+                        style={{ color: "white" }}
                         className="about"
                         onClick={() => changeStatus(artwork.id, "approved")}
                       >
                         Accept
                       </Button>
                       <Button
-                        color="primary"
+                        style={{ color: "white" }}
                         className="about"
                         onClick={() => changeStatus(artwork.id, "rejected")}
                       >
@@ -232,7 +248,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     </>
                   )}
                   <Button
-                    color="primary"
+                    style={{ color: "white" }}
                     className="about"
                     onClick={() => deleteArtwork(artwork.id)}
                   >
