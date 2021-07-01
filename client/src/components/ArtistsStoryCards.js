@@ -21,11 +21,11 @@ const useStyles = makeStyles({
   },
   image: {
     width: '100%',
-    height: '240px',
+    height: '280px',
   },
   video: {
     width: '100%',
-    height: '240px'
+    height: '280px'
   },
   pos: {
     marginBottom: '0.75em',
@@ -48,10 +48,10 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
         {approvedArtwork.map((artwork, index) => {
           return (
             <Card key={artwork.id} className={classes.root}>
-              <CardActionArea>
+              <CardActionArea className='card-action'>
                 {artwork.content_type === 'image' && (
                   <CardMedia
-                    className={classes.image}
+                    className={`${classes.image} card-img`}
                     component='img'
                     alt={artwork.title}
                     height='240'

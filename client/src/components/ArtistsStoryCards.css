@@ -19,14 +19,10 @@
   .container .cards-wrapper {
     grid-template-columns: 1fr;
   }
-}
-
-/* 
-@media only screen and (min-width: 769px) {
-  .cards-wrapper {
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  .card-action .card-img {
+    height: 550px;
   }
-} */
+}
 
 @media only screen and (min-width: 769px) and (max-width: 1040px) {
   .cards-wrapper {
