@@ -40,7 +40,7 @@ const AdminPanel = ({ user, setUser }) => {
       <main className="main" role="main">
         {user && user.username && (
           <>
-            <header className='admin_panel_header'>
+            <header className="admin_panel_header">
               <div
                 className="header_bg"
                 style={{
@@ -78,7 +78,7 @@ const AdminPanel = ({ user, setUser }) => {
                   backgroundColor: "#1c555c",
                   color: "antiquewhite",
                   fontWeight: "normal",
-                  border: "5px solid #7d69af",
+                  border: "3px solid antiquewhite",
                   boxSizing: "border-box",
                   borderRadius: "7px",
                   fontFamily: "EB Garamond",
@@ -98,12 +98,12 @@ const AdminPanel = ({ user, setUser }) => {
                 backgroundColor: "#1c555c",
                 color: "antiquewhite",
                 fontWeight: "normal",
-                border: "5px solid #7d69af",
+                border: "3px solid antiquewhite",
                 boxSizing: "border-box",
                 borderRadius: "7px",
                 fontFamily: "EB Garamond",
                 padding: "0.5em 1.75em",
-				marginLeft: "20px"
+                marginLeft: "20px",
               }}
               variant="outlined"
               color="primary"
@@ -111,7 +111,13 @@ const AdminPanel = ({ user, setUser }) => {
               Create new admin
             </Button>
             {createMode && <NewAdmin setCreateMode={setCreateMode} />}
-            <div style={{display: "flex", flexDirection: "column", alignItems:"center"}}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <h2 className="admin-title">
                 {approveMode ? "Artwork to approve" : "All artwork"}
               </h2>
@@ -121,13 +127,13 @@ const AdminPanel = ({ user, setUser }) => {
                   backgroundColor: "#1c555c",
                   color: "antiquewhite",
                   fontWeight: "normal",
-                  border: "5px solid #7d69af",
+                  border: "3px solid antiquewhite",
                   boxSizing: "border-box",
                   borderRadius: "7px",
                   fontFamily: "EB Garamond",
                   padding: "0.5em 1.75em",
-				  maxWidth: "300px",
-				  marginBottom: "20px"
+                  maxWidth: "300px",
+                  marginBottom: "20px",
                 }}
                 variant="outlined"
                 color="primary"

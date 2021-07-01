@@ -5,7 +5,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
 import "./ArtistsStoryCards.css";
@@ -13,20 +12,31 @@ import "./ArtistsStoryCards.css";
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    backgroundColor: "#46a69a",
+    height: "auto",
+    backgroundColor: "#878694",
+    margin: "0 5%",
   },
   title: {
     fontSize: 22,
     fontFamily: "EB Garamond",
   },
+  image: {
+    width: "100%",
+    height: "280px",
+  },
+  video: {
+    width: "100%",
+    height: "280px",
+  },
   pos: {
-    marginBottom: 3,
+    marginBottom: "0.75em",
     fontFamily: "EB Garamond",
     fontSize: 18,
   },
   text: {
-    fontFamily: 'Garamond',
+    fontFamily: "Garamond",
     fontSize: 18,
+    minHeight: "60px",
   },
 });
 
@@ -146,13 +156,13 @@ const AdminStoryCards = ({ user, approveMode }) => {
       )}
       <div className="cards-wrapper">
         {filteredArtwork.length > 0 &&
-          filteredArtwork.map((artwork, index) => {
+          filteredArtwork.map((artwork) => {
             return (
               <Card key={artwork.id} className={classes.root}>
                 <CardContent>
                   {artwork.content_type === "image" && (
                     <CardMedia
-                      className="card-img"
+                      className={`${classes.image} card-img`}
                       component="img"
                       alt={artwork.title}
                       height="240"
@@ -161,7 +171,12 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     />
                   )}
                   {artwork.content_type === "video" && (
-                    <video width="100%" height="240" controls>
+                    <video
+                      className={classes.video}
+                      width="100%"
+                      height="240"
+                      controls
+                    >
                       <source src={artwork.content_link} type="video/mp4" />
                     </video>
                   )}
@@ -170,20 +185,14 @@ const AdminStoryCards = ({ user, approveMode }) => {
                       <source src={artwork.content_link} />
                     </audio>
                   )}
-                  <Typography
-                    variant="h3"
-                    className={classes.title}
-                    style={{
-                      color: "white",
-                      fontWeight: "bolder",
-                    }}
-                    gutterBottom
-                  >
+
+                  <Typography gutterBottom variant="h5" component="h2">
                     {artwork.title}
                   </Typography>
                   <Typography
                     className={classes.pos}
-                    style={{ fontWeight: "700" }}
+                    variant="body2"
+                    component="p"
                   >
                     Name: {artwork.artist_name}
                     <br />
@@ -196,7 +205,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     <Typography className={classes.text} variant="body1">
                       <ReactReadMoreReadLess
                         className="read-more-read-less"
-                        charLimit={250}
+                        charLimit={50}
                         readMoreText={"Read more ▼"}
                         readLessText={"Read less ▲"}
                       >

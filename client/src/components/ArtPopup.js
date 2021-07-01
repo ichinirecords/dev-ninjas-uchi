@@ -74,7 +74,6 @@ const ArtPopup = ({
         {(content_type === "text" || content_type === "image") && (
           <Typography variant="body1">
             <ReactReadMoreReadLess
-              style={{ color: "#46a69a" }}
               charLimit={250}
               readMoreText={"Read more ▼"}
               readLessText={"Read less ▲"}
