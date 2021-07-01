@@ -13,17 +13,20 @@ import "./ArtistsStoryCards.css";
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    backgroundColor: "#bfacf0",
-    height: "auto",
+    backgroundColor: "#46a69a",
   },
   title: {
     fontSize: 22,
+    fontFamily: "EB Garamond",
   },
   pos: {
     marginBottom: 3,
+    fontFamily: "EB Garamond",
+    fontSize: 18,
   },
-  searchBar: {
-    marginLeft: 50,
+  text: {
+    fontFamily: 'Garamond',
+    fontSize: 18,
   },
 });
 
@@ -126,15 +129,20 @@ const AdminStoryCards = ({ user, approveMode }) => {
   return (
     <>
       {!approveMode && (
-        <TextField
-          className={classes.searchBar}
-          variant="filled"
-          margin="normal"
-          id="search"
-          label="Search by title or artist name"
-          name="email"
-          onChange={(e) => setSearch(e.target.value.toLowerCase())}
-        />
+        <div
+          key="searchbar"
+          className="search-input-wrapper"
+          style={{ width: "300px", marginLeft: "70px"}}
+        >
+          <i className="fas fa-search"></i>
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search by artist name or title"
+            id="search"
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+          />
+        </div>
       )}
       <div className="cards-wrapper">
         {filteredArtwork.length > 0 &&
@@ -166,8 +174,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     variant="h3"
                     className={classes.title}
                     style={{
-                      color: "crimson",
-                      textShadow: "1px 1px honeydew",
+                      color: "white",
                       fontWeight: "bolder",
                     }}
                     gutterBottom
@@ -186,7 +193,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                   </Typography>
                   {(artwork.content_type === "text" ||
                     artwork.content_type === "image") && (
-                    <Typography variant="body1">
+                    <Typography className={classes.text} variant="body1">
                       <ReactReadMoreReadLess
                         className="read-more-read-less"
                         charLimit={250}
@@ -209,21 +216,21 @@ const AdminStoryCards = ({ user, approveMode }) => {
                       },
                     }}
                   >
-                    <Button color="primary" className="about">
+                    <Button style={{ color: "white" }} className="about">
                       Edit
                     </Button>
                   </Link>
                   {artwork.artwork_status !== "approved" && (
                     <>
                       <Button
-                        color="primary"
+                        style={{ color: "white" }}
                         className="about"
                         onClick={() => changeStatus(artwork.id, "approved")}
                       >
                         Accept
                       </Button>
                       <Button
-                        color="primary"
+                        style={{ color: "white" }}
                         className="about"
                         onClick={() => changeStatus(artwork.id, "rejected")}
                       >
@@ -232,7 +239,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     </>
                   )}
                   <Button
-                    color="primary"
+                    style={{ color: "white" }}
                     className="about"
                     onClick={() => deleteArtwork(artwork.id)}
                   >

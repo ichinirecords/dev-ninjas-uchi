@@ -8,14 +8,17 @@ import ReactReadMoreReadLess from "react-read-more-read-less";
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    backgroundColor: "#bfacf0",
+    backgroundColor: "white",
     height: "auto",
   },
   title: {
     fontSize: 22,
+    fontFamily: "EB Garamond",
   },
   pos: {
     marginBottom: 3,
+    fontFamily: "EB Garamond",
+    fontSize: 18,
   },
 });
 
@@ -58,7 +61,7 @@ const ArtPopup = ({
           variant="h3"
           className={classes.title}
           style={{
-            color: "white",
+            color: "#46a69a",
             fontWeight: "bolder",
           }}
           gutterBottom
@@ -68,11 +71,10 @@ const ArtPopup = ({
         <Typography className={classes.pos} style={{ fontWeight: "700" }}>
           By {artist_name} from {city}, {country}
         </Typography>
-        {(content_type === "text" ||
-          content_type === "image") && (
+        {(content_type === "text" || content_type === "image") && (
           <Typography variant="body1">
             <ReactReadMoreReadLess
-              className="read-more-read-less"
+              style={{ color: "#46a69a" }}
               charLimit={250}
               readMoreText={"Read more ▼"}
               readLessText={"Read less ▲"}
