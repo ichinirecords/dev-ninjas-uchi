@@ -148,7 +148,7 @@ const UploadModal = () => {
 					backgroundColor: "#1c555c",
 					color: "antiquewhite",
 					fontWeight: "normal",
-					border: "5px solid #7d69af",
+					border: "3px solid antiquewhite",
 					boxSizing: "border-box",
 					borderRadius: "7px",
 					fontFamily: "EB Garamond",
@@ -279,7 +279,7 @@ const UploadModal = () => {
 							/>
 						</div>
 					</ListItem>}
-					{(uploadForm.content_type === "text" || uploadForm.content_type === "image") && <ListItem>
+					{(uploadForm.content_type === "text" || uploadForm.content_type === "image" || uploadForm.content_type === "video")  && <ListItem>
 						<TextField
 							label="Please type your story here"
 							placeholder="Please type your story here"
