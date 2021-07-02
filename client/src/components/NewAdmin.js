@@ -77,9 +77,19 @@ const NewAdmin = ({ setCreateMode }) => {
           type="submit"
           id="submit"
           fullWidth
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={handleSubmit}
+          style={{
+            backgroundColor: "#1c555c",
+            color: "antiquewhite",
+            fontWeight: "normal",
+            border: "3px solid antiquewhite",
+            boxSizing: "border-box",
+            borderRadius: "7px",
+            fontFamily: "EB Garamond",
+            padding: "0.5em 1.75em",
+          }}
         >
           Create new admin account
         </Button>

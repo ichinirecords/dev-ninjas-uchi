@@ -132,7 +132,7 @@ export const createNewAdmin = async (req, res) => {
         from: process.env.EMAIL,
         to: email,
         subject: "Uchi account created",
-        html: `Someone created an account for you on Uchi. To choose your new password, 
+        html: `Someone created an account for you on Uchi with username ${userDetails.username}. To choose your new password, 
 				go to <a href="https://dev-ninjas-uchi.herokuapp.com/reset?id=${userDetails.id}&type=newaccount&token=${hash}">
 				https://dev-ninjas-uchi.herokuapp.com/api/reset?id=${userDetails.id}&type=newaccount&token=${hash}</a> to reset your password. This link is only valid for today`,
       };

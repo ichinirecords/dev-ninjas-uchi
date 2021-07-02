@@ -1,14 +1,16 @@
 import React from "react";
 import SelectCountry from "./SelectCountry";
 import Switch from "./Switch";
-// import { Link } from "react-router-dom";
-// import { Button } from "@material-ui/core";
 import UploadModal from './UploadModal';
 import UchiIntro from './UchiIntro';
+import SearchBar from './SearchBar';
+import logo from '../logo/uchi logo square jpeg.jpg';
+import DonateLink from "./DonateLink";
+import Sticky from "react-stickynode";
 
-const AppHeader = () => {
+const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
   return (
-    <header>
+    <header className='app-header'>
       <div
         className="header_bg"
         style={{
@@ -18,51 +20,32 @@ const AppHeader = () => {
           right: "0",
           left: "0",
           width: "100 %",
-          height: "100 %",
-          backgroundImage: "linear-gradient(white, white)",
-          transform: "skewY(-6deg)",
+          height: "13em",
+          backgroundImage: "linear-gradient(#a8546c, #a8546c)",
+          transform: "skewY(-4deg)",
           transformOrigin: "top left",
         }}
       >
         <div className="header-contents">
           <div className="title-container">
+            <img style={{ width: '70%', height: 'auto', marginTop: '-0.5em' }} src={logo} alt={logo} />
             <h1 className='brand-name'>UCHI</h1>
           </div>
           <div className="search-select">
-            <div key="input-form" className="search-input-wrapper">
-              <i className="fas fa-search"></i>
-              <input
-                key="search-input "
-                type="text"
-                className="search-bar"
-                placeholder="Search ..."
-              // value={searchInput}
-              // onChange={handleSearchInput}
-              />
-            </div>
-            <div><SelectCountry /></div>
+            <SearchBar setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
+            <SelectCountry />
           </div>
           <div className="grid-empty-space"></div>
-          <Switch />
+          <Switch approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
         </div>
       </div>
-      {/* <Button component={Link} to="/upload" variant='contained' className='upload-btn' style={{
-        backgroundColor: '#A4237F', 
-        color: 'white',
-        fontWeight: 'normal', 
-        border: '5px solid #7D69AF', 
-        boxSizing: 'border-box',
-        borderRadius: '5px', 
-        fontFamily: 'Righteous', 
-        padding: '0.2em 1.75em'
-      }}>
-        Upload
-      </Button> */}
       <UploadModal />
-      <UchiIntro/>
+      <UchiIntro />
+      <Sticky innerZ='10' enabled={true}>
+        <DonateLink />
+      </Sticky>
     </header>
   );
-
 };
 
 export default AppHeader;

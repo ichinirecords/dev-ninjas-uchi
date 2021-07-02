@@ -5,6 +5,7 @@ import CopyrightIcon from "@material-ui/icons/Copyright";
 import AdminStoryCards from "../components/AdminStoryCards";
 import NewAdmin from "../components/NewAdmin";
 import "./AdminPanel.css";
+import logo from "../logo/uchi logo square jpeg.jpg";
 
 const AdminPanel = ({ user, setUser }) => {
   let history = useHistory();
@@ -39,7 +40,7 @@ const AdminPanel = ({ user, setUser }) => {
       <main className="main" role="main">
         {user && user.username && (
           <>
-            <header>
+            <header className="admin_panel_header">
               <div
                 className="header_bg"
                 style={{
@@ -49,32 +50,43 @@ const AdminPanel = ({ user, setUser }) => {
                   right: "0",
                   left: "0",
                   width: "100 %",
-                  height: "100 %",
-                  backgroundImage: "linear-gradient(white, white)",
-                  transform: "skewY(-6deg)",
+                  height: "13em",
+                  backgroundImage: "linear-gradient(#a8546c, #a8546c)",
+                  transform: "skewY(-4deg)",
                   transformOrigin: "top left",
                 }}
               >
                 <div className="header-contents">
                   <div className="title-container">
+                    <img
+                      style={{
+                        width: "70%",
+                        height: "auto",
+                        marginTop: "-0.5em",
+                      }}
+                      src={logo}
+                      alt={logo}
+                    />
                     <h1 className="brand-name">UCHI</h1>
                   </div>
                   <div className="grid-empty-space"></div>
                 </div>
               </div>
               <Button
-                onClick={handleLogout}
-                variant="contained"
                 className="upload-btn"
                 style={{
-                  backgroundColor: "#A4237F",
+                  backgroundColor: "#1c555c",
+                  color: "antiquewhite",
                   fontWeight: "normal",
-                  border: "5px solid #7D69AF",
+                  border: "3px solid antiquewhite",
                   boxSizing: "border-box",
-                  borderRadius: "5px",
-                  fontFamily: "Righteous",
-                  padding: "0.2em 1.75em",
+                  borderRadius: "7px",
+                  fontFamily: "EB Garamond",
+                  padding: "0.5em 1.75em",
                 }}
+                variant="outlined"
+                color="primary"
+                onClick={handleLogout}
               >
                 Logout
               </Button>
@@ -82,74 +94,85 @@ const AdminPanel = ({ user, setUser }) => {
             <h1 id="welcome">Welcome, {user.username}</h1>
             <Button
               onClick={() => setCreateMode(!createMode)}
-              variant="contained"
               style={{
-                backgroundColor: "#A4237F",
+                backgroundColor: "#1c555c",
+                color: "antiquewhite",
                 fontWeight: "normal",
-                border: "5px solid #7D69AF",
+                border: "3px solid antiquewhite",
                 boxSizing: "border-box",
-                borderRadius: "5px",
-                fontFamily: "Righteous",
-                padding: "0.2em 1.75em",
+                borderRadius: "7px",
+                fontFamily: "EB Garamond",
+                padding: "0.5em 1.75em",
+                marginLeft: "20px",
               }}
+              variant="outlined"
+              color="primary"
             >
               Create new admin
             </Button>
             {createMode && <NewAdmin setCreateMode={setCreateMode} />}
-            <h2 className="admin-title">
-              {approveMode ? "Artwork to approve" : "All artwork"}
-            </h2>
-            <Button
-              onClick={() => setApproveMode(!approveMode)}
-              variant="contained"
-              className="upload-btn"
+            <div
               style={{
-                backgroundColor: "#A4237F",
-                fontWeight: "normal",
-                border: "5px solid #7D69AF",
-                boxSizing: "border-box",
-                borderRadius: "5px",
-                fontFamily: "Righteous",
-                padding: "0.2em 1.75em",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
               }}
             >
-              {approveMode ? "See all artwork" : "See only artwork to approve"}
-            </Button>
-            <AdminStoryCards user={user} approveMode={approveMode} />
+              <h2 className="admin-title">
+                {approveMode ? "Artwork to approve" : "All artwork"}
+              </h2>
+              <Button
+                onClick={() => setApproveMode(!approveMode)}
+                style={{
+                  backgroundColor: "#1c555c",
+                  color: "antiquewhite",
+                  fontWeight: "normal",
+                  border: "3px solid antiquewhite",
+                  boxSizing: "border-box",
+                  borderRadius: "7px",
+                  fontFamily: "EB Garamond",
+                  padding: "0.5em 1.75em",
+                  maxWidth: "300px",
+                  marginBottom: "20px",
+                }}
+                variant="outlined"
+                color="primary"
+              >
+                {approveMode
+                  ? "See all artwork"
+                  : "See only artwork to approve"}
+              </Button>
+              <AdminStoryCards user={user} approveMode={approveMode} />
+            </div>
+
+            <footer>
+              <div
+                className="footer_bg"
+                style={{
+                  position: "relative",
+                  top: "0",
+                  bottom: "0",
+                  right: "0",
+                  left: "0",
+                  width: "100 %",
+                  height: "13em",
+                  backgroundImage: "linear-gradient(#a8546c, #a8546c)",
+                  transform: "skewY(-4deg)",
+                  transformOrigin: "bottom right",
+                }}
+              >
+                <div className="footer-content">
+                  <div className="copy-right">
+                    Copyright
+                    <CopyrightIcon />
+                    DevNinjas
+                  </div>
+                </div>
+              </div>
+            </footer>
           </>
         )}
       </main>
-      <footer>
-        <div
-          className="footer_bg"
-          style={{
-            position: "relative",
-            top: "0",
-            bottom: "0",
-            right: "0",
-            left: "0",
-            width: "100 %",
-            height: "100 %",
-            backgroundImage: "linear-gradient(white, white)",
-            transform: "skewY(-6deg)",
-            transformOrigin: "bottom right",
-          }}
-        >
-          <div
-            className="footer-content"
-            style={{
-              height: "200px",
-              marginBottom: "0",
-            }}
-          >
-            <div className="copy-right">
-              Copyright
-              <CopyrightIcon />
-              DevNinjas
-            </div>
-          </div>
-        </div>
-      </footer>
     </>
   );
 };

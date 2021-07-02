@@ -5,47 +5,61 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { Button } from "@material-ui/core";
-import './ArtistsStoryCards.css';
+import "./ArtistsStoryCards.css";
 
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    backgroundColor: "#bfacf0",
     height: "auto",
+    backgroundColor: "#878694",
+    margin: "0 5%",
   },
   title: {
     fontSize: 22,
+    fontFamily: "EB Garamond",
+  },
+  image: {
+    width: "100%",
+    height: "280px",
+  },
+  video: {
+    width: "100%",
+    height: "280px",
   },
   pos: {
-    marginBottom: 3,
+    marginBottom: "0.75em",
+    fontFamily: "EB Garamond",
+    fontSize: 18,
   },
-  searchBar: {
-	marginLeft: 50,
-  }
+  text: {
+    fontFamily: "Garamond",
+    fontSize: 18,
+    minHeight: "60px",
+  },
 });
 
 const AdminStoryCards = ({ user, approveMode }) => {
   const classes = useStyles();
 
   const [submittedArtwork, setSubmittedArtwork] = useState([]);
-  const [filteredArtwork, setFilteredArtwork] = useState([])
+  const [filteredArtwork, setFilteredArtwork] = useState([]);
   const [search, setSearch] = useState("");
 
   const applySearch = (data) => {
     const filteredData = data.filter(
       (artwork) =>
         (artwork.title && artwork.title.toLowerCase().includes(search)) ||
-        (artwork.artist_name && artwork.artist_name.toLowerCase().includes(search))
+        (artwork.artist_name &&
+          artwork.artist_name.toLowerCase().includes(search))
     );
-	return filteredData;
+    return filteredData;
   };
 
-  useEffect(()=>{
-	setFilteredArtwork(applySearch(submittedArtwork));
-  }, [submittedArtwork, search])
+  useEffect(() => {
+    setFilteredArtwork(applySearch(submittedArtwork));
+  }, [submittedArtwork, search]);
 
   useEffect(() => {
     if (approveMode) {
@@ -124,46 +138,61 @@ const AdminStoryCards = ({ user, approveMode }) => {
 
   return (
     <>
-      {!approveMode && <TextField
-        className={classes.searchBar}
-        variant="filled"
-        margin="normal"
-        id="search"
-        label="Search by title or artist name"
-        name="email"
-        onChange={(e) => setSearch(e.target.value.toLowerCase())}
-      />}
+      {!approveMode && (
+        <div
+          key="searchbar"
+          className="search-input-wrapper"
+          style={{ width: "300px", marginLeft: "70px", marginBottom: "20px"}}
+        >
+          <i className="fas fa-search"></i>
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search by artist name or title"
+            id="search"
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+          />
+        </div>
+      )}
       <div className="cards-wrapper">
         {filteredArtwork.length > 0 &&
-          filteredArtwork.map((artwork, index) => {
+          filteredArtwork.map((artwork) => {
             return (
               <Card key={artwork.id} className={classes.root}>
                 <CardContent>
                   {artwork.content_type === "image" && (
                     <CardMedia
-                      className="card-img"
+                      className={`${classes.image} card-img`}
                       component="img"
-                      alt="drawing colors"
+                      alt={artwork.title}
                       height="240"
                       image={artwork.content_link}
-                      title="drawing colors"
+                      title={artwork.title}
                     />
                   )}
-                  <Typography
-                    variant="h3"
-                    className={classes.title}
-                    style={{
-                      color: "crimson",
-                      textShadow: "1px 1px honeydew",
-                      fontWeight: "bolder",
-                    }}
-                    gutterBottom
-                  >
+                  {artwork.content_type === "video" && (
+                    <video
+                      className={classes.video}
+                      width="100%"
+                      height="240"
+                      controls
+                    >
+                      <source src={artwork.content_link} type="video/mp4" />
+                    </video>
+                  )}
+                  {artwork.content_type === "music" && (
+                    <audio controls style={{ display: "flex", width: "100%" }}>
+                      <source src={artwork.content_link} />
+                    </audio>
+                  )}
+
+                  <Typography gutterBottom variant="h5" component="h2">
                     {artwork.title}
                   </Typography>
                   <Typography
                     className={classes.pos}
-                    style={{ fontWeight: "700" }}
+                    variant="body2"
+                    component="p"
                   >
                     Name: {artwork.artist_name}
                     <br />
@@ -171,15 +200,22 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     <br />
                     City: {artwork.city}
                   </Typography>
+                  {(artwork.content_type === "text" ||
+                    artwork.content_type === "image") && (
+                    <Typography className={classes.text} variant="body1">
+                      <ReactReadMoreReadLess
+                        className="read-more-read-less"
+                        charLimit={50}
+                        readMoreText={"Read more ▼"}
+                        readLessText={"Read less ▲"}
+                      >
+                        {artwork.content_text}
+                      </ReactReadMoreReadLess>
+                    </Typography>
+                  )}
                   <Typography variant="body1">
-                    <ReactReadMoreReadLess
-                      className="read-more-read-less"
-                      charLimit={250}
-                      readMoreText={"Read more ▼"}
-                      readLessText={"Read less ▲"}
-                    >
-                      {artwork.content_text}
-                    </ReactReadMoreReadLess>
+                    <strong>Status: </strong>
+                    {artwork.artwork_status}
                   </Typography>
                   <Link
                     to={{
@@ -189,21 +225,21 @@ const AdminStoryCards = ({ user, approveMode }) => {
                       },
                     }}
                   >
-                    <Button color="primary" className="about">
+                    <Button style={{ color: "white" }} className="about">
                       Edit
                     </Button>
                   </Link>
                   {artwork.artwork_status !== "approved" && (
                     <>
                       <Button
-                        color="primary"
+                        style={{ color: "white" }}
                         className="about"
                         onClick={() => changeStatus(artwork.id, "approved")}
                       >
                         Accept
                       </Button>
                       <Button
-                        color="primary"
+                        style={{ color: "white" }}
                         className="about"
                         onClick={() => changeStatus(artwork.id, "rejected")}
                       >
@@ -212,7 +248,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     </>
                   )}
                   <Button
-                    color="primary"
+                    style={{ color: "white" }}
                     className="about"
                     onClick={() => deleteArtwork(artwork.id)}
                   >
