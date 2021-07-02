@@ -2,12 +2,7 @@
   /* max-width: 240px;
   max-height: 240px;
   overflow-y: scroll; */
-  background-color: "#bfacf0";
   padding: 0;
-}
-
-.leaflet-popup-content-wrapper {
-  background-color: "#bfacf0";
 }
 
 .marker-cluster {
@@ -22,6 +17,10 @@
 	height: 75vh;
 	width: 80vw;
 	margin-left: 5vw;
+}
+
+.popup-read-more {
+	color: red;
 }
 
 @media only screen and (max-device-width: 1048px) {

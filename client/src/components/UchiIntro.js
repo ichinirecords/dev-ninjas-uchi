@@ -24,7 +24,9 @@ const useStyles = makeStyles((theme) => ({
   Toolbar: {
     display: 'grid',
     gridTemplateColumns: '1fr 5fr 0.6fr',
-    gap: '2em'
+    gap: '2em',
+    height: '17em',
+    margin: '2em auto'
   },
   title: {
     display: 'grid',

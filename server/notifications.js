@@ -36,13 +36,42 @@ const getSubmittedArtwork = async () => {
 // Create email text
 const createEmailText = async () => {
   const artwork = await getSubmittedArtwork();
-  let result = `<!DOCTYPE html>
-    <html><header><h1>Here is the outstanding artwork to approve</h1></header>
+  let html = `<!DOCTYPE html>
+    <html><head>
+	<style>
+	table {
+		font-family: Arial, Helvetica, sans-serif;
+		border-collapse: collapse;
+		width: 90%;
+	}
+
+	h1, table, div {
+		margin: 20px;
+	}
+
+	table td, table th {
+		border: 1px solid #ddd;
+		padding: 8px;
+	}
+
+	table tr:nth-child(even){background-color: #f2f2f2;}
+
+	table tr:hover {background-color: #ddd;}
+
+	table th {
+		padding-top: 12px;
+		padding-bottom: 12px;
+		text-align: left;
+		background-color: #04AA6D;
+		color: white;
+	}
+	</style>
+	</head><header><h1>Here is the outstanding artwork to approve</h1></header>
 	<body>`;
   if (artwork.length === 0) {
-    result += "<div>No outstanding artwork to approve</div></body></html>";
+    html += "<div>No outstanding artwork to approve</div></body></html>";
   } else {
-    result += `<table><thead><tr>
+    html += `<table><thead><tr>
 			<th>Artwork title</th>
 			<th>Author name</th>
 			<th>City</th>
@@ -51,7 +80,7 @@ const createEmailText = async () => {
 			<th>Submission date</th></tr></thead><tbody>`;
   }
   artwork.forEach((item) => {
-    result += `<tr><td>${item.title}</td>
+    html += `<tr><td>${item.title}</td>
 			<td>${item.artist_name}</td>
 			<td>${item.city}</td>
 			<td>${item.country}</td>
@@ -59,9 +88,9 @@ const createEmailText = async () => {
 			<td>${new Date(item.created_on).toLocaleDateString()}</td></tr>`;
   });
   if (artwork.length > 0) {
-    result += `</tbody></table><div>Go to <a href="https://dev-ninjas-uchi.herokuapp.com/login">login</a> to approve new submissions</div></body></html>`;
+    html += `</tbody></table><div>Go to <a href="https://dev-ninjas-uchi.herokuapp.com/login">login</a> to approve new submissions.</div></body></html>`;
   }
-  return result;
+  return html;
 };
 
 const getMailOptions = async () => {
@@ -72,7 +101,6 @@ const getMailOptions = async () => {
     to: process.env.EMAIL,
     bcc: emails,
     subject: "Uchi daily admin digest",
-    text: "Testing content",
     html: htmlText,
   };
 };
@@ -89,7 +117,7 @@ let transporter = nodemailer.createTransport({
 // Send email every day at 8am
 //export const cronJob = cron.schedule("* * * * *", async () => {
 export const cronJob = cron.schedule("0 8 * * *", async () => {
-   if (process.env.MODE === "prod") {
+  if (process.env.MODE === "prod") {
     const mailOptions = await getMailOptions();
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
@@ -98,5 +126,5 @@ export const cronJob = cron.schedule("0 8 * * *", async () => {
         console.log("Email sent: " + info.response);
       }
     });
-   }
+  }
 });
