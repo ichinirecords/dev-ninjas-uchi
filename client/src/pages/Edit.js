@@ -183,7 +183,6 @@ const Edit = ({ user, setUser }) => {
               <ListItem>
                 <div style={{display:"flex", alignContent:"center", justifyItems:"center"}}>
                   <img
-                    component="img"
                     alt={uploadForm.title}
                     height="240px"
                     width="auto"

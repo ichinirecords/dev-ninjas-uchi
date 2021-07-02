@@ -202,7 +202,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                   </Typography>
                   {(artwork.content_type === "text" ||
                     artwork.content_type === "image") && (
-                    <Typography className={classes.text} variant="body1">
+                    <Typography className={`${classes.text} admin-card-story`} variant="body1">
                       <ReactReadMoreReadLess
                         className="read-more-read-less"
                         charLimit={50}

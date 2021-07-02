@@ -26,7 +26,7 @@ const successAlert = Selector('.success-alert')
 const welcomeDiv = Selector("#welcome");
 const cards = Selector(".MuiPaper-root");
 const textCardTitle = Selector(".MuiPaper-root")
-  .find("h3")
+  .find("h2")
   .withExactText("Testing text upload");
 const textCardEditButton = textCardTitle.parent(".MuiCardContent-root").child().withAttribute('href', '/edit');
 const textCardStory = textCardTitle
@@ -34,7 +34,7 @@ const textCardStory = textCardTitle
   .child('.admin-card-story')
 const textAreaEdit = Selector("textarea").withAttribute("name", "content_text");
 const imageCardTitle = Selector(".MuiPaper-root")
-  .find("h3")
+  .find("h2")
   .withExactText("Testing file upload");
 const textCardDeleteButton = textCardTitle
   .parent(".MuiCardContent-root")

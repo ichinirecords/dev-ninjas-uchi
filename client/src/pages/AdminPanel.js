@@ -139,6 +139,7 @@ const AdminPanel = ({ user, setUser }) => {
                 }}
                 variant="outlined"
                 color="primary"
+				id="artwork-toggle"
               >
                 {approveMode
                   ? "See all artwork"
