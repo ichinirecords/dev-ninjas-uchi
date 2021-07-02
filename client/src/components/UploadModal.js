@@ -177,6 +177,7 @@ const UploadModal = () => {
 		<div>
 			<Button
 				className="upload-btn"
+				id="upload-button"
 				style={{
 					backgroundColor: "#1c555c",
 					color: "antiquewhite",

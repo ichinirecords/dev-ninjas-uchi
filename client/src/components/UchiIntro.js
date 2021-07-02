@@ -85,7 +85,7 @@ const UchiIntro = () => {
                 <LoremIpsum style={{ borderColor: 'white' }} p={2} avgSentencesPerParagraph={6} random={false} />
               </div>
             </Typography>
-            <Button variant='contained' className={classes.Button} onClick={handleClose}>
+            <Button variant='contained' className={classes.Button} onClick={handleClose} id="main-site">
               Main Site
             </Button>
           </Toolbar>

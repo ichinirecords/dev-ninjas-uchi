@@ -142,7 +142,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
         <div
           key="searchbar"
           className="search-input-wrapper"
-          style={{ width: "300px", marginLeft: "70px", marginBottom: "20px"}}
+          style={{ width: "300px", marginLeft: "70px", marginBottom: "20px" }}
         >
           <i className="fas fa-search"></i>
           <input
@@ -202,7 +202,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                   </Typography>
                   {(artwork.content_type === "text" ||
                     artwork.content_type === "image") && (
-                    <Typography className={classes.text} variant="body1">
+                    <Typography className={`${classes.text} admin-card-story`} variant="body1">
                       <ReactReadMoreReadLess
                         className="read-more-read-less"
                         charLimit={50}
@@ -248,8 +248,9 @@ const AdminStoryCards = ({ user, approveMode }) => {
                     </>
                   )}
                   <Button
+                    color="primary"
+                    className="about delete-button"
                     style={{ color: "white" }}
-                    className="about"
                     onClick={() => deleteArtwork(artwork.id)}
                   >
                     Delete

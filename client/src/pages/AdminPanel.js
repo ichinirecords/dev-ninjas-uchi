@@ -73,6 +73,9 @@ const AdminPanel = ({ user, setUser }) => {
                 </div>
               </div>
               <Button
+                id="logout"
+                onClick={handleLogout}
+                variant="contained"
                 className="upload-btn"
                 style={{
                   backgroundColor: "#1c555c",
@@ -84,15 +87,14 @@ const AdminPanel = ({ user, setUser }) => {
                   fontFamily: "EB Garamond",
                   padding: "0.5em 1.75em",
                 }}
-                variant="outlined"
                 color="primary"
-                onClick={handleLogout}
               >
                 Logout
               </Button>
             </header>
             <h1 id="welcome">Welcome, {user.username}</h1>
             <Button
+              id="create-admin"
               onClick={() => setCreateMode(!createMode)}
               style={{
                 backgroundColor: "#1c555c",
@@ -137,6 +139,7 @@ const AdminPanel = ({ user, setUser }) => {
                 }}
                 variant="outlined"
                 color="primary"
+				id="artwork-toggle"
               >
                 {approveMode
                   ? "See all artwork"
