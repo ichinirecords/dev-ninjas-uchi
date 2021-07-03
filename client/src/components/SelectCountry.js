@@ -1,7 +1,7 @@
 import React from 'react';
 
-const SelectCountry = ({ setApprovedArtwork, backupData }) => {
-  const country = backupData.map(art => art.country);
+const SelectCountry = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
+  const country = approvedArtwork.map(art => art.country);
   const onlyUnique = (value, index, item) => {
     return item.indexOf(value) === index;
   }
@@ -9,7 +9,7 @@ const SelectCountry = ({ setApprovedArtwork, backupData }) => {
   unique = unique.filter(country => country !== null);
 
   const handleSelect = (e) => {
-    const selectedCountry = backupData.filter(art => art.country === e.target.value);
+    const selectedCountry = approvedArtwork.filter(art => art.country === e.target.value);
     setApprovedArtwork(selectedCountry);
     if (e.target.value === '') setApprovedArtwork(backupData);
   }
