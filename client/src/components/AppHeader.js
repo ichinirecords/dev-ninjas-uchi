@@ -41,6 +41,7 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
       </div>
       <UploadModal />
       {/* <UchiIntro /> */}
+      <UchiIntro />
       <Sticky innerZ='10' enabled={true}>
         <DonateLink />
       </Sticky>
