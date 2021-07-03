@@ -9,12 +9,12 @@ const searchBar = Selector(".search-bar");
 const searchResults = Selector(".MuiCard-root");
 const imageCheckbox = Selector('.switch-checkbox').withAttribute("name", "image")
 
-test("List of cards shows after intro content", async (t) => {
-  await t.expect(cards.count).gt(1);
+test("Map shows on page load", async (t) => {
+  await t.expect(mapContainer.exists).ok();
 });
 
 test("List shows after clicking list button", async (t) => {
-  await t.click(listButton).expect(mapContainer.exists).ok();
+  await t.click(listButton).expect(cards.count).gt(1);
 });
 
 test("Search and filter work", async (t) => {

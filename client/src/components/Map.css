@@ -1,7 +1,6 @@
 .leaflet-popup-content {
-  /* max-width: 240px;
-  max-height: 240px;
-  overflow-y: scroll; */
+  max-height: 340px;
+  overflow-y: scroll; 
   padding: 0;
 }
 

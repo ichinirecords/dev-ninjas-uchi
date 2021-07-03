@@ -10,11 +10,39 @@ const HomeTab = ({setView}) => {
 
 	return (
     <div className="tab-container">
-      <button className="tab-button active" onClick={changeSelection("map")}>
-        Map view
+      <button
+        className="tab-button active"
+        onClick={changeSelection("map")}
+        style={{
+          backgroundColor: "#1c555c",
+          color: "antiquewhite",
+          fontWeight: "normal",
+          border: "3px solid antiquewhite",
+          boxSizing: "border-box",
+          borderRadius: "7px",
+          fontFamily: "EB Garamond",
+          padding: "0.5em 1.75em",
+		  cursor: "pointer"
+        }}
+      >
+        MAP VIEW
       </button>
-      <button className="tab-button" onClick={changeSelection("listing")}>
-        List view
+      <button
+        className="tab-button"
+        onClick={changeSelection("listing")}
+        style={{
+          backgroundColor: "#1c555c",
+          color: "antiquewhite",
+          fontWeight: "normal",
+          border: "3px solid antiquewhite",
+          boxSizing: "border-box",
+          borderRadius: "7px",
+          fontFamily: "EB Garamond",
+          padding: "0.5em 1.75em",
+		  cursor: "pointer"
+        }}
+      >
+        LIST VIEW
       </button>
     </div>
   );
