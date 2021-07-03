@@ -64,7 +64,35 @@ const Edit = ({ user, setUser }) => {
       .then((data) => setUser(data));
   }, []);
 
+  const validateForm = () => {
+    if (uploadForm.content_type === "") {
+      return false;
+    }
+    if (
+      (uploadForm.content_type === "text" ||
+        uploadForm.content_type === "image") &&
+      Object.values(uploadForm).some((key) => key === "")
+    ) {
+      return false;
+    }
+    if (uploadForm.content_type !== "text" && file === "") {
+      return false;
+    }
+    if (
+      (uploadForm.content_type === "music" ||
+        uploadForm.content_type === "video") &&
+      (uploadForm.artist_name === "" || uploadForm.title === "")
+    ) {
+      return false;
+    }
+    if (coordUploadForm.lat === "") {
+      return false;
+    }
+    return true;
+  };
+
   let initialForm = {};
+  let initialCoordForm = {}
   if (location.state) {
     initialForm = Object.keys(location.state.artwork)
       .filter(
@@ -73,10 +101,11 @@ const Edit = ({ user, setUser }) => {
           location.state.artwork[k] !== null
       )
       .reduce((a, k) => ({ ...a, [k]: location.state.artwork[k] }), {});
+	initialCoordForm = {lat: location.state.artwork.lat}
   }
 
   const [uploadForm, setUploadForm] = useState(initialForm);
-  const [coordUploadForm, setCoordUploadForm] = useState({});
+  const [coordUploadForm, setCoordUploadForm] = useState(initialCoordForm);
 
   const handleChange = (e) => {
     setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
@@ -84,9 +113,7 @@ const Edit = ({ user, setUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validate = Object.values(uploadForm).every(
-      (value) => String(value).length > 1
-    );
+    const validate = validateForm();
     if (validate) {
       fetch(`/api/artwork/${location.state.artwork.id}`, {
         method: "PUT",
