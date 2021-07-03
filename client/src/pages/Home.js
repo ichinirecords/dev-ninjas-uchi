@@ -9,7 +9,7 @@ import HomeTab from "../components/HomeTab";
 export function Home() {
   const [approvedArtwork, setApprovedArtwork] = useState([]);
   const [backupData, setBackupData] = useState([]);
-  const [view, setView] = useState("listing")
+  const [view, setView] = useState("map")
   
   useEffect(() => {
     fetch("/api/artwork?status=approved")

@@ -10,11 +10,11 @@ const HomeTab = ({setView}) => {
 
 	return (
     <div className="tab-container">
-      <button className="tab-button active" onClick={changeSelection("listing")}>
-        List
+      <button className="tab-button active" onClick={changeSelection("map")}>
+        Map view
       </button>
-      <button className="tab-button" onClick={changeSelection("map")}>
-        Map
+      <button className="tab-button" onClick={changeSelection("listing")}>
+        List view
       </button>
     </div>
   );
