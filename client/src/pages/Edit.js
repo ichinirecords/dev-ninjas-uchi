@@ -7,161 +7,161 @@ import ListItem from "@material-ui/core/ListItem";
 import MapForm from "../components/MapForm";
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: "absolute",
-    height: "4em",
-    backgroundColor: "#7d69af",
-    fontFamily: "Righteous",
-    marginBottom: "2em",
-  },
-  title: {
-    marginLeft: theme.spacing(5),
-    display: "flex",
-    justifyContent: "space-between",
-    width: "100%",
-    margin: "auto",
-    justifyContent: "center",
-    alignItems: "center",
-    fontFamily: "Righteous",
-  },
-  form: {
-    display: "grid",
-    width: "50%",
-    margin: "auto",
-    placeItems: "center",
-    margin: "4em 25% 0 25%",
-    fontFamily: "Righteous",
-    backgroundColor: "#d1c2f7",
-  },
-  map_header: {
-    fontSize: "1.25em",
-  },
-  media: {
-    color: "transparent",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "6em",
-    fontFamily: "Righteous",
-    fontSize: "1.5rem",
-  },
+	appBar: {
+		position: "absolute",
+		height: "4em",
+		backgroundColor: "#7d69af",
+		fontFamily: "Righteous",
+		marginBottom: "2em",
+	},
+	title: {
+		marginLeft: theme.spacing(5),
+		display: "flex",
+		justifyContent: "space-between",
+		width: "100%",
+		margin: "auto",
+		justifyContent: "center",
+		alignItems: "center",
+		fontFamily: "Righteous",
+	},
+	form: {
+		display: "grid",
+		width: "50%",
+		margin: "auto",
+		placeItems: "center",
+		margin: "4em 25% 0 25%",
+		fontFamily: "Righteous",
+		backgroundColor: "#d1c2f7",
+	},
+	map_header: {
+		fontSize: "1.25em",
+	},
+	media: {
+		color: "transparent",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		width: "6em",
+		fontFamily: "Righteous",
+		fontSize: "1.5rem",
+	},
 }));
 
 const Edit = ({ user, setUser }) => {
-  let history = useHistory();
-  const location = useLocation();
-  const classes = useStyles();
+	let history = useHistory();
+	const location = useLocation();
+	const classes = useStyles();
 
-  useEffect(() => {
-    fetch("/api/ping", { credentials: "include" })
-      .then((res) => {
-        if (res.status === 401) {
-          history.push("/login");
-        } else {
-          return res.json();
-        }
-      })
-      .then((data) => setUser(data));
-  }, []);
+	useEffect(() => {
+		fetch("/api/ping", { credentials: "include" })
+			.then((res) => {
+				if (res.status === 401) {
+					history.push("/login");
+				} else {
+					return res.json();
+				}
+			})
+			.then((data) => setUser(data));
+	}, []);
 
-  let initialForm = {};
-  if (location.state) {
-    initialForm = Object.keys(location.state.artwork)
-      .filter(
-        (k) =>
-          String(location.state.artwork[k]).length > 0 &&
-          location.state.artwork[k] !== null
-      )
-      .reduce((a, k) => ({ ...a, [k]: location.state.artwork[k] }), {});
-  }
+	let initialForm = {};
+	if (location.state) {
+		initialForm = Object.keys(location.state.artwork)
+			.filter(
+				(k) =>
+					String(location.state.artwork[k]).length > 0
+          && location.state.artwork[k] !== null
+			)
+			.reduce((a, k) => ({ ...a, [k]: location.state.artwork[k] }), {});
+	}
 
-  const [uploadForm, setUploadForm] = useState(initialForm);
-  const [coordUploadForm, setCoordUploadForm] = useState({});
+	const [uploadForm, setUploadForm] = useState(initialForm);
+	const [coordUploadForm, setCoordUploadForm] = useState({});
 
-  const handleChange = (e) => {
-    setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
-  };
+	const handleChange = (e) => {
+		setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
+	};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validate = Object.values(uploadForm).every(
-      (value) => String(value).length > 1
-    );
-    if (validate) {
-      fetch(`/api/artwork/${location.state.artwork.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...uploadForm }),
-      }).then(() => {
-        alert("Item successfully edited");
-        history.push("/admin");
-      });
-    } else {
-      alert("Please fill in all fields");
-    }
-  };
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const validate = Object.values(uploadForm).every(
+			(value) => String(value).length > 1
+		);
+		if (validate) {
+			fetch(`/api/artwork/${location.state.artwork.id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ ...uploadForm }),
+			}).then(() => {
+				alert("Item successfully edited");
+				history.push("/admin");
+			});
+		} else {
+			alert("Please fill in all fields");
+		}
+	};
 
-  return (
-    <div className="upload-form">
-      {user && user.username && location.state && (
-        <>
-          <h2>Please use the form below to edit this item</h2>
-          <form className="form" onSubmit={handleSubmit}>
-            <ListItem>
-              <TextField
-                autoFocus
-                margin="dense"
-                label="Title of the art work"
-                placeholder="Title of the art work"
-                type="text"
-                name="title"
-                fullWidth
-                variant="outlined"
-                value={uploadForm.title}
-                onChange={handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <TextField
-                margin="dense"
-                label="Artist name, full name or nickname"
-                placeholder="Artist name, full name or nickname"
-                type="text"
-                name="artist_name"
-                fullWidth
-                variant="outlined"
-                value={uploadForm.artist_name}
-                onChange={handleChange}
-              />
-            </ListItem>
-            <ListItem className={classes.map_header}>
-              <strong>Current location:</strong> {uploadForm.city},{" "}
-              {uploadForm.country}
-            </ListItem>
-            <ListItem>
-              <MapForm setCoordUploadForm={setCoordUploadForm} />
-            </ListItem>
-            <ListItem>
-              <Button
-                style={{ backgroundColor: "white" }}
-                color="secondary"
-                variant="outlined"
-                onClick={() =>
-                  setUploadForm((uploadForm) => {
-                    return { ...uploadForm, ...coordUploadForm };
-                  })
-                }
-              >
+	return (
+		<div className="upload-form">
+			{user && user.username && location.state && (
+				<>
+					<h2>Please use the form below to edit this item</h2>
+					<form className="form" onSubmit={handleSubmit}>
+						<ListItem>
+							<TextField
+								autoFocus
+								margin="dense"
+								label="Title of the art work"
+								placeholder="Title of the art work"
+								type="text"
+								name="title"
+								fullWidth
+								variant="outlined"
+								value={uploadForm.title}
+								onChange={handleChange}
+							/>
+						</ListItem>
+						<ListItem>
+							<TextField
+								margin="dense"
+								label="Artist name, full name or nickname"
+								placeholder="Artist name, full name or nickname"
+								type="text"
+								name="artist_name"
+								fullWidth
+								variant="outlined"
+								value={uploadForm.artist_name}
+								onChange={handleChange}
+							/>
+						</ListItem>
+						<ListItem className={classes.map_header}>
+							<strong>Current location:</strong> {uploadForm.city},{" "}
+							{uploadForm.country}
+						</ListItem>
+						<ListItem>
+							<MapForm setCoordUploadForm={setCoordUploadForm} />
+						</ListItem>
+						<ListItem>
+							<Button
+								style={{ backgroundColor: "white" }}
+								color="secondary"
+								variant="outlined"
+								onClick={() =>
+									setUploadForm((uploadForm) => {
+										return { ...uploadForm, ...coordUploadForm };
+									})
+								}
+							>
                 Change location
-              </Button>
-            </ListItem>
-            <ListItem>
-              <div className="center">
-                <strong>Media type:</strong> {uploadForm.content_type}
-              </div>
-            </ListItem>
+							</Button>
+						</ListItem>
+						<ListItem>
+							<div className="center">
+								<strong>Media type:</strong> {uploadForm.content_type}
+							</div>
+						</ListItem>
 
             {(uploadForm.content_type === "text" ||
               uploadForm.content_type === "image") && (
@@ -209,13 +209,13 @@ const Edit = ({ user, setUser }) => {
             <ListItem>
               <button type="submit" className="btn">
                 Save edits
-              </button>
-            </ListItem>
-          </form>
-        </>
-      )}
-    </div>
-  );
+							</button>
+						</ListItem>
+					</form>
+				</>
+			)}
+		</div>
+	);
 };
 
 export default Edit;
