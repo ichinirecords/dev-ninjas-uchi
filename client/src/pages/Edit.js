@@ -75,9 +75,6 @@ const Edit = ({ user, setUser }) => {
     ) {
       return false;
     }
-    if (uploadForm.content_type !== "text" && file === "") {
-      return false;
-    }
     if (
       (uploadForm.content_type === "music" ||
         uploadForm.content_type === "video") &&
