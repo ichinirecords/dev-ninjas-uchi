@@ -163,51 +163,51 @@ const Edit = ({ user, setUser }) => {
 							</div>
 						</ListItem>
 
-            {(uploadForm.content_type === "text" ||
-              uploadForm.content_type === "image") && (
-                <ListItem>
-                  <TextField
-                    label="Please edit the story here"
-                    placeholder="Please edit the story here"
-                    multiline
-                    variant="outlined"
-                    type="text"
-                    name="content_text"
-                    fullWidth
-                    value={uploadForm.content_text}
-                    onChange={handleChange}
-                  />
-                </ListItem>
-              )}
-            {uploadForm.content_type === "image" && (
-              <ListItem>
-                <div style={{display:"flex", alignContent:"center", justifyItems:"center"}}>
-                  <img
-                    alt={uploadForm.title}
-                    height="240px"
-                    width="auto"
-					margin="auto"
-                    src={uploadForm.content_link}
-                  />
-                </div>
-              </ListItem>
-            )}
-            {uploadForm.content_type === "video" && (
-              <ListItem>
-                <video width="100%" height="240" controls>
-                  <source src={uploadForm.content_link} type="video/mp4" />
-                </video>
-              </ListItem>
-            )}
-            {uploadForm.content_type === "audio" && (
-              <ListItem>
-                <audio controls style={{ display: "flex", width: "100%" }}>
-                  <source src={uploadForm.content_link} />
-                </audio>
-              </ListItem>
-            )}
-            <ListItem>
-              <button type="submit" className="btn">
+						{(uploadForm.content_type === "text"
+              || uploadForm.content_type === "image") && (
+							<ListItem>
+								<TextField
+									label="Please edit the story here"
+									placeholder="Please edit the story here"
+									multiline
+									variant="outlined"
+									type="text"
+									name="content_text"
+									fullWidth
+									value={uploadForm.content_text}
+									onChange={handleChange}
+								/>
+							</ListItem>
+						)}
+						{uploadForm.content_type === "image" && (
+							<ListItem>
+								<div style={{ display:"flex", alignContent:"center", justifyItems:"center" }}>
+									<img
+										alt={uploadForm.title}
+										height="240px"
+										width="auto"
+										margin="auto"
+										src={uploadForm.content_link}
+									/>
+								</div>
+							</ListItem>
+						)}
+						{uploadForm.content_type === "video" && (
+							<ListItem>
+								<video width="100%" height="240" controls>
+									<source src={uploadForm.content_link} type="video/mp4" />
+								</video>
+							</ListItem>
+						)}
+						{uploadForm.content_type === "audio" && (
+							<ListItem>
+								<audio controls style={{ display: "flex", width: "100%" }}>
+									<source src={uploadForm.content_link} />
+								</audio>
+							</ListItem>
+						)}
+						<ListItem>
+							<button type="submit" className="btn">
                 Save edits
 							</button>
 						</ListItem>
