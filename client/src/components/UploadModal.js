@@ -70,7 +70,6 @@ const UploadModal = () => {
 	const [open, setOpen] = useState(false);
 	const [errorAlert, setErrorAlert] = useState(false);
 	const [successAlert, setSuccessAlert] = useState(false);
-	const [storyError, setStoryError] = useState(false);
 	const [coordUploadForm, setCoordUploadForm] = useState({
 		lat: "",
 	});
@@ -202,6 +201,10 @@ const UploadModal = () => {
 			>
 				<AppBar className={classes.appBar}>
 					<Toolbar>
+						<Typography variant="h6" className={classes.title}>
+              Please fill out the form below and choose the media type you want
+              to upload
+						</Typography>
 						<IconButton
 							edge="start"
 							color="inherit"
@@ -210,29 +213,9 @@ const UploadModal = () => {
 						>
 							<CloseIcon />
 						</IconButton>
-						<Typography variant="h6" className={classes.title}>
-              Please fill out the form below and choose the media type you want
-              to upload
-						</Typography>
-						<Button
-							style={{ fontWeight: "bold", fontFamily: "Righteous" }}
-							autoFocus
-							color="inherit"
-							onClick={handleSubmit}
-						>
-              Submit
-						</Button>
 					</Toolbar>
 				</AppBar>
 				<List className={`${classes.form} upload-modal`}>
-					<ListItem>
-						<UploadModalAlerts
-							error={errorAlert}
-							setError={setErrorAlert}
-							success={successAlert}
-							setSuccess={setSuccessAlert}
-						/>
-					</ListItem>
 					<ListItem>
 						<TextField
 							autoFocus
@@ -353,8 +336,10 @@ const UploadModal = () => {
 					<ListItem>
 						<UploadModalAlerts
 							className={classes.alert}
-							story={storyError}
-							setStory={setStoryError}
+							error={errorAlert}
+							setError={setErrorAlert}
+							success={successAlert}
+							setSuccess={setSuccessAlert}
 						/>
 					</ListItem>
 
