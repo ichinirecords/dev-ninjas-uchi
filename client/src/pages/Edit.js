@@ -199,7 +199,7 @@ const Edit = ({ user, setUser }) => {
                 </video>
               </ListItem>
             )}
-            {uploadForm.content_type === "music" && (
+            {uploadForm.content_type === "audio" && (
               <ListItem>
                 <audio controls style={{ display: "flex", width: "100%" }}>
                   <source src={uploadForm.content_link} />

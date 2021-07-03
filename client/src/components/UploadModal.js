@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 		placeItems: "center",
 		margin: "4em 25% 0 25%",
 		fontFamily: "Righteous",
-		backgroundColor: "#d1c2f7",
+		backgroundColor: "#878694",
 	},
 	map_header: {
 		fontSize: "1.25em",
@@ -97,7 +97,7 @@ const UploadModal = () => {
 			return false;
 		}
 		if (
-			(uploadForm.content_type === "music"
+			(uploadForm.content_type === "audio"
         || uploadForm.content_type === "video")
       && (uploadForm.artist_name === ""
         || uploadForm.title === "")
@@ -286,7 +286,7 @@ const UploadModal = () => {
 									id={"upload_music"}
 									type="radio"
 									name="media-type"
-									value="music"
+									value="audio"
 									onClick={handleTypeChange}
 								/>
 								<label className="radio-label" htmlFor={"upload_music"}>
