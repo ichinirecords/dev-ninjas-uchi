@@ -97,7 +97,7 @@ const UploadModal = () => {
 			return false;
 		}
 		if (
-			(uploadForm.content_type === "music"
+			(uploadForm.content_type === "audio"
         || uploadForm.content_type === "video")
       && (uploadForm.artist_name === ""
         || uploadForm.title === "")
@@ -283,13 +283,13 @@ const UploadModal = () => {
 								</label>
 								<input
 									className="radio-input"
-									id={"upload_music"}
+									id={"upload_audio"}
 									type="radio"
 									name="media-type"
-									value="music"
+									value="audio"
 									onClick={handleTypeChange}
 								/>
-								<label className="radio-label" htmlFor={"upload_music"}>
+								<label className="radio-label" htmlFor={"upload_audio"}>
                   Audio
 								</label>
 								<input
@@ -337,23 +337,19 @@ const UploadModal = () => {
 							</div>
 						</ListItem>
 					)}
-					{(uploadForm.content_type === "text"
-            || uploadForm.content_type === "image"
-            || uploadForm.content_type === "video") && (
-						<ListItem>
-							<TextField
-								label="Please type your story here"
-								placeholder="Please type your story here"
-								multiline
-								variant="outlined"
-								type="text"
-								name="story"
-								fullWidth
-								value={uploadForm.story}
-								onChange={handleChange}
-							/>
-						</ListItem>
-					)}
+					<ListItem>
+						<TextField
+							label="Please type your story here"
+							placeholder="Please type your story here"
+							multiline
+							variant="outlined"
+							type="text"
+							name="story"
+							fullWidth
+							value={uploadForm.story}
+							onChange={handleChange}
+						/>
+					</ListItem>
 					<ListItem>
 						<UploadModalAlerts
 							className={classes.alert}
