@@ -11,11 +11,7 @@ import "./ArtistsStoryCards.css";
 const useStyles = makeStyles({
 	root: {
 		width: "100%",
-<<<<<<< HEAD
 		minHeight: "500px",
-=======
-		height: "auto",
->>>>>>> 3d9b1f107ac8565598104ca93499a8d07611168f
 		backgroundColor: "#878694",
 		margin: "0 5%",
 	},
@@ -52,7 +48,6 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 				{approvedArtwork.map((artwork, index) => {
 					return (
 						<Card key={artwork.id} className={classes.root}>
-<<<<<<< HEAD
 							<CardActionArea className='card-action'>
 								{artwork.content_type === "image" && (
 									<CardMedia
@@ -60,21 +55,11 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 										component='img'
 										alt={artwork.title}
 										height='240'
-=======
-							<CardActionArea className="card-action">
-								{artwork.content_type === "image" && (
-									<CardMedia
-										className={`${classes.image} card-img`}
-										component="img"
-										alt={artwork.title}
-										height="240"
->>>>>>> 3d9b1f107ac8565598104ca93499a8d07611168f
 										image={artwork.content_link}
 										title={artwork.title}
 									/>
 								)}
 								{artwork.content_type === "video" && (
-<<<<<<< HEAD
 									<video className={classes.video} width="100%" height="240" controls>
 										<source src={artwork.content_link} type="video/mp4" />
 									</video>
@@ -92,39 +77,12 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 									<audio controls style={{ display: "flex", width: "100%", height: "280px" }}>
 										<source src={artwork.content_link} />
 									</audio>
-=======
-									<video
-										className={classes.video}
-										width="100%"
-										height="240"
-										controls
-									>
-										<source src={artwork.content_link} type="video/mp4" />
-									</video>
-								)}
-								{artwork.content_type === "audio" && (
-									<CardMedia
-										className={classes.audio}
-										component="audio"
-										height="240"
-										image={artwork.content_link}
-										title={artwork.title}
-									/>
->>>>>>> 3d9b1f107ac8565598104ca93499a8d07611168f
 								)}
 								<CardContent>
 									<Typography gutterBottom variant="h5" component="h2">
 										{artwork.title}
 									</Typography>
-<<<<<<< HEAD
 									<Typography className={classes.pos} variant="body2" component="p">
-=======
-									<Typography
-										className={classes.pos}
-										variant="body2"
-										component="p"
-									>
->>>>>>> 3d9b1f107ac8565598104ca93499a8d07611168f
                     Name: {artwork.artist_name}
 										<br />
                     Country: {artwork.country}
@@ -134,26 +92,15 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 											? "No city provided"
 											: artwork.city}
 									</Typography>
-<<<<<<< HEAD
 									<Typography className={classes.text} variant="body1" component='p'>
 										{artwork.content_type !== "text" && (<ReactReadMoreReadLess
 											className='read-more-read-less'
-=======
-									<Typography
-										className={classes.text}
-										variant="body1"
-										component="p"
-									>
-										<ReactReadMoreReadLess
-											className="read-more-read-less"
->>>>>>> 3d9b1f107ac8565598104ca93499a8d07611168f
 											id={index}
 											charLimit={50}
 											readMoreText={"Read more ▼"}
 											readLessText={"Read less ▲"}
 										>
 											{artwork.content_text}
-<<<<<<< HEAD
 										</ReactReadMoreReadLess>)}
 										{artwork.content_type === "text" && (<ReactReadMoreReadLess
 											className='read-more-read-less'
@@ -164,9 +111,6 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 										>
 											{artwork.content_text}
 										</ReactReadMoreReadLess>)}
-=======
-										</ReactReadMoreReadLess>
->>>>>>> 3d9b1f107ac8565598104ca93499a8d07611168f
 									</Typography>
 								</CardContent>
 							</CardActionArea>
