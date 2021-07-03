@@ -13,7 +13,10 @@ fixture`Upload and admin`.page`http://localhost:3000/`;
 
 const titleInput = Selector("input").withAttribute('name', 'title');
 const artistInput = Selector("input").withAttribute("name", "artist_name");
-const mapInput = Selector("input").withAttribute("placeholder", "Search your city here...");
+const mapInput = Selector("input").withAttribute(
+  "placeholder",
+  "Search your city here..."
+);
 const mapSearchButton = Selector('.leaflet-control-geocoder-icon')
 const mapSearchOptions = Selector('.leaflet-control-geocoder-alternatives')
 const mapSearchIcon = Selector('.leaflet-marker-icon')
@@ -45,8 +48,8 @@ const imageCardDeleteButton = imageCardTitle
 
 
 test("Text upload works", async (t) => {
+	
   await t
-    .click("#main-site")
     .click("#upload-button")
     .typeText(titleInput, "Testing text upload")
     .typeText(artistInput, "Test user")
@@ -54,18 +57,20 @@ test("Text upload works", async (t) => {
     .click(mapSearchButton)
     .expect(mapSearchOptions.exists)
     .ok()
-	.click(mapSearchOptions.child(0))
-	.expect(mapSearchIcon.exists).ok()
-	.click(textLabel)
-	.expect(textArea.exists).ok()
-	.typeText(textArea, "Test content")
-	.click(submitButton)
-	.expect(successAlert.exists).ok()
+    .click(mapSearchOptions.child(0))
+    .expect(mapSearchIcon.exists)
+    .ok()
+    .click(textLabel)
+    .expect(textArea.exists)
+    .ok()
+    .typeText(textArea, "Test content")
+    .click(submitButton)
+    .expect(successAlert.exists)
+    .ok();
 });
 
 test("File upload works", async (t) => {
   await t
-    .click("#main-site")
     .click("#upload-button")
     .typeText(titleInput, "Testing file upload")
     .typeText(artistInput, "Test user")

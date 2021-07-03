@@ -64,44 +64,68 @@ const Edit = ({ user, setUser }) => {
 			.then((data) => setUser(data));
 	}, []);
 
-	let initialForm = {};
-	if (location.state) {
-		initialForm = Object.keys(location.state.artwork)
-			.filter(
-				(k) =>
-					String(location.state.artwork[k]).length > 0
-          && location.state.artwork[k] !== null
-			)
-			.reduce((a, k) => ({ ...a, [k]: location.state.artwork[k] }), {});
-	}
+  const validateForm = () => {
+    if (uploadForm.content_type === "") {
+      return false;
+    }
+    if (
+      (uploadForm.content_type === "text" ||
+        uploadForm.content_type === "image") &&
+      Object.values(uploadForm).some((key) => key === "")
+    ) {
+      return false;
+    }
+    if (
+      (uploadForm.content_type === "audio" ||
+        uploadForm.content_type === "video") &&
+      (uploadForm.artist_name === "" || uploadForm.title === "")
+    ) {
+      return false;
+    }
+    if (coordUploadForm.lat === "") {
+      return false;
+    }
+    return true;
+  };
 
-	const [uploadForm, setUploadForm] = useState(initialForm);
-	const [coordUploadForm, setCoordUploadForm] = useState({});
+  let initialForm = {};
+  let initialCoordForm = {}
+  if (location.state) {
+    initialForm = Object.keys(location.state.artwork)
+      .filter(
+        (k) =>
+          String(location.state.artwork[k]).length > 0 &&
+          location.state.artwork[k] !== null
+      )
+      .reduce((a, k) => ({ ...a, [k]: location.state.artwork[k] }), {});
+	initialCoordForm = {lat: location.state.artwork.lat}
+  }
+
+  const [uploadForm, setUploadForm] = useState(initialForm);
+  const [coordUploadForm, setCoordUploadForm] = useState(initialCoordForm);
 
 	const handleChange = (e) => {
 		setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		const validate = Object.values(uploadForm).every(
-			(value) => String(value).length > 1
-		);
-		if (validate) {
-			fetch(`/api/artwork/${location.state.artwork.id}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ ...uploadForm }),
-			}).then(() => {
-				alert("Item successfully edited");
-				history.push("/admin");
-			});
-		} else {
-			alert("Please fill in all fields");
-		}
-	};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validate = validateForm();
+    if (validate) {
+      fetch(`/api/artwork/${location.state.artwork.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...uploadForm }),
+      }).then(() => {
+        alert("Item successfully edited");
+        history.push("/admin");
+      });
+    } else {
+      alert("Please fill in all fields");
+    }
+  };
 
 	return (
 		<div className="upload-form">

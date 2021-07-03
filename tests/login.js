@@ -5,7 +5,7 @@ fixture`Login`.page`http://localhost:3000/login`;
 
 const welcomeDiv = Selector("#welcome");
 const loginButton = Selector("#submit");
-const mainSiteButton = Selector("#main-site");
+const mapContainer = Selector(".leaflet-container");
 
 test("Login with valid credentials", async (t) => {
   await t
@@ -39,6 +39,6 @@ test("Logout", async (t) => {
     .typeText("#password", process.env.ADMIN_PASSWORD)
     .click("#submit")
     .click("#logout")
-    .expect(mainSiteButton.exists)
+    .expect(mapContainer.exists)
     .ok();
 });
