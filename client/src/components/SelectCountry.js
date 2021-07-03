@@ -1,20 +1,27 @@
 import React from 'react';
 
-const SelectCountry = () => {
-  return(
+const SelectCountry = ({ setApprovedArtwork, backupData }) => {
+  const country = backupData.map(art => art.country);
+  const onlyUnique = (value, index, item) => {
+    return item.indexOf(value) === index;
+  }
+  let unique = country.filter(onlyUnique);
+  unique = unique.filter(country => country !== null);
+
+  const handleSelect = (e) => {
+    const selectedCountry = backupData.filter(art => art.country === e.target.value);
+    setApprovedArtwork(selectedCountry);
+    if (e.target.value === '') setApprovedArtwork(backupData);
+  }
+  return (
     <div className='select-country'>
       <label htmlFor="select-country"></label>
-      <select name="country" id="select-country">
+      <select name="country" id="select-country" onChange={handleSelect}>
         <option value="">Select A Country</option>
-        <option value="">Sudan</option>
-        <option value="">Syria</option>
-        <option value="">Iran</option>
-        <option value="">Egypt</option>
-        <option value="">Nigeria</option>
-        <option value="">Ethiopia</option>
+        {unique.map(country => (<option value={country}>{country}</option>))}
       </select>
     </div>
-  )
+  );
 }
 
 export default SelectCountry;

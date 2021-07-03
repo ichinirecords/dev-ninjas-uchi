@@ -21,7 +21,7 @@
 .main-map {
 	height: 75vh;
 	width: 80vw;
-	margin-left: 5vw;
+	margin: auto;
 }
 
 @media only screen and (max-device-width: 1048px) {
