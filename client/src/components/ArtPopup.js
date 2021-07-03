@@ -52,7 +52,7 @@ const ArtPopup = ({
             <source src={content_link} type="video/mp4" />
           </video>
         )}
-        {content_type === "music" && (
+        {content_type === "audio" && (
           <audio controls style={{ display: "flex", width: "100%" }}>
             <source src={content_link} />
           </audio>

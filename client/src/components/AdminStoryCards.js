@@ -180,7 +180,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                       <source src={artwork.content_link} type="video/mp4" />
                     </video>
                   )}
-                  {artwork.content_type === "music" && (
+                  {artwork.content_type === "audio" && (
                     <audio controls style={{ display: "flex", width: "100%" }}>
                       <source src={artwork.content_link} />
                     </audio>

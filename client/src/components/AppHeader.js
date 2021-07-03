@@ -33,7 +33,7 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
           </div>
           <div className="search-select">
             <SearchBar setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
-            <SelectCountry approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
+            {/* <SelectCountry approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} /> */}
           </div>
           <div className="grid-empty-space"></div>
           <Switch approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
@@ -41,7 +41,6 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
       </div>
       <UploadModal />
       {/* <UchiIntro /> */}
-      <UchiIntro />
       <Sticky innerZ='10' enabled={true}>
         <DonateLink />
       </Sticky>
