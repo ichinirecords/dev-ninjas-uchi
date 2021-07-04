@@ -55,9 +55,9 @@ const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
                 <span className={`switch-button`} />
               </label>
             </div>
-            <div>
+            {/* <div> */}
               <h2>{mediaType}</h2>
-            </div>
+            {/* </div> */}
           </div>
         )
       })}

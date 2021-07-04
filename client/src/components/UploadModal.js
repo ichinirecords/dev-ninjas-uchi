@@ -17,11 +17,9 @@ import UploadModalAlerts from "./UploadModalAlerts";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
-		position: "absolute",
-		// height: "4em",
+		position: "relative",
 		backgroundColor: "#7d69af",
 		fontFamily: "Righteous",
-		marginBottom: "2em",
 	},
 	title: {
 		marginLeft: theme.spacing(5),
@@ -33,12 +31,13 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: "center",
 		fontFamily: "Righteous",
 	},
+	icon: {
+		marginRight: '-1em'
+	},
 	form: {
 		display: "grid",
 		width: "50%",
 		margin: "auto",
-		placeItems: "center",
-		margin: "4em 25% 0 25%",
 		fontFamily: "Righteous",
 		backgroundColor: "#878694",
 	},
@@ -55,8 +54,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 	file_input_wrapper: {
 		width: "100%",
-		margin: "2em auto",
+		margin: "auto",
 	},
+	story: {
+		margin: "2em auto 0 auto"
+	}
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -179,10 +181,14 @@ const UploadModal = () => {
 				id="upload-button"
 				style={{
 					backgroundColor: "#1c555c",
-					color: "antiquewhite",
+					backgroundColor: '#563c96',
+					backgroundColor: '#4f3e7f',
+					color: "white",
+					fontWeight: '900',
+					// fontSize: '1em',
 					fontWeight: "normal",
-					border: "3px solid antiquewhite",
-					boxSizing: "border-box",
+					border: "3px solid #a8546c",
+					// boxSizing: "border-box",
 					borderRadius: "7px",
 					fontFamily: "EB Garamond",
 					padding: "0.5em 1.75em",
@@ -206,6 +212,7 @@ const UploadModal = () => {
               to upload
 						</Typography>
 						<IconButton
+						  className={classes.icon}
 							edge="start"
 							color="inherit"
 							onClick={handleClose}
@@ -320,7 +327,7 @@ const UploadModal = () => {
 							</div>
 						</ListItem>
 					)}
-					<ListItem>
+					<ListItem className={classes.story}>
 						<TextField
 							label="Please type your story here"
 							placeholder="Please type your story here"
@@ -342,7 +349,6 @@ const UploadModal = () => {
 							setSuccess={setSuccessAlert}
 						/>
 					</ListItem>
-
 					<ListItem
 						style={{
 							display: "flex",
@@ -355,7 +361,6 @@ const UploadModal = () => {
 								fontFamily: "Righteous",
 							}}
 							type="cancel"
-							autoFocus
 							color="secondary"
 							variant="outlined"
 							onClick={handleClose}
@@ -368,7 +373,6 @@ const UploadModal = () => {
 								fontFamily: "Righteous",
 							}}
 							type="submit"
-							autoFocus
 							color="primary"
 							variant="outlined"
 							onClick={handleSubmit}

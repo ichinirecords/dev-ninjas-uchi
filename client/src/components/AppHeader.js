@@ -1,8 +1,6 @@
 import React from "react";
-import SelectCountry from "./SelectCountry";
 import Switch from "./Switch";
 import UploadModal from './UploadModal';
-import UchiIntro from './UchiIntro';
 import SearchBar from './SearchBar';
 import logo from '../logo/uchi logo square jpeg.jpg';
 import DonateLink from "./DonateLink";
@@ -21,26 +19,23 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
           left: "0",
           width: "100 %",
           height: "13em",
-          backgroundImage: "linear-gradient(#a8546c, #a8546c)",
+          backgroundImage: "linear-gradient(#7d69af, #7d69af)",
           transform: "skewY(-4deg)",
           transformOrigin: "top left",
         }}
       >
         <div className="header-contents">
-          <div className="title-container">
-            <img style={{ width: '70%', height: 'auto', marginTop: '-0.5em' }} src={logo} alt={logo} />
+          <div className="logo-container">
+            <img className='logo' src={logo} alt={logo} />
             <h1 className='brand-name'>UCHI</h1>
           </div>
-          <div className="search-select">
+          <div className="search-and-switch">
             <SearchBar setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
-            {/* <SelectCountry approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} /> */}
+            <Switch approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
           </div>
-          <div className="grid-empty-space"></div>
-          <Switch approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
+          <UploadModal />
         </div>
       </div>
-      <UploadModal />
-      {/* <UchiIntro /> */}
       <Sticky innerZ='10' enabled={true}>
         <DonateLink />
       </Sticky>

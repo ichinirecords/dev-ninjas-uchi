@@ -15,7 +15,7 @@ const Footer = () => {
           left: "0",
           width: "100%",
           height: "13em",
-          backgroundImage: "linear-gradient(#a8546c, #a8546c)",
+          backgroundImage: "linear-gradient(#7D69AF, #7D69AF)",
           transform: "skewY(-4deg)",
           transformOrigin: "bottom right",
         }}
@@ -25,7 +25,8 @@ const Footer = () => {
             <Link href="#" to='/login' style={{
               color: 'white',
               fontWeight: 'normal',
-              fontFamily: 'Righteous',
+              fontFamily: 'Garamond',
+              textDecoration: 'none'
             }}>
               Admin
             </Link>

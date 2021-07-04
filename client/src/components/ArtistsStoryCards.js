@@ -12,12 +12,13 @@ const useStyles = makeStyles({
 	root: {
 		width: "100%",
 		minHeight: "500px",
-		backgroundColor: "#878694",
+		backgroundColor: "#b4a8d3",
 		margin: "0 5%",
 	},
 	title: {
 		fontSize: 22,
 		fontFamily: "EB Garamond",
+		fontWeight: 'bold',
 	},
 	image: {
 		width: "100%",
@@ -30,11 +31,12 @@ const useStyles = makeStyles({
 	pos: {
 		marginBottom: "0.75em",
 		fontFamily: "EB Garamond",
-		fontSize: 18,
+		fontWeight: 'bold',
+		fontSize: 20,
 	},
 	text: {
-		fontFamily: "Garamond",
-		fontSize: 18,
+		fontFamily: "EB Garamond",
+		fontSize: 22,
 		minHeight: "60px",
 	},
 });
@@ -64,15 +66,6 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 										<source src={artwork.content_link} type="video/mp4" />
 									</video>
 								)}
-								{/* {artwork.content_type === 'audio' && (
-                  <CardMedia
-                    className={classes.audio}
-                    component='audio'
-                    height='280'
-                    image={artwork.content_link}
-                    title={artwork.title}
-                  />
-                )} */}
 								{artwork.content_type === "audio" && (
 									<audio controls style={{ display: "flex", width: "100%", height: "280px" }}>
 										<source src={artwork.content_link} />
