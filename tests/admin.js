@@ -13,11 +13,13 @@ fixture`Upload and admin`.page`http://localhost:3000/`;
 
 const titleInput = Selector("input").withAttribute('name', 'title');
 const artistInput = Selector("input").withAttribute("name", "artist_name");
-const mapInput = Selector("input").withAttribute(
+const mapInput = Selector(".form-map").find("input").withAttribute(
   "placeholder",
   "Search your city here..."
 );
-const mapSearchButton = Selector('.leaflet-control-geocoder-icon')
+const mapSearchButton = Selector(".form-map").find(
+  ".leaflet-control-geocoder-icon"
+);
 const mapSearchOptions = Selector('.leaflet-control-geocoder-alternatives')
 const mapSearchIcon = Selector('.leaflet-marker-icon')
 const textLabel = Selector('.radio-label').withAttribute('for', 'upload_text')
@@ -47,12 +49,13 @@ const imageCardDeleteButton = imageCardTitle
   .child(".delete-button")
 
 
-test("Text upload works", async (t) => {
-	
+test("Text upload works", async (t) => {	
   await t
     .click("#upload-button")
     .typeText(titleInput, "Testing text upload")
     .typeText(artistInput, "Test user")
+    .expect(mapInput.exists)
+    .ok()
     .typeText(mapInput, "Milan")
     .click(mapSearchButton)
     .expect(mapSearchOptions.exists)
