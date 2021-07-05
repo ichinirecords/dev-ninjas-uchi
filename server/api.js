@@ -3,7 +3,6 @@ import passport from "passport";
 import { login, logout, ping, requestReset, verifyToken, resetPassword, createNewAdmin } from "./admins";
 import { artUpload } from "./upload";
 import { getArtwork, updateArtwork, deleteArtwork } from "./artwork";
-import db from "./db";
 import { requiresLogin } from "./middleware";
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
