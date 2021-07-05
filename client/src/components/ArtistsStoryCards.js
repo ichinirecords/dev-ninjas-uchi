@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 	root: {
 		width: "100%",
 		minHeight: "550px",
-		backgroundColor: "#b4a8d3",
+		backgroundColor: "#ddd5f1",
 		margin: "0 5%",
 	},
 	title: {

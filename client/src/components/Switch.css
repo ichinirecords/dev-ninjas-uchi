@@ -67,6 +67,5 @@ h2 {
 }
 
 .switch-checkbox:checked + .switch-label {
-  background: #a490d8;
-  background: #b4a8d3;
+  background: #ddd5f1;
 }

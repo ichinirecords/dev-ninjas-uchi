@@ -13,7 +13,7 @@ body {
   background-color: #7D69AF;
 }
 .main {
-  background-color: #ddd5f1;
+  background-color: white;
   font-family: 'EB Garamond', serif;
   width: 100%;
   margin: 0;
@@ -73,14 +73,14 @@ body {
   width: 90%;
   padding: 0.7em;
   border-radius: 0.3em;
-  background-color: #b4a8d3;
+  background-color: #ddd5f1;
 }
 .search-bar {
   padding-left: 0.5em;
   width: 100%;
   border: none;
   outline: none;
-  background-color: #b4a8d3;
+  background-color: #ddd5f1;
   font-size: 1.2em;
   color: #4f3e7f;
 }
@@ -167,14 +167,16 @@ body {
 .radio-label {
   padding: 0.5em 1.5em;
   font-size: 1em;
+  font-weight: bold;
   color: rgb(100, 44, 93);
-  background-color: #67696d;
+  background-color: #878694;
   cursor: pointer;
   transition: background 0.1s;
 }
 
 .radio-input:checked + .radio-label {
-  background-color: rgb(206, 199, 221);
+  background-color: #b9aed6
+
 }
 
 .radio-label:last-of-type {
@@ -248,7 +250,7 @@ footer {
   position: relative;
   overflow: hidden;
   font-family: 'EB Garamond', serif;
-  background-color: #ddd5f1;
+  background-color: white;
 }
 .footer-content {
   transform: skewY(4deg);

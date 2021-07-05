@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 	appBar: {
 		position: "relative",
 		backgroundColor: "#7d69af",
-		fontFamily: "Righteous",
+		fontFamily: "EB Garamond",
 	},
 	title: {
 		marginLeft: theme.spacing(5),
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 		margin: "auto",
 		justifyContent: "center",
 		alignItems: "center",
-		fontFamily: "Righteous",
+		fontFamily: "EB Garamond",
 	},
 	icon: {
 		marginRight: '-1em'
@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
 		display: "grid",
 		width: "50%",
 		margin: "auto",
-		fontFamily: "Righteous",
-		backgroundColor: "#878694",
+		fontFamily: "EB Garamond",
+		backgroundColor: "#ddd5f1",
 	},
 	map_header: {
 		fontSize: "1.25em",
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: "0.25em",
 		margin: "auto",
 		border: "1px solid #999",
-		fontFamily: "Righteous",
+		fontFamily: "EB Garamond",
 		fontSize: "1.8rem",
 		width: "100%",
 	},
@@ -358,11 +358,11 @@ const UploadModal = () => {
 						<Button
 							style={{
 								margin: "2em",
-								fontFamily: "Righteous",
+								fontFamily: "EB Garamond",
 							}}
 							type="cancel"
 							color="secondary"
-							variant="outlined"
+							variant="contained"
 							onClick={handleClose}
 						>
               Cancel
@@ -370,11 +370,11 @@ const UploadModal = () => {
 						<Button
 							style={{
 								margin: "2em",
-								fontFamily: "Righteous",
+								fontFamily: "EB Garamond",
 							}}
 							type="submit"
 							color="primary"
-							variant="outlined"
+							variant="contained"
 							onClick={handleSubmit}
 						>
               Submit
