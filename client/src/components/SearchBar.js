@@ -5,7 +5,13 @@ const SearchBar = ({ setApprovedArtwork, backupData }) => {
 
   useEffect(() => {
     const filteredArtWork = backupData.filter((artWork) => {
-      return (artWork.title.toLowerCase().includes(searchInput)) ||
+      if (artWork.country && artWork.city) {
+        return (artWork.title.toLowerCase().includes(searchInput)) ||
+          (artWork.artist_name.toLowerCase().includes(searchInput)) ||
+          (artWork.country.toLowerCase().includes(searchInput)) ||
+          (artWork.city.toLowerCase().includes(searchInput)) ||
+          (artWork.content_text.toLowerCase().includes(searchInput));
+      } else return (artWork.title.toLowerCase().includes(searchInput)) ||
         (artWork.artist_name.toLowerCase().includes(searchInput)) ||
         (artWork.content_text.toLowerCase().includes(searchInput));
     });
@@ -20,7 +26,7 @@ const SearchBar = ({ setApprovedArtwork, backupData }) => {
       <input
         type="text"
         className="search-bar"
-        placeholder="Search ..."
+        placeholder="Search by title, name, country, city or text ..."
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
       />
