@@ -37,7 +37,7 @@ body {
   grid-template-columns: 0.25fr 2fr 0.25fr;
   transform: skewY(4deg);
   place-items: start center;
-  margin-top: 4.5em;
+  margin-top: 5em;
   column-gap: 4em;
   width: 100%;
 }
@@ -63,7 +63,7 @@ body {
 .search-and-switch {
   display: grid;
   width: 100%;
-  place-items: start center;
+  place-items: start;
 }
 .upload-btn {
  margin-right: 2.75em !important;
@@ -264,12 +264,30 @@ footer {
 }
 
 @media only screen and (max-device-width: 1048px) {
+  .header-contents {
+    margin-top: 4em;
+  }
   .upload-modal {
     width: 90%;
   }
 }
 
-@media only screen and (min-width: 1641px) {
+@media screen and (min-width: 1049px) and (max-width: 1300px) {
+  .header-contents {
+    margin-top: 4em;
+  }
+}
+@media screen and (min-width: 1300px) and (max-width: 1440px) {
+  .header-contents {
+    margin-top: 4.5em;
+  }
+}
+@media screen and (min-width: 1441px) and (max-width: 1840px) {
+  .header-contents {
+    margin-top: 5em;
+  }
+}
+@media only screen and (min-width: 1841px) {
   .header-contents {
     margin-top: 5.5em;
   }
