@@ -34,7 +34,6 @@ const useStyles = makeStyles({
 	pos: {
 		marginBottom: "0.75em",
 		fontFamily: "EB Garamond",
-		// fontWeight: 'bold',
 		fontSize: 20,
 	},
 	text: {
@@ -45,7 +44,7 @@ const useStyles = makeStyles({
 	audio: {
 		display: 'flex',
 		width: '100%',
-		height: '240px'
+		height: '280px'
 	}
 });
 
