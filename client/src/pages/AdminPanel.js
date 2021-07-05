@@ -51,46 +51,48 @@ const AdminPanel = ({ user, setUser }) => {
                   left: "0",
                   width: "100 %",
                   height: "13em",
-                  backgroundImage: "linear-gradient(#a8546c, #a8546c)",
+                  backgroundImage: "linear-gradient(#7d69af, #7d69af)",
                   transform: "skewY(-4deg)",
                   transformOrigin: "top left",
                 }}
               >
-                <div className="header-contents">
-                  <div className="title-container">
+                <div style={{ 
+                  display: 'flex', 
+                  width: '95%', 
+                  justifyContent: 'space-between', 
+                  alignItems: 'center', 
+                  transform: "skewY(4deg)"}}>
+                  <div style={{marginTop: '4em'}} className="logo-container">
                     <img
-                      style={{
-                        width: "70%",
-                        height: "auto",
-                        marginTop: "-0.5em",
-                      }}
+                      className='logo'
                       src={logo}
                       alt={logo}
                     />
                     <h1 className="brand-name">UCHI</h1>
                   </div>
-                  <div className="grid-empty-space"></div>
+                  <Button
+                    id="logout"
+                    onClick={handleLogout}
+                    variant="contained"
+                    style={{
+                      backgroundColor: "#1c555c",
+                      color: "antiquewhite",
+                      fontWeight: "normal",
+                      border: "3px solid antiquewhite",
+                      boxSizing: "border-box",
+                      borderRadius: "7px",
+                      fontFamily: "EB Garamond",
+                      padding: "0.5em 1.75em",
+                      marginTop: "-3.25em",
+                      marginRight: "-2em"
+                    }}
+                    color="primary"
+                  >
+                    Logout
+                  </Button>
                 </div>
               </div>
-              <Button
-                id="logout"
-                onClick={handleLogout}
-                variant="contained"
-                className="upload-btn"
-                style={{
-                  backgroundColor: "#1c555c",
-                  color: "antiquewhite",
-                  fontWeight: "normal",
-                  border: "3px solid antiquewhite",
-                  boxSizing: "border-box",
-                  borderRadius: "7px",
-                  fontFamily: "EB Garamond",
-                  padding: "0.5em 1.75em",
-                }}
-                color="primary"
-              >
-                Logout
-              </Button>
+
             </header>
             <h1 id="welcome">Welcome, {user.username}</h1>
             <Button
@@ -105,7 +107,7 @@ const AdminPanel = ({ user, setUser }) => {
                 borderRadius: "7px",
                 fontFamily: "EB Garamond",
                 padding: "0.5em 1.75em",
-                marginLeft: "20px",
+                marginLeft: "2.5em",
               }}
               variant="outlined"
               color="primary"
@@ -159,7 +161,7 @@ const AdminPanel = ({ user, setUser }) => {
                   left: "0",
                   width: "100 %",
                   height: "13em",
-                  backgroundImage: "linear-gradient(#a8546c, #a8546c)",
+                  backgroundImage: "linear-gradient(#7d69af, #7d69af)",
                   transform: "skewY(-4deg)",
                   transformOrigin: "bottom right",
                 }}

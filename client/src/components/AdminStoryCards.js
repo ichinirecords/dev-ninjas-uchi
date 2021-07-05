@@ -12,12 +12,12 @@ import "./ArtistsStoryCards.css";
 const useStyles = makeStyles({
 	root: {
 		width: "100%",
-		height: "auto",
-		backgroundColor: "#878694",
+		minHeight: "600px",
+		backgroundColor: "#ddd5f1",
 		margin: "0 5%",
 	},
 	title: {
-		fontSize: 22,
+		fontSize: 24,
 		fontFamily: "EB Garamond",
 	},
 	image: {
@@ -31,13 +31,18 @@ const useStyles = makeStyles({
 	pos: {
 		marginBottom: "0.75em",
 		fontFamily: "EB Garamond",
-		fontSize: 18,
+		fontSize: 20,
 	},
 	text: {
 		fontFamily: "Garamond",
-		fontSize: 18,
-		minHeight: "60px",
+		fontSize: 20,
+		minHeight: "70px",
 	},
+	audio: {
+		display: 'flex',
+		width: '100%',
+		height: '280px'
+	}
 });
 
 const AdminStoryCards = ({ user, approveMode }) => {
@@ -181,7 +186,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
           					</video>
           				)}
           				{artwork.content_type === "audio" && (
-          					<audio controls style={{ display: "flex", width: "100%" }}>
+          					<audio className={classes.audio} controls >
           						<source src={artwork.content_link} />
           					</audio>
           				)}
@@ -205,7 +210,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
           					<Typography className={`${classes.text} admin-card-story`} variant="body1">
           						<ReactReadMoreReadLess
           							className="read-more-read-less"
-          							charLimit={50}
+          							charLimit={80}
           							readMoreText={"Read more ▼"}
           							readLessText={"Read less ▲"}
           						>
@@ -225,21 +230,21 @@ const AdminStoryCards = ({ user, approveMode }) => {
           						},
           					}}
           				>
-          					<Button style={{ color: "white" }} className="about">
+										<Button style={{ color: "#1c555c" }} className="about">
                       Edit
           					</Button>
           				</Link>
           				{artwork.artwork_status !== "approved" && (
           					<>
           						<Button
-          							style={{ color: "white" }}
+												style={{ color: "#1c555c" }}
           							className="about"
           							onClick={() => changeStatus(artwork.id, "approved")}
           						>
                         Accept
           						</Button>
           						<Button
-          							style={{ color: "white" }}
+          							style={{ color: "#1c555c" }}
           							className="about"
           							onClick={() => changeStatus(artwork.id, "rejected")}
           						>
@@ -250,7 +255,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
           				<Button
           					color="primary"
           					className="about delete-button"
-          					style={{ color: "white" }}
+										style={{ color: "#1c555c" }}
           					onClick={() => deleteArtwork(artwork.id)}
           				>
                     Delete
