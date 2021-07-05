@@ -6,14 +6,14 @@ const SearchBar = ({ setApprovedArtwork, backupData }) => {
   useEffect(() => {
     const filteredArtWork = backupData.filter((artWork) => {
       if (artWork.country && artWork.city) {
-        return (artWork.title.toLowerCase().includes(searchInput)) ||
-          (artWork.artist_name.toLowerCase().includes(searchInput)) ||
-          (artWork.country.toLowerCase().includes(searchInput)) ||
-          (artWork.city.toLowerCase().includes(searchInput)) ||
-          (artWork.content_text.toLowerCase().includes(searchInput));
-      } else return (artWork.title.toLowerCase().includes(searchInput)) ||
-        (artWork.artist_name.toLowerCase().includes(searchInput)) ||
-        (artWork.content_text.toLowerCase().includes(searchInput));
+        return (artWork.title.toLowerCase().includes(searchInput.toLowerCase())) ||
+          (artWork.artist_name.toLowerCase().includes(searchInput.toLowerCase())) ||
+          (artWork.country.toLowerCase().includes(searchInput.toLowerCase())) ||
+          (artWork.city.toLowerCase().includes(searchInput.toLowerCase())) ||
+          (artWork.content_text.toLowerCase().includes(searchInput.toLowerCase()));
+      } else return (artWork.title.toLowerCase().includes(searchInput.toLowerCase())) ||
+        (artWork.artist_name.toLowerCase().includes(searchInput.toLowerCase())) ||
+        (artWork.content_text.toLowerCase().includes(searchInput.toLowerCase()));
     });
     setApprovedArtwork(filteredArtWork);
     if (searchInput === '') setApprovedArtwork(backupData);
@@ -28,7 +28,7 @@ const SearchBar = ({ setApprovedArtwork, backupData }) => {
         className="search-bar"
         placeholder="Search by title, name, country, city or text ..."
         value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
+        onChange={(e) => setSearchInput(e.target.value)}
       />
     </div>
   );
