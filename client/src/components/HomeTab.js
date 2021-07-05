@@ -14,10 +14,11 @@ const HomeTab = ({setView}) => {
         className="tab-button active"
         onClick={changeSelection("map")}
         style={{
-          backgroundColor: "#1c555c",
+          // backgroundColor: "#1c555c",
+          backgroundColor: '#4f3e7f',
           color: "antiquewhite",
           fontWeight: "normal",
-          border: "3px solid antiquewhite",
+          border: "3px solid #a8546c",
           boxSizing: "border-box",
           borderRadius: "7px",
           fontFamily: "EB Garamond",
@@ -31,10 +32,11 @@ const HomeTab = ({setView}) => {
         className="tab-button"
         onClick={changeSelection("listing")}
         style={{
-          backgroundColor: "#1c555c",
+          // backgroundColor: "#1c555c",
+          backgroundColor: '#4f3e7f',
           color: "antiquewhite",
           fontWeight: "normal",
-          border: "3px solid antiquewhite",
+          border: "3px solid #a8546c",
           boxSizing: "border-box",
           borderRadius: "7px",
           fontFamily: "EB Garamond",
