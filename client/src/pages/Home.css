@@ -10,7 +10,7 @@ body {
   padding: 0;
   font-family: 'EB Garamond', serif;
   font-weight: normal;
-  background-color: #a8546c;
+  background-color: #7D69AF;
 }
 .main {
   background-color: #ddd5f1;
@@ -248,6 +248,7 @@ footer {
   position: relative;
   overflow: hidden;
   font-family: 'EB Garamond', serif;
+  background-color: #ddd5f1;
 }
 .footer-content {
   transform: skewY(4deg);

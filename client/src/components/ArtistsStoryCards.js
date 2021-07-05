@@ -6,18 +6,21 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import ReactReadMoreReadLess from "react-read-more-read-less";
+import ReactAudioPlayer from 'react-audio-player';
 import "./ArtistsStoryCards.css";
 
 const useStyles = makeStyles({
 	root: {
 		width: "100%",
-		minHeight: "500px",
+		minHeight: "550px",
 		backgroundColor: "#b4a8d3",
 		margin: "0 5%",
 	},
 	title: {
-		fontSize: 22,
+		fontSize: 24,
 		fontFamily: "EB Garamond",
+		textShadow: "1px 1px 1px white",
+		color: '#1c555c',
 		fontWeight: 'bold',
 	},
 	image: {
@@ -31,14 +34,19 @@ const useStyles = makeStyles({
 	pos: {
 		marginBottom: "0.75em",
 		fontFamily: "EB Garamond",
-		fontWeight: 'bold',
+		// fontWeight: 'bold',
 		fontSize: 20,
 	},
 	text: {
 		fontFamily: "EB Garamond",
-		fontSize: 22,
-		minHeight: "60px",
+		fontSize: 20,
+		minHeight: "70px",
 	},
+	audio: {
+		display: 'flex',
+		width: '100%',
+		height: '240px'
+	}
 });
 
 const ArtistsStoryCards = ({ approvedArtwork }) => {
@@ -67,12 +75,13 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 									</video>
 								)}
 								{artwork.content_type === "audio" && (
-									<audio controls style={{ display: "flex", width: "100%", height: "280px" }}>
-										<source src={artwork.content_link} />
-									</audio>
+									<ReactAudioPlayer className={`${classes.audio} audio-player`}
+										src={artwork.content_link}
+										controls
+									/>
 								)}
 								<CardContent>
-									<Typography gutterBottom variant="h5" component="h2">
+									<Typography gutterBottom variant="h5" component="h2" className={classes.title}>
 										{artwork.title}
 									</Typography>
 									<Typography className={classes.pos} variant="body2" component="p">
@@ -85,18 +94,18 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 											? "No city provided"
 											: artwork.city}
 									</Typography>
-									<Typography className={classes.text} variant="body1" component='p'>
+									<Typography className={classes.text} variant="body1">
 										{artwork.content_type !== "text" && (<ReactReadMoreReadLess
 											className='read-more-read-less'
 											id={index}
-											charLimit={50}
+											charLimit={120}
 											readMoreText={"Read more ▼"}
 											readLessText={"Read less ▲"}
 										>
 											{artwork.content_text}
 										</ReactReadMoreReadLess>)}
 										{artwork.content_type === "text" && (<ReactReadMoreReadLess
-											className='read-more-read-less'
+											className={`${classes.text} read-more-read-less`}
 											id={index}
 											charLimit={550}
 											readMoreText={"Read more ▼"}
