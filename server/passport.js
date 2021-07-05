@@ -1,9 +1,6 @@
 const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 
-// const salt = bcrypt.genSaltSync();
-// console.log(bcrypt.hashSync('testpassword', salt));
-
 module.exports = (passport, db) => {
   passport.use(
     new LocalStrategy((username, password, cb) => {
