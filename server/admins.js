@@ -2,7 +2,7 @@ require("dotenv").config();
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 
-import { getAdminEmails } from "./notifications";
+import { getAdminEmails, getUserDetails } from "./utils/admin";
 import db from "./db";
 
 export const login = (req, res) => {
@@ -21,18 +21,6 @@ export const logout = (req, res, next) => {
 export const ping = (req, res) => {
   const { user } = req;
   res.send(user);
-};
-
-const getUserDetails = async (field, type) => {
-  let detailsQuery = `SELECT * FROM admins WHERE ${type}=$1;`;
-  try {
-    const queryResult = await db.query(detailsQuery, [field]);
-    const details = await queryResult.rows;
-    const result = await details[0];
-    return result;
-  } catch {
-    (error) => console.log(error);
-  }
 };
 
 export const requestReset = async (req, res) => {
@@ -57,7 +45,7 @@ export const requestReset = async (req, res) => {
       subject: "Uchi password reset link",
       html: `Someone requested a password reset for this Uchi account. If it wasn't you, no need to do anything. If you required a password reset, 
 				go to <a href="https://dev-ninjas-uchi.herokuapp.com/reset?id=${userDetails.id}&token=${hash}">
-				https://dev-ninjas-uchi.herokuapp.com/api/reset?id=${userDetails.id}&token=${hash}</a> to reset your password. This link is only valid for today.`,
+				https://dev-ninjas-uchi.herokuapp.com/reset?id=${userDetails.id}&token=${hash}</a> to reset your password. This link is only valid for today.`,
     };
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
@@ -134,7 +122,7 @@ export const createNewAdmin = async (req, res) => {
         subject: "Uchi account created",
         html: `Someone created an account for you on Uchi with username ${userDetails.username}. To choose your new password, 
 				go to <a href="https://dev-ninjas-uchi.herokuapp.com/reset?id=${userDetails.id}&type=newaccount&token=${hash}">
-				https://dev-ninjas-uchi.herokuapp.com/api/reset?id=${userDetails.id}&type=newaccount&token=${hash}</a> to reset your password. This link is only valid for today`,
+				https://dev-ninjas-uchi.herokuapp.com/reset?id=${userDetails.id}&type=newaccount&token=${hash}</a> to reset your password. This link is only valid for today`,
       };
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
