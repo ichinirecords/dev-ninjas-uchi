@@ -74,10 +74,12 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 									</video>
 								)}
 								{artwork.content_type === "audio" && (
-									<ReactAudioPlayer className={`${classes.audio} audio-player`}
-										src={artwork.content_link}
-										controls
-									/>
+									<div className='audio-player'>
+										<ReactAudioPlayer className={classes.audio}
+											src={artwork.content_link}
+											controls
+										/>
+									</div>
 								)}
 								<CardContent>
 									<Typography gutterBottom variant="h5" component="h2" className={classes.title}>

@@ -9,7 +9,8 @@ import HomeTab from "../components/HomeTab";
 export function Home() {
   const [approvedArtwork, setApprovedArtwork] = useState([]);
   const [backupData, setBackupData] = useState([]);
-  const [view, setView] = useState("map")
+  const [view, setView] = useState("map");
+  const [showIntro, setShowIntro] = useState(true);
   
   useEffect(() => {
     fetch("/api/artwork?status=approved")
@@ -25,7 +26,7 @@ export function Home() {
     <>
       <main className="main" role="main">
         <AppHeader approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData}/>
-        <HomeTab setView={setView} />
+        <HomeTab showIntro={showIntro} setShowIntro={setShowIntro} setView={setView} />
         {view === "listing" && <ArtistsStoryCards approvedArtwork={approvedArtwork} />}
         {view === "map" && <Map approvedArtwork={approvedArtwork} /> }
         <Footer />
