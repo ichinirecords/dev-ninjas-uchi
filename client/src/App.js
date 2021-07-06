@@ -1,6 +1,5 @@
 import { Route, Switch } from "react-router-dom";
 import { useState } from "react";
-import About from "./pages/About";
 import Home from "./pages/Home";
 import AdminLogin from "./pages/AdminLogin";
 import AdminPanel from "./pages/AdminPanel";
@@ -14,9 +13,6 @@ const App = () => {
 		<Switch>
 			<Route path="/" exact>
 				<Home />
-			</Route>
-			<Route path="/about/this/site">
-				<About />
 			</Route>
 			<Route exact path="/login">
 				<AdminLogin setUser={setUser} />
