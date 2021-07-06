@@ -147,7 +147,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
 				<div
 					key="searchbar"
 					className="search-input-wrapper"
-					style={{ width: "300px", marginLeft: "70px", marginBottom: "20px" }}
+					style={{ width: "400px", marginBottom: "20px" }}
 				>
 					<i className="fas fa-search"></i>
 					<input
@@ -159,112 +159,114 @@ const AdminStoryCards = ({ user, approveMode }) => {
 					/>
 				</div>
 			)}
-			<div className="cards-wrapper">
-				{filteredArtwork.length > 0
-          && filteredArtwork.map((artwork) => {
-          	return (
-          		<Card key={artwork.id} className={classes.root}>
-          			<CardContent>
-          				{artwork.content_type === "image" && (
-          					<CardMedia
-          						className={`${classes.image} card-img`}
-          						component="img"
-          						alt={artwork.title}
-          						height="240"
-          						image={artwork.content_link}
-          						title={artwork.title}
-          					/>
-          				)}
-          				{artwork.content_type === "video" && (
-          					<video
-          						className={classes.video}
-          						width="100%"
-          						height="240"
-          						controls
-          					>
-          						<source src={artwork.content_link} type="video/mp4" />
-          					</video>
-          				)}
-          				{artwork.content_type === "audio" && (
-          					<audio className={classes.audio} controls >
-          						<source src={artwork.content_link} />
-          					</audio>
-          				)}
+      <div className='container'>
+				<div className="cards-wrapper">
+					{filteredArtwork.length > 0
+						&& filteredArtwork.map((artwork) => {
+							return (
+								<Card key={artwork.id} className={classes.root}>
+									<CardContent className='card-action'>
+										{artwork.content_type === "image" && (
+											<CardMedia
+												className={`${classes.image} card-img`}
+												component="img"
+												alt={artwork.title}
+												height="240"
+												image={artwork.content_link}
+												title={artwork.title}
+											/>
+										)}
+										{artwork.content_type === "video" && (
+											<video
+												className={classes.video}
+												width="100%"
+												height="240"
+												controls
+											>
+												<source src={artwork.content_link} type="video/mp4" />
+											</video>
+										)}
+										{artwork.content_type === "audio" && (
+											<audio className={classes.audio} controls >
+												<source src={artwork.content_link} />
+											</audio>
+										)}
 
-          				<Typography gutterBottom variant="h5" component="h2">
-          					{artwork.title}
-          				</Typography>
-          				<Typography
-          					className={classes.pos}
-          					variant="body2"
-          					component="p"
-          				>
-                    Name: {artwork.artist_name}
-          					<br />
-                    Country: {artwork.country}
-          					<br />
-                    City: {artwork.city}
-          				</Typography>
-          				{(artwork.content_type === "text"
-                    || artwork.content_type === "image") && (
-          					<Typography className={`${classes.text} admin-card-story`} variant="body1">
-          						<ReactReadMoreReadLess
-          							className="read-more-read-less"
-          							charLimit={80}
-          							readMoreText={"Read more ▼"}
-          							readLessText={"Read less ▲"}
-          						>
-          							{artwork.content_text}
-          						</ReactReadMoreReadLess>
-          					</Typography>
-          				)}
-          				<Typography variant="body1">
-          					<strong>Status: </strong>
-          					{artwork.artwork_status}
-          				</Typography>
-          				<Link
-          					to={{
-          						pathname: "/edit",
-          						state: {
-          							artwork: artwork,
-          						},
-          					}}
-          				>
-										<Button style={{ color: "#1c555c" }} className="about">
-                      Edit
-          					</Button>
-          				</Link>
-          				{artwork.artwork_status !== "approved" && (
-          					<>
-          						<Button
-												style={{ color: "#1c555c" }}
-          							className="about"
-          							onClick={() => changeStatus(artwork.id, "approved")}
-          						>
-                        Accept
-          						</Button>
-          						<Button
-          							style={{ color: "#1c555c" }}
-          							className="about"
-          							onClick={() => changeStatus(artwork.id, "rejected")}
-          						>
-                        Reject
-          						</Button>
-          					</>
-          				)}
-          				<Button
-          					color="primary"
-          					className="about delete-button"
-										style={{ color: "#1c555c" }}
-          					onClick={() => deleteArtwork(artwork.id)}
-          				>
-                    Delete
-          				</Button>
-          			</CardContent>
-          		</Card>
-          	);
-          })}
-				{submittedArtwork.length === 0 && <div>No artwork to approve</div>}
+										<Typography gutterBottom variant="h5" component="h2">
+											{artwork.title}
+										</Typography>
+										<Typography
+											className={classes.pos}
+											variant="body2"
+											component="p"
+										>
+											Name: {artwork.artist_name}
+											<br />
+											Country: {artwork.country}
+											<br />
+											City: {artwork.city}
+										</Typography>
+										{(artwork.content_type === "text"
+											|| artwork.content_type === "image") && (
+												<Typography className={`${classes.text} admin-card-story`} variant="body1">
+													<ReactReadMoreReadLess
+														className="read-more-read-less"
+														charLimit={80}
+														readMoreText={"Read more ▼"}
+														readLessText={"Read less ▲"}
+													>
+														{artwork.content_text}
+													</ReactReadMoreReadLess>
+												</Typography>
+											)}
+										<Typography variant="body1">
+											<strong>Status: </strong>
+											{artwork.artwork_status}
+										</Typography>
+										<Link
+											to={{
+												pathname: "/edit",
+												state: {
+													artwork: artwork,
+												},
+											}}
+										>
+											<Button style={{ color: "#1c555c" }} className="about">
+												Edit
+											</Button>
+										</Link>
+										{artwork.artwork_status !== "approved" && (
+											<>
+												<Button
+													style={{ color: "#1c555c" }}
+													className="about"
+													onClick={() => changeStatus(artwork.id, "approved")}
+												>
+													Accept
+												</Button>
+												<Button
+													style={{ color: "#1c555c" }}
+													className="about"
+													onClick={() => changeStatus(artwork.id, "rejected")}
+												>
+													Reject
+												</Button>
+											</>
+										)}
+										<Button
+											color="primary"
+											className="about delete-button"
+											style={{ color: "#1c555c" }}
+											onClick={() => deleteArtwork(artwork.id)}
+										>
+											Delete
+										</Button>
+									</CardContent>
+								</Card>
+							);
+						})}
+					{submittedArtwork.length === 0 && <div>No artwork to approve</div>}
+				</div>
 			</div>
 		</>
 	);

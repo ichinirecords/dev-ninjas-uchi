@@ -70,6 +70,7 @@ const AdminPanel = ({ user, setUser }) => {
                     />
                     <h1 className="brand-name">UCHI</h1>
                   </div>
+                  <h1 style={{color: 'white', margin: '0 0 0.75em -1em'}} id="welcome">Welcome, {user.username}!</h1>
                   <Button
                     id="logout"
                     onClick={handleLogout}
@@ -78,12 +79,11 @@ const AdminPanel = ({ user, setUser }) => {
                       backgroundColor: "#1c555c",
                       color: "antiquewhite",
                       fontWeight: "normal",
-                      border: "3px solid antiquewhite",
                       boxSizing: "border-box",
                       borderRadius: "7px",
                       fontFamily: "EB Garamond",
                       padding: "0.5em 1.75em",
-                      marginTop: "-3.25em",
+                      marginTop: "-3em",
                       marginRight: "-2em"
                     }}
                     color="primary"
@@ -92,9 +92,7 @@ const AdminPanel = ({ user, setUser }) => {
                   </Button>
                 </div>
               </div>
-
             </header>
-            <h1 id="welcome">Welcome, {user.username}</h1>
             <Button
               id="create-admin"
               onClick={() => setCreateMode(!createMode)}
@@ -141,7 +139,7 @@ const AdminPanel = ({ user, setUser }) => {
                 }}
                 variant="outlined"
                 color="primary"
-				id="artwork-toggle"
+				        id="artwork-toggle"
               >
                 {approveMode
                   ? "See all artwork"
