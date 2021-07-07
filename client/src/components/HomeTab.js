@@ -1,12 +1,21 @@
 const HomeTab = ({ setView, showIntro, setShowIntro}) => {
 
 	const changeSelection = (value) => (e) => {
-		setView(value)
-    setShowIntro(false)
-		e.target.parentElement.childNodes.forEach(element => {
-			element.className = "tab-button";
-		});
-		e.target.className = "tab-button active";
+		setView(value);
+    setShowIntro(false);
+    if (e.target.parentElement.childNodes[1].classList.contains('intro-wrapper') || e.target.parentElement.childNodes[1].firstChild.classList.contains('intro')) {
+      setTimeout(function () {
+        e.target.parentElement.childNodes[1].classList.add('d-none');
+      }, 2000);
+      setTimeout(function () {
+        e.target.parentElement.childNodes[1].firstChild.classList.add('d-none');
+      }, 2000);
+    } 
+    e.target.parentElement.childNodes.forEach(element => {
+      element.className = "tab-button";
+    });
+    e.target.className = "tab-button active";
+
 	}
 
 	return (
@@ -29,8 +38,8 @@ const HomeTab = ({ setView, showIntro, setShowIntro}) => {
       >
         MAP VIEW
       </button>
-      <div className={showIntro ? "intro-wrapper" : "d-none"}>
-        <h2 className={showIntro ? "intro" : "d-none"}>
+      <div className={showIntro ? "intro-wrapper" : "animate"}>
+        <h2 className={showIntro ? "intro" : "animate"}>
           <span className='larger-text'>UCHI</span> &nbsp;is sed tellus nisl. Aenean tincidunt convallis sagittis. Vivamus at varius ipsum. Cras venenatis at sapien vitae imperdiet. Aenean facilisis hendrerit gravida. Nam dictum nulla eu purus porta luctus at eget sapien. Sed tincidunt non nulla in viverra.  Etiam tristique nisl eget hendrerit tincidunt. Nulla dapibus, urna sit amet tempor pellentesque, turpis neque molestie felis, sed auctor metus nunc ut risus.
         </h2>
       </div>
