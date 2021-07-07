@@ -30,9 +30,9 @@ const HomeTab = ({ setView, showIntro, setShowIntro}) => {
         MAP VIEW
       </button>
       <div className={showIntro ? "intro-wrapper" : "d-none"}>
-        <h1 className={showIntro ? "intro" : "d-none"}>
-          <span className='larger-text'>UCHI</span> &nbsp;is sed tellus nisl. Aenean tincidunt convallis sagittis. Vivamus at varius ipsum. Cras venenatis at sapien vitae imperdiet. Aenean facilisis hendrerit gravida. Nam dictum nulla eu purus porta luctus at eget sapien. Sed tincidunt non nulla in viverra.  Etiam tristique nisl eget hendrerit tincidunt.
-        </h1>
+        <h2 className={showIntro ? "intro" : "d-none"}>
+          <span className='larger-text'>UCHI</span> &nbsp;is sed tellus nisl. Aenean tincidunt convallis sagittis. Vivamus at varius ipsum. Cras venenatis at sapien vitae imperdiet. Aenean facilisis hendrerit gravida. Nam dictum nulla eu purus porta luctus at eget sapien. Sed tincidunt non nulla in viverra.  Etiam tristique nisl eget hendrerit tincidunt. Nulla dapibus, urna sit amet tempor pellentesque, turpis neque molestie felis, sed auctor metus nunc ut risus.
+        </h2>
       </div>
       <button
         className="tab-button"
