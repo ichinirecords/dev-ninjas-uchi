@@ -25,7 +25,7 @@ export function Home() {
   return (
     <>
       <main className="main" role="main">
-        <AppHeader approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData}/>
+        <AppHeader setShowIntro={setShowIntro} approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData}/>
         <HomeTab showIntro={showIntro} setShowIntro={setShowIntro} setView={setView} />
         {view === "listing" && <ArtistsStoryCards approvedArtwork={approvedArtwork} />}
         {view === "map" && <Map approvedArtwork={approvedArtwork} /> }
