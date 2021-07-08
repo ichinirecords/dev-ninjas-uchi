@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import ReactReadMoreReadLess from "react-read-more-read-less";
-import ReactAudioPlayer from 'react-audio-player';
+import ReactAudioPlayer from "react-audio-player";
 import "./ArtistsStoryCards.css";
 
 const useStyles = makeStyles({
@@ -20,8 +20,8 @@ const useStyles = makeStyles({
 		fontSize: 24,
 		fontFamily: "EB Garamond",
 		textShadow: "1px 1px 1px white",
-		color: '#1c555c',
-		fontWeight: 'bold',
+		color: "#1c555c",
+		fontWeight: "bold",
 	},
 	image: {
 		width: "100%",
@@ -42,50 +42,67 @@ const useStyles = makeStyles({
 		minHeight: "70px",
 	},
 	audio: {
-		display: 'flex',
-		width: '100%',
-		height: '280px'
-	}
+		display: "flex",
+		width: "100%",
+		height: "280px",
+	},
 });
 
 const ArtistsStoryCards = ({ approvedArtwork }) => {
 	const classes = useStyles();
-
 	return (
-		<div className='container'>
-			<div className='cards-wrapper'>
+		<div className="container">
+			<div className="cards-wrapper">
 				{approvedArtwork.map((artwork, index) => {
 					return (
 						<Card key={artwork.id} className={classes.root}>
-							<CardActionArea className='card-action'>
+							<CardActionArea className="card-action">
 								{artwork.content_type === "image" && (
 									<CardMedia
 										className={`${classes.image} card-img`}
-										component='img'
+										component="img"
 										alt={artwork.title}
-										height='240'
-										image={artwork.content_link}
+										height="240"
+										image={`/api/media/${artwork.content_link}`}
 										title={artwork.title}
 									/>
 								)}
 								{artwork.content_type === "video" && (
-									<video className={classes.video} width="100%" height="240" controls>
-										<source src={artwork.content_link} type="video/mp4" />
+									<video
+										className={classes.video}
+										width="100%"
+										height="240"
+										controls
+									>
+										<source
+											src={`/api/media/${artwork.content_link}`}
+											type="video/mp4"
+										/>
 									</video>
 								)}
 								{artwork.content_type === "audio" && (
-									<div className='audio-player'>
-										<ReactAudioPlayer className={classes.audio}
-											src={artwork.content_link}
+									<div className="audio-player">
+										<ReactAudioPlayer
+											className={classes.audio}
+											src={`/api/media/${artwork.content_link}`}
 											controls
 										/>
 									</div>
 								)}
 								<CardContent>
-									<Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+									<Typography
+										gutterBottom
+										variant="h5"
+										component="h2"
+										className={classes.title}
+									>
 										{artwork.title}
 									</Typography>
-									<Typography className={classes.pos} variant="body2" component="p">
+									<Typography
+										className={classes.pos}
+										variant="body2"
+										component="p"
+									>
                     Name: {artwork.artist_name}
 										<br />
                     Country: {artwork.country}
@@ -96,24 +113,28 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 											: artwork.city}
 									</Typography>
 									<Typography className={classes.text} variant="body1">
-										{artwork.content_type !== "text" && (<ReactReadMoreReadLess
-											className='read-more-read-less'
-											id={index}
-											charLimit={120}
-											readMoreText={"Read more ▼"}
-											readLessText={"Read less ▲"}
-										>
-											{artwork.content_text}
-										</ReactReadMoreReadLess>)}
-										{artwork.content_type === "text" && (<ReactReadMoreReadLess
-											className={`${classes.text} read-more-read-less`}
-											id={index}
-											charLimit={550}
-											readMoreText={"Read more ▼"}
-											readLessText={"Read less ▲"}
-										>
-											{artwork.content_text}
-										</ReactReadMoreReadLess>)}
+										{artwork.content_type !== "text" && (
+											<ReactReadMoreReadLess
+												className="read-more-read-less"
+												id={index}
+												charLimit={120}
+												readMoreText={"Read more ▼"}
+												readLessText={"Read less ▲"}
+											>
+												{artwork.content_text}
+											</ReactReadMoreReadLess>
+										)}
+										{artwork.content_type === "text" && (
+											<ReactReadMoreReadLess
+												className={`${classes.text} read-more-read-less`}
+												id={index}
+												charLimit={550}
+												readMoreText={"Read more ▼"}
+												readLessText={"Read less ▲"}
+											>
+												{artwork.content_text}
+											</ReactReadMoreReadLess>
+										)}
 									</Typography>
 								</CardContent>
 							</CardActionArea>

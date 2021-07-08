@@ -1,7 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import { login, logout, ping, requestReset, verifyToken, resetPassword, createNewAdmin } from "./admins";
-import { artUpload } from "./upload";
+import { artUpload, media } from "./upload";
 import { getArtwork, updateArtwork, deleteArtwork } from "./artwork";
 import { requiresLogin } from "./middleware";
 const multer = require("multer");
@@ -10,6 +10,8 @@ const upload = multer({ dest: "uploads/" });
 const router = new Router();
 
 router.post("/upload", upload.single("image"), artUpload);
+
+router.get("/media/:key", media);
 
 router.post("/login", passport.authenticate("local"), login);
 

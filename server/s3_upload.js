@@ -12,6 +12,7 @@ const s3 = new S3({
 	secretAccessKey,
 });
 
+// upload a file to AWS s3
 const uploadFile = (file) => {
 	const fileStream = fs.createReadStream(file.path);
 
@@ -24,6 +25,16 @@ const uploadFile = (file) => {
 	return s3.upload(uploadParams).promise();
 };
 
+//download a file from AWS s3
+const getFileStream = (fileKey) =>{
+	const downloadParams = {
+		Key: fileKey,
+		Bucket: bucketName,
+	};
+
+	return s3.getObject(downloadParams).createReadStream();
+};
+
 const deleteFile = (key) => {
 	const deleteParams = {
 		Bucket: bucketName,
@@ -31,5 +42,6 @@ const deleteFile = (key) => {
 	};
 	return s3.deleteObject(deleteParams).promise();
 };
+exports.getFileStream = getFileStream;
 exports.uploadFile = uploadFile;
 exports.deleteFile = deleteFile;
