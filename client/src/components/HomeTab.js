@@ -1,22 +1,27 @@
-const HomeTab = ({ setView, showIntro, setShowIntro}) => {
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+const HomeTab = ({ setView, showIntro, setShowIntro, hideIntro, setHideIntro}) => {
 
 	const changeSelection = (value) => (e) => {
 		setView(value);
     setShowIntro(false);
-    if (e.target.parentElement.childNodes[1].classList.contains('intro-wrapper') || e.target.parentElement.childNodes[1].firstChild.classList.contains('intro')) {
-      setTimeout(function () {
-        e.target.parentElement.childNodes[1].classList.add('d-none');
-      }, 2000);
-      setTimeout(function () {
-        e.target.parentElement.childNodes[1].firstChild.classList.add('d-none');
-      }, 2000);
-    } 
-    e.target.parentElement.childNodes.forEach(element => {
-      element.className = "tab-button";
+    setTimeout(function () {
+      setHideIntro(true)
+    }, 2000);
+    e.target.parentElement.childNodes.forEach((element, index) => {
+      if (index !== 1) {
+        element.className = "tab-button";
+      };
     });
     e.target.className = "tab-button active";
-
 	}
+
+  const handleClose = () => {
+    setShowIntro(false)
+    setTimeout(function () {
+      setHideIntro(true)
+    }, 2000);
+  }
 
 	return (
     <div className="tab-container">
@@ -38,7 +43,16 @@ const HomeTab = ({ setView, showIntro, setShowIntro}) => {
       >
         MAP VIEW
       </button>
-      <div className={showIntro ? "intro-wrapper" : "animate"}>
+      <div className={(showIntro ? "intro" : "animate") && (hideIntro ? "d-none" : "intro-wrapper")}>
+        <IconButton
+          edge="start"
+          color="inherit"
+          onClick={handleClose}
+          aria-label="close"
+          style={{ float: 'right', color: '#a8546c', top: '0' }}
+        >
+          <CloseIcon />
+        </IconButton>
         <h2 className={showIntro ? "intro" : "animate"}>
           <span className='larger-text'>UCHI</span> &nbsp;is sed tellus nisl. Aenean tincidunt convallis sagittis. Vivamus at varius ipsum. Cras venenatis at sapien vitae imperdiet. Aenean facilisis hendrerit gravida. Nam dictum nulla eu purus porta luctus at eget sapien. Sed tincidunt non nulla in viverra.  Etiam tristique nisl eget hendrerit tincidunt. Nulla dapibus, urna sit amet tempor pellentesque, turpis neque molestie felis, sed auctor metus nunc ut risus.
         </h2>

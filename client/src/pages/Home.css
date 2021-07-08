@@ -154,10 +154,9 @@ body {
   color: #a8546c;
   font-weight: bolder;
 }
-.animate {
-  transition: all 2s linear;
+.animate { 
   transition: ease-in 2s;
-  
+  transform: translate(-100%);
   opacity: 0;
 }
 .tab-button {
@@ -171,7 +170,6 @@ body {
 .tab-button.active {
   opacity: 1;
 }
-
 .foreground-text {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

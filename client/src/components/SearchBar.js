@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const SearchBar = ({ setApprovedArtwork, backupData, setShowIntro }) => {
+const SearchBar = ({ setApprovedArtwork, backupData, setShowIntro, setHideIntro }) => {
   const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
@@ -31,6 +31,9 @@ const SearchBar = ({ setApprovedArtwork, backupData, setShowIntro }) => {
         onChange={(e) => {
           setSearchInput(e.target.value);
           setShowIntro(false);
+          setTimeout(function () {
+            setHideIntro(true)
+          }, 2000);
         }}
       />
     </div>
