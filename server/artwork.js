@@ -88,8 +88,7 @@ export const deleteArtwork = (req, res) => {
   db.query("SELECT * FROM artwork WHERE id=$1", [id])
     .then((result) => {
       if (result.rows.length > 0) {
-        const fileLink = result.rows[0].content_link;
-        const fileKey = fileLink.slice(fileLink.indexOf("amazonaws.com/") + 14);
+        const fileKey = result.rows[0].content_link;
         db.query("DELETE FROM artwork WHERE id=$1", [id])
           .then(() => {
             if (fileKey.length > 0) {

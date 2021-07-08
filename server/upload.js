@@ -11,8 +11,6 @@ export const media = (req, res) => {
 	const key = req.params.key;
 	const readStream = getFileStream(key);
 
-	console.log(readStream);
-
 	readStream.pipe(res);
 };
 
