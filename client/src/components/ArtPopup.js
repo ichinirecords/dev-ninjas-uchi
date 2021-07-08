@@ -6,20 +6,23 @@ import Typography from "@material-ui/core/Typography";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 
 const useStyles = makeStyles({
-	root: {
-		width: "100%",
-		backgroundColor: "white",
-		height: "auto",
-	},
-	title: {
-		fontSize: 22,
-		fontFamily: "EB Garamond",
-	},
-	pos: {
-		marginBottom: 3,
-		fontFamily: "EB Garamond",
-		fontSize: 18,
-	},
+  root: {
+    width: "100%",
+    backgroundColor: "white",
+    height: "auto",
+  },
+  title: {
+    fontSize: 22,
+    fontFamily: "EB Garamond",
+    textShadow: "1px 1px 1px white",
+    color: "#1c555c",
+    fontWeight: "bold",
+  },
+  pos: {
+    marginBottom: 3,
+    fontFamily: "EB Garamond",
+    fontSize: 18,
+  },
 });
 
 const ArtPopup = ({
@@ -60,16 +63,12 @@ const ArtPopup = ({
 				<Typography
 					variant="h3"
 					className={classes.title}
-					style={{
-						color: "#46a69a",
-						fontWeight: "bolder",
-					}}
 					gutterBottom
 				>
 					{title}
 				</Typography>
 				<Typography className={classes.pos} style={{ fontWeight: "700" }}>
-          By {artist_name} from {city}, {country}
+          By {artist_name} from {city !== "undefined" && `${city},`} {country}
 				</Typography>
 				{(content_type === "text" || content_type === "image") && (
 					<Typography variant="body1">

@@ -56,35 +56,40 @@ const AdminPanel = ({ user, setUser }) => {
                   transformOrigin: "top left",
                 }}
               >
-                <div style={{ 
-                  display: 'flex', 
-                  width: '95%', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center', 
-                  transform: "skewY(4deg)"}}>
-                  <div style={{marginTop: '4em'}} className="logo-container">
-                    <img
-                      className='logo'
-                      src={logo}
-                      alt={logo}
-                    />
+                <div
+                  style={{
+                    display: "flex",
+                    width: "95%",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    transform: "skewY(4deg)",
+                  }}
+                >
+                  <div style={{ marginTop: "4em" }} className="logo-container">
+                    <img className="logo" src={logo} alt={logo} />
                     <h1 className="brand-name">UCHI</h1>
                   </div>
-                  <h1 style={{color: 'white', margin: '0 0 0.75em -1em'}} id="welcome">Welcome, {user.username}!</h1>
+                  <h1
+                    style={{ color: "white", margin: "0 0 0.75em -1em" }}
+                    id="welcome"
+                  >
+                    Welcome, {user.username}!
+                  </h1>
                   <Button
                     id="logout"
                     onClick={handleLogout}
                     variant="contained"
                     style={{
-                      backgroundColor: "#1c555c",
-                      color: "antiquewhite",
+                      backgroundColor: "#4f3e7f",
+                      color: "white",
                       fontWeight: "normal",
+                      border: "3px solid #a8546c",
                       boxSizing: "border-box",
                       borderRadius: "7px",
                       fontFamily: "EB Garamond",
                       padding: "0.5em 1.75em",
                       marginTop: "-3em",
-                      marginRight: "-2em"
+                      marginRight: "-2em",
                     }}
                     color="primary"
                   >
@@ -97,10 +102,10 @@ const AdminPanel = ({ user, setUser }) => {
               id="create-admin"
               onClick={() => setCreateMode(!createMode)}
               style={{
-                backgroundColor: "#1c555c",
-                color: "antiquewhite",
+                backgroundColor: "#4f3e7f",
+                color: "white",
                 fontWeight: "normal",
-                border: "3px solid antiquewhite",
+                border: "3px solid #a8546c",
                 boxSizing: "border-box",
                 borderRadius: "7px",
                 fontFamily: "EB Garamond",
@@ -126,10 +131,10 @@ const AdminPanel = ({ user, setUser }) => {
               <Button
                 onClick={() => setApproveMode(!approveMode)}
                 style={{
-                  backgroundColor: "#1c555c",
-                  color: "antiquewhite",
+                  backgroundColor: "#4f3e7f",
+                  color: "white",
                   fontWeight: "normal",
-                  border: "3px solid antiquewhite",
+                  border: "3px solid #a8546c",
                   boxSizing: "border-box",
                   borderRadius: "7px",
                   fontFamily: "EB Garamond",
@@ -139,7 +144,7 @@ const AdminPanel = ({ user, setUser }) => {
                 }}
                 variant="outlined"
                 color="primary"
-				        id="artwork-toggle"
+                id="artwork-toggle"
               >
                 {approveMode
                   ? "See all artwork"
