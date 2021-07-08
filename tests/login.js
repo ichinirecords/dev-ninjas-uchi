@@ -13,7 +13,7 @@ test("Login with valid credentials", async (t) => {
     .typeText("#password", process.env.ADMIN_PASSWORD)
     .click("#submit")
     .expect(welcomeDiv.innerText)
-    .eql("Welcome, user1");
+    .eql("Welcome, user1!");
 });
 test("Login with invalid username", async (t) => {
   await t
