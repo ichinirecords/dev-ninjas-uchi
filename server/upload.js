@@ -11,6 +11,8 @@ export const media = (req, res) => {
 	const key = req.params.key;
 	const readStream = getFileStream(key);
 
+	console.log(readStream);
+
 	readStream.pipe(res);
 };
 
@@ -21,8 +23,8 @@ export const artUpload = async (req, res) => {
 		const file = req.file;
 		const result = await uploadFile(file);
 		await unlinkFile(file.path);
+		contentLink = result.Key;
 		res.send({ imagePath: `/media/${result.Key}` });
-		contentLink = result.Location;
 	}
 	const newArtTitle = req.body.title;
 	const newArtName = req.body.artist_name;

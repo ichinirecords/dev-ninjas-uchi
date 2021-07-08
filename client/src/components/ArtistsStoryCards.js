@@ -50,10 +50,8 @@ const useStyles = makeStyles({
 
 const ArtistsStoryCards = ({ approvedArtwork }) => {
 	const classes = useStyles();
-
 	return (
 		<div className="container">
-			{/* <img src = "/api/media/c7cfcc8303213c59d3538408ade36dff" /> */}
 			<div className="cards-wrapper">
 				{approvedArtwork.map((artwork, index) => {
 					return (
@@ -65,7 +63,7 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 										component="img"
 										alt={artwork.title}
 										height="240"
-										image={artwork.content_link}
+										image={`/api/media/${artwork.content_link}`}
 										title={artwork.title}
 									/>
 								)}
@@ -76,14 +74,17 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
 										height="240"
 										controls
 									>
-										<source src={artwork.content_link} type="video/mp4" />
+										<source
+											src={`/api/media/${artwork.content_link}`}
+											type="video/mp4"
+										/>
 									</video>
 								)}
 								{artwork.content_type === "audio" && (
 									<div className="audio-player">
 										<ReactAudioPlayer
 											className={classes.audio}
-											src={artwork.content_link}
+											src={`/api/media/${artwork.content_link}`}
 											controls
 										/>
 									</div>
