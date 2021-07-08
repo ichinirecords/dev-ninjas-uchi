@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Switch.css';
 
-const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
+const Switch = ({ approvedArtwork, setApprovedArtwork, backupData, setShowIntro }) => {
   let tempArray = [...approvedArtwork]
   const mediaTypes = ['video', 'audio', 'image', 'text'];
   const [checkedMediaTypes, setCheckedMediaTypes] = useState([]);
@@ -46,7 +46,10 @@ const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
                 value={mediaType}
                 type="checkbox"
                 checked={checkedState[index]}
-                onChange={(e) => handleCheckbox(e, index)}
+                onChange={(e) => {
+                  handleCheckbox(e, index);
+                  setShowIntro(false);
+                }}
               />
               <label
                 className="switch-label"
@@ -55,9 +58,7 @@ const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
                 <span className={`switch-button`} />
               </label>
             </div>
-            {/* <div> */}
-              <h2>{mediaType}</h2>
-            {/* </div> */}
+            <h2>{mediaType}</h2>
           </div>
         )
       })}

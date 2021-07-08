@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const SearchBar = ({ setApprovedArtwork, backupData }) => {
+const SearchBar = ({ setApprovedArtwork, backupData, setShowIntro }) => {
   const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
@@ -28,7 +28,10 @@ const SearchBar = ({ setApprovedArtwork, backupData }) => {
         className="search-bar"
         placeholder="Search by title, name, country, city or text ..."
         value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
+        onChange={(e) => {
+          setSearchInput(e.target.value);
+          setShowIntro(false);
+        }}
       />
     </div>
   );
