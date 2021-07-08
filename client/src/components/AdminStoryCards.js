@@ -175,7 +175,7 @@ const AdminStoryCards = ({ user, approveMode }) => {
                         component="img"
                         alt={artwork.title}
                         height="240"
-                        image={artwork.content_link}
+                        image={`/api/media/${artwork.content_link}`}
                         title={artwork.title}
                       />
                     )}
@@ -186,12 +186,15 @@ const AdminStoryCards = ({ user, approveMode }) => {
                         height="240"
                         controls
                       >
-                        <source src={artwork.content_link} type="video/mp4" />
+                        <source
+                          src={`/api/media/${artwork.content_link}`}
+                          type="video/mp4"
+                        />
                       </video>
                     )}
                     {artwork.content_type === "audio" && (
                       <audio className={classes.audio} controls>
-                        <source src={artwork.content_link} />
+                        <source src={`/api/media/${artwork.content_link}`} />
                       </audio>
                     )}
 
