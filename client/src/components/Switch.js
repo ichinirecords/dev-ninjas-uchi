@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Switch.css';
 
-const Switch = ({ approvedArtwork, setApprovedArtwork, backupData, setShowIntro }) => {
+const Switch = ({ approvedArtwork, setApprovedArtwork, backupData, setShowIntro, setHideIntro }) => {
   let tempArray = [...approvedArtwork]
   const mediaTypes = ['video', 'audio', 'image', 'text'];
   const [checkedMediaTypes, setCheckedMediaTypes] = useState([]);
@@ -49,6 +49,9 @@ const Switch = ({ approvedArtwork, setApprovedArtwork, backupData, setShowIntro 
                 onChange={(e) => {
                   handleCheckbox(e, index);
                   setShowIntro(false);
+                  setTimeout(function () {
+                    setHideIntro(true)
+                  }, 2000);
                 }}
               />
               <label
