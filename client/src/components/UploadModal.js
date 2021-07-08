@@ -227,7 +227,7 @@ const UploadModal = () => {
 						<TextField
 							autoFocus
 							margin="dense"
-							label="Title of your art work"
+							label="Title of your artwork"
 							placeholder="Title of your artwork"
 							type="text"
 							name="title"
@@ -241,7 +241,7 @@ const UploadModal = () => {
 						<TextField
 							margin="dense"
 							label="Your first name, full name or nickname"
-							placeholder="Your name, full name or nickname"
+							placeholder="Your first name, full name or nickname"
 							type="text"
 							name="artist_name"
 							fullWidth
