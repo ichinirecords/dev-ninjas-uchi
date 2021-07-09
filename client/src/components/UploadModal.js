@@ -198,12 +198,13 @@ const UploadModal = () => {
 					borderRadius: "7px",
 					fontFamily: "EB Garamond",
 					padding: "0.5em 1.75em",
+					whiteSpace: "nowrap"
 				}}
 				variant="outlined"
 				color="primary"
 				onClick={handleClickOpen}
 			>
-        Upload
+        ADD STORY
 			</Button>
 			<Dialog
 				fullScreen
@@ -251,7 +252,7 @@ const UploadModal = () => {
 								classes: { input: classes.input }
 							}}
 							margin="dense"
-							placeholder="Your first name, full name or nickname"
+							placeholder="Your first name or nickname"
 							type="text"
 							name="artist_name"
 							fullWidth
