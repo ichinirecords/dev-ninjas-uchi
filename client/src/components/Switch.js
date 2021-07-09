@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Switch.css';
 
-const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
+const Switch = ({ approvedArtwork, setApprovedArtwork, backupData, showIntro, setShowIntro}) => {
   let tempArray = [...approvedArtwork]
   const mediaTypes = ['video', 'audio', 'image', 'text'];
   const [checkedMediaTypes, setCheckedMediaTypes] = useState([]);
@@ -31,6 +31,7 @@ const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
       setApprovedArtwork(flattened);
       setCheckedMediaTypes(flattened);
     };
+    if (showIntro) setShowIntro(false);
   };
 
   return (
@@ -55,9 +56,7 @@ const Switch = ({ approvedArtwork, setApprovedArtwork, backupData }) => {
                 <span className={`switch-button`} />
               </label>
             </div>
-            <div>
-              <h2>{mediaType}</h2>
-            </div>
+            <h2>{mediaType}</h2>
           </div>
         )
       })}

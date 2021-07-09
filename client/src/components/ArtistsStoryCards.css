@@ -10,9 +10,16 @@
 
 .react-read-more-read-less-more,
 .react-read-more-read-less {
-  /* color: crimson; */
+  color: #1c555c;
+  text-shadow: 1px 1px 1px white;
   font-weight: bold;
   font-family: 'EB Garamond';
+}
+.audio-player {
+  /* background-image: url('https://coolwallpapers.me/picsup/3107197-analog_audio_backup_broken_business_cassette_cassette-tape_cassettes_computer_data_electronics_equipment_hard_indoors_laptop_magnet_magnetic_media_music_open_phonograph-record_plastic_recording_r.jpg'); */
+  background-image: url('https://snappygoat.com/b/70005f455c019a74aba5c7684440fa91dce9a9ee');
+  background-size: 100% 280px;
+  background-repeat: no-repeat;
 }
 
 @media only screen and (max-device-width: 768px) {

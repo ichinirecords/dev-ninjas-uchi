@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -28,6 +26,12 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(1),
+  },
+  input: {
+    '&::placeholder': {
+      fontFamily: "EB Garamond",
+      fontSize: "1.2em"
+    },
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -93,36 +97,38 @@ const AdminLogin = ({setUser}) => {
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
+              InputProps={{
+                classes: { input: classes.input }
+              }}
               variant='outlined'
               margin='normal'
               required
               fullWidth
               id='username'
-              label='Username'
+              placeholder='Username'
               name='username'
               autoComplete='username'
               autoFocus
               onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
+              InputProps={{
+                classes: { input: classes.input }
+              }}
               variant='outlined'
               margin='normal'
               required
               fullWidth
               name='password'
-              label='Password'
+              placeholder='Password'
               type='password'
               id='password'
               autoComplete='current-password'
               onChange={(e) => setPassword(e.target.value)}
             />
-            {/* <FormControlLabel
-              control={<Checkbox value='remember' color='primary' />}
-              label='Remember me'
-            /> */}
             <Button
               type='submit'
-			  id='submit'
+			        id='submit'
               fullWidth
               variant='contained'
               color='primary'
@@ -137,11 +143,6 @@ const AdminLogin = ({setUser}) => {
                   Forgot password?
                 </Link>
               </Grid>
-              {/* <Grid item>
-                <Link href='#' variant='body2'>
-                  {"Don't have an admin account? Sign Up"}
-                </Link>
-              </Grid> */}
             </Grid>
           </form>
         </div>

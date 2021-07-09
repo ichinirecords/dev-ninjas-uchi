@@ -2,36 +2,8 @@ require("dotenv").config();
 import cron from "node-cron";
 import nodemailer from "nodemailer";
 
-import db from "./db";
-
-// Get all admin emails
-export const getAdminEmails = async () => {
-  let emailQuery = `SELECT email FROM admins;`;
-  try {
-    const queryResult = await db.query(emailQuery);
-    const emails = await queryResult.rows;
-    const validEmails = await emails
-      .filter((el) => el.email)
-      .map((el) => el.email)
-      .join(", ");
-    return validEmails;
-  } catch {
-    (error) => console.log(error);
-  }
-};
-
-// Get all artwork with status submitted
-const getSubmittedArtwork = async () => {
-  try {
-    const queryResult = await db.query(
-      "SELECT * FROM artwork WHERE artwork_status='submitted'"
-    );
-    const submittedArtwork = await queryResult.rows;
-    return submittedArtwork;
-  } catch {
-    (error) => console.log(error);
-  }
-};
+import { getAdminEmails } from "./utils/admin";
+import { getSubmittedArtwork } from "./utils/artwork";
 
 // Create email text
 const createEmailText = async () => {
@@ -85,7 +57,7 @@ const createEmailText = async () => {
 			<td>${item.city}</td>
 			<td>${item.country}</td>
 			<td>${item.content_type}</td>
-			<td>${new Date(item.created_on).toLocaleDateString()}</td></tr>`;
+			<td>${new Date(item.created_on).toLocaleDateString("en-GB")}</td></tr>`;
   });
   if (artwork.length > 0) {
     html += `</tbody></table><div>Go to <a href="https://dev-ninjas-uchi.herokuapp.com/login">login</a> to approve new submissions.</div></body></html>`;

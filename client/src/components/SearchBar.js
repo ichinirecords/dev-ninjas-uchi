@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 
-const SearchBar = ({ setApprovedArtwork, backupData }) => {
+const SearchBar = ({ setApprovedArtwork, backupData, setShowIntro, showIntro }) => {
   const [searchInput, setSearchInput] = useState('');
-  console.log(backupData)
 
   useEffect(() => {
     const filteredArtWork = backupData.filter((artWork) => {
-      return (artWork.title.toLowerCase().includes(searchInput)) ||
-        (artWork.artist_name.toLowerCase().includes(searchInput)) ||
-        (artWork.content_text.toLowerCase().includes(searchInput));
+      if (artWork.country && artWork.city) {
+        return (artWork.title.toLowerCase().includes(searchInput.toLowerCase())) ||
+          (artWork.artist_name.toLowerCase().includes(searchInput.toLowerCase())) ||
+          (artWork.country.toLowerCase().includes(searchInput.toLowerCase())) ||
+          (artWork.city.toLowerCase().includes(searchInput.toLowerCase())) ||
+          (artWork.content_text.toLowerCase().includes(searchInput.toLowerCase()));
+      } else return (artWork.title.toLowerCase().includes(searchInput.toLowerCase())) ||
+        (artWork.artist_name.toLowerCase().includes(searchInput.toLowerCase())) ||
+        (artWork.content_text.toLowerCase().includes(searchInput.toLowerCase()));
     });
     setApprovedArtwork(filteredArtWork);
     if (searchInput === '') setApprovedArtwork(backupData);
@@ -21,9 +26,12 @@ const SearchBar = ({ setApprovedArtwork, backupData }) => {
       <input
         type="text"
         className="search-bar"
-        placeholder="Search ..."
+        placeholder="Search by title, name, country, city or text ..."
         value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
+        onChange={(e) => {
+          setSearchInput(e.target.value);
+          if (showIntro) setShowIntro(false);
+        }}
       />
     </div>
   );

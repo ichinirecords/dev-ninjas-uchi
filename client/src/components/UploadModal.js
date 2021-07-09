@@ -17,11 +17,9 @@ import UploadModalAlerts from "./UploadModalAlerts";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
-		position: "absolute",
-		// height: "4em",
+		position: "relative",
 		backgroundColor: "#7d69af",
-		fontFamily: "Righteous",
-		marginBottom: "2em",
+		fontFamily: "EB Garamond",
 	},
 	title: {
 		marginLeft: theme.spacing(5),
@@ -31,16 +29,23 @@ const useStyles = makeStyles((theme) => ({
 		margin: "auto",
 		justifyContent: "center",
 		alignItems: "center",
-		fontFamily: "Righteous",
+		fontFamily: "EB Garamond",
+	},
+	icon: {
+		marginRight: '-1em'
 	},
 	form: {
 		display: "grid",
 		width: "50%",
 		margin: "auto",
-		placeItems: "center",
-		margin: "4em 25% 0 25%",
-		fontFamily: "Righteous",
-		backgroundColor: "#d1c2f7",
+		fontFamily: "EB Garamond",
+		backgroundColor: "#ddd5f1",
+	},
+	input: {
+		'&::placeholder': {
+			fontFamily: "EB Garamond",
+			fontSize: "1.2em"
+		},
 	},
 	map_header: {
 		fontSize: "1.25em",
@@ -49,14 +54,17 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: "0.25em",
 		margin: "auto",
 		border: "1px solid #999",
-		fontFamily: "Righteous",
+		fontFamily: "EB Garamond",
 		fontSize: "1.8rem",
 		width: "100%",
 	},
 	file_input_wrapper: {
 		width: "100%",
-		margin: "2em auto",
+		margin: "auto",
 	},
+	story: {
+		margin: "2em auto 0 auto"
+	}
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -70,7 +78,6 @@ const UploadModal = () => {
 	const [open, setOpen] = useState(false);
 	const [errorAlert, setErrorAlert] = useState(false);
 	const [successAlert, setSuccessAlert] = useState(false);
-	const [storyError, setStoryError] = useState(false);
 	const [coordUploadForm, setCoordUploadForm] = useState({
 		lat: "",
 	});
@@ -97,7 +104,7 @@ const UploadModal = () => {
 			return false;
 		}
 		if (
-			(uploadForm.content_type === "music"
+			(uploadForm.content_type === "audio"
         || uploadForm.content_type === "video")
       && (uploadForm.artist_name === ""
         || uploadForm.title === "")
@@ -177,12 +184,17 @@ const UploadModal = () => {
 		<div>
 			<Button
 				className="upload-btn"
+				id="upload-button"
 				style={{
 					backgroundColor: "#1c555c",
-					color: "antiquewhite",
+					backgroundColor: '#563c96',
+					backgroundColor: '#4f3e7f',
+					color: "white",
+					fontWeight: '900',
+					// fontSize: '1em',
 					fontWeight: "normal",
-					border: "3px solid antiquewhite",
-					boxSizing: "border-box",
+					border: "3px solid #a8546c",
+					// boxSizing: "border-box",
 					borderRadius: "7px",
 					fontFamily: "EB Garamond",
 					padding: "0.5em 1.75em",
@@ -201,7 +213,12 @@ const UploadModal = () => {
 			>
 				<AppBar className={classes.appBar}>
 					<Toolbar>
+						<Typography variant="h6" className={classes.title}>
+              Please fill out the form below and choose the media type you want
+              to upload
+						</Typography>
 						<IconButton
+						  className={classes.icon}
 							edge="start"
 							color="inherit"
 							onClick={handleClose}
@@ -209,35 +226,17 @@ const UploadModal = () => {
 						>
 							<CloseIcon />
 						</IconButton>
-						<Typography variant="h6" className={classes.title}>
-              Please fill out the form below and choose the media type you want
-              to upload
-						</Typography>
-						<Button
-							style={{ fontWeight: "bold", fontFamily: "Righteous" }}
-							autoFocus
-							color="inherit"
-							onClick={handleSubmit}
-						>
-              Submit
-						</Button>
 					</Toolbar>
 				</AppBar>
 				<List className={`${classes.form} upload-modal`}>
 					<ListItem>
-						<UploadModalAlerts
-							error={errorAlert}
-							setError={setErrorAlert}
-							success={successAlert}
-							setSuccess={setSuccessAlert}
-						/>
-					</ListItem>
-					<ListItem>
 						<TextField
+							InputProps={{
+								classes: { input: classes.input }
+							}}
 							autoFocus
 							margin="dense"
-							label="Title of your art work"
-							placeholder="Title of your art work"
+							placeholder="Title of your Artwork"
 							type="text"
 							name="title"
 							fullWidth
@@ -248,9 +247,11 @@ const UploadModal = () => {
 					</ListItem>
 					<ListItem>
 						<TextField
+							InputProps={{
+								classes: { input: classes.input }
+							}}
 							margin="dense"
-							label="Your name, full name or nickname"
-							placeholder="Your name, full name or nickname"
+							placeholder="Your first name, full name or nickname"
 							type="text"
 							name="artist_name"
 							fullWidth
@@ -282,13 +283,13 @@ const UploadModal = () => {
 								</label>
 								<input
 									className="radio-input"
-									id={"upload_music"}
+									id={"upload_audio"}
 									type="radio"
 									name="media-type"
-									value="music"
+									value="audio"
 									onClick={handleTypeChange}
 								/>
-								<label className="radio-label" htmlFor={"upload_music"}>
+								<label className="radio-label" htmlFor={"upload_audio"}>
                   Audio
 								</label>
 								<input
@@ -336,31 +337,30 @@ const UploadModal = () => {
 							</div>
 						</ListItem>
 					)}
-					{(uploadForm.content_type === "text"
-            || uploadForm.content_type === "image"
-            || uploadForm.content_type === "video") && (
-						<ListItem>
-							<TextField
-								label="Please type your story here"
-								placeholder="Please type your story here"
-								multiline
-								variant="outlined"
-								type="text"
-								name="story"
-								fullWidth
-								value={uploadForm.story}
-								onChange={handleChange}
-							/>
-						</ListItem>
-					)}
+					<ListItem className={classes.story}>
+						<TextField
+							InputProps={{
+								classes: { input: classes.input }
+							}}
+							placeholder="Please type your story here"
+							multiline
+							variant="outlined"
+							type="text"
+							name="story"
+							fullWidth
+							value={uploadForm.story}
+							onChange={handleChange}
+						/>
+					</ListItem>
 					<ListItem>
 						<UploadModalAlerts
 							className={classes.alert}
-							story={storyError}
-							setStory={setStoryError}
+							error={errorAlert}
+							setError={setErrorAlert}
+							success={successAlert}
+							setSuccess={setSuccessAlert}
 						/>
 					</ListItem>
-
 					<ListItem
 						style={{
 							display: "flex",
@@ -370,12 +370,11 @@ const UploadModal = () => {
 						<Button
 							style={{
 								margin: "2em",
-								fontFamily: "Righteous",
+								fontFamily: "EB Garamond",
 							}}
 							type="cancel"
-							autoFocus
 							color="secondary"
-							variant="outlined"
+							variant="contained"
 							onClick={handleClose}
 						>
               Cancel
@@ -383,12 +382,11 @@ const UploadModal = () => {
 						<Button
 							style={{
 								margin: "2em",
-								fontFamily: "Righteous",
+								fontFamily: "EB Garamond",
 							}}
 							type="submit"
-							autoFocus
 							color="primary"
-							variant="outlined"
+							variant="contained"
 							onClick={handleSubmit}
 						>
               Submit

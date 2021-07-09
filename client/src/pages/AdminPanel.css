@@ -1,4 +1,7 @@
 #welcome, .admin-title {
 	text-align: center;
-	margin-bottom: 2rem;
+	margin-top: -2rem;
+}
+.admin_panel_header {
+	height: 13em;
 }
