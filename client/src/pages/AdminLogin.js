@@ -27,6 +27,12 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginTop: theme.spacing(1),
   },
+  input: {
+    '&::placeholder': {
+      fontFamily: "EB Garamond",
+      fontSize: "1.2em"
+    },
+  },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -91,24 +97,30 @@ const AdminLogin = ({setUser}) => {
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
+              InputProps={{
+                classes: { input: classes.input }
+              }}
               variant='outlined'
               margin='normal'
               required
               fullWidth
               id='username'
-              label='Username'
+              placeholder='Username'
               name='username'
               autoComplete='username'
               autoFocus
               onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
+              InputProps={{
+                classes: { input: classes.input }
+              }}
               variant='outlined'
               margin='normal'
               required
               fullWidth
               name='password'
-              label='Password'
+              placeholder='Password'
               type='password'
               id='password'
               autoComplete='current-password'

@@ -46,10 +46,7 @@ const HomeTab = ({ setView, showIntro, setShowIntro, hideIntro, setHideIntro }) 
         <IconButton
           edge="start"
           color="inherit"
-          onClick={() => {
-            setShowIntro(false);
-            setHideIntro('');
-          }}
+          onClick={() => setShowIntro(false)}
           aria-label="close"
           style={{ float: 'right', color: '#a8546c', top: '0' }}
         >

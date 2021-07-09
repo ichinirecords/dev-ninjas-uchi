@@ -41,6 +41,12 @@ const useStyles = makeStyles((theme) => ({
 		fontFamily: "EB Garamond",
 		backgroundColor: "#ddd5f1",
 	},
+	input: {
+		'&::placeholder': {
+			fontFamily: "EB Garamond",
+			fontSize: "1.2em"
+		},
+	},
 	map_header: {
 		fontSize: "1.25em",
 	},
@@ -225,9 +231,11 @@ const UploadModal = () => {
 				<List className={`${classes.form} upload-modal`}>
 					<ListItem>
 						<TextField
+							InputProps={{
+								classes: { input: classes.input }
+							}}
 							autoFocus
 							margin="dense"
-							label="Title of your Artwork"
 							placeholder="Title of your Artwork"
 							type="text"
 							name="title"
@@ -239,8 +247,10 @@ const UploadModal = () => {
 					</ListItem>
 					<ListItem>
 						<TextField
+							InputProps={{
+								classes: { input: classes.input }
+							}}
 							margin="dense"
-							label="Your first name, full name or nickname"
 							placeholder="Your first name, full name or nickname"
 							type="text"
 							name="artist_name"
@@ -329,7 +339,9 @@ const UploadModal = () => {
 					)}
 					<ListItem className={classes.story}>
 						<TextField
-							label="Please type your story here"
+							InputProps={{
+								classes: { input: classes.input }
+							}}
 							placeholder="Please type your story here"
 							multiline
 							variant="outlined"
