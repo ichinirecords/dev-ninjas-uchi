@@ -6,7 +6,7 @@ import logo from '../logo/uchi logo square jpeg.jpg';
 import DonateLink from "./DonateLink";
 import Sticky from "react-stickynode";
 
-const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData, setShowIntro, setHideIntro }) => {
+const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData,showIntro, setShowIntro, setHideIntro }) => {
   return (
     <header className='app-header'>
       <div
@@ -30,8 +30,8 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData, setShowInt
             <h1 className='brand-name'>UCHI</h1>
           </div>
           <div className="search-and-switch">
-            <SearchBar setShowIntro={setShowIntro} setHideIntro={setHideIntro} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
-            <Switch setShowIntro={setShowIntro} setHideIntro={setHideIntro} approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
+            <SearchBar showIntro={showIntro} setShowIntro={setShowIntro} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
+            <Switch showIntro={showIntro} setShowIntro={setShowIntro} approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData} />
           </div>
           <UploadModal />
         </div>

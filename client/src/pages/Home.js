@@ -11,7 +11,7 @@ export function Home() {
   const [backupData, setBackupData] = useState([]);
   const [view, setView] = useState("map");
   const [showIntro, setShowIntro] = useState(true);
-  const [hideIntro, setHideIntro] = useState(false)
+  const [hideIntro, setHideIntro] = useState('');
   
   useEffect(() => {
     fetch("/api/artwork?status=approved")
@@ -26,7 +26,7 @@ export function Home() {
   return (
     <>
       <main className="main" role="main">
-        <AppHeader setShowIntro={setShowIntro} setHideIntro={setHideIntro} approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData}/>
+        <AppHeader showIntro={showIntro} setShowIntro={setShowIntro} setHideIntro={setHideIntro} approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData}/>
         <HomeTab hideIntro={hideIntro} setHideIntro={setHideIntro} showIntro={showIntro} setShowIntro={setShowIntro} setView={setView} />
         {view === "listing" && <ArtistsStoryCards approvedArtwork={approvedArtwork} />}
         {view === "map" && <Map approvedArtwork={approvedArtwork} /> }

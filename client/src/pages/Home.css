@@ -145,6 +145,7 @@ body {
   margin: 0.5em;
   text-align: justify;
   text-justify: inter-word;
+  height: 100%;
   font-weight: normal;
   font-family: 'EB Garamond', serif;
  
@@ -154,10 +155,32 @@ body {
   color: #a8546c;
   font-weight: bolder;
 }
-.animate { 
-  transition: ease-in 2s;
-  transform: translate(-100%);
-  opacity: 0;
+
+.hidden {
+  display: none; 
+  position: absolute;
+  left: -999px;
+}
+@keyframes myAnimation{
+  0%{
+    opacity: 1;
+    transform: rotateX(90deg);
+  }
+  50%{
+    opacity: 0.5;
+    transform: rotateX(0deg);
+  }
+  100%{
+    opacity: 0;
+    display: none;
+    transform: translate(-100%);
+  }
+}
+
+.animate {
+  animation-name: myAnimation;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
 .tab-button {
 	font-size: large;
