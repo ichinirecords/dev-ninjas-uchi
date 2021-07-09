@@ -251,7 +251,7 @@ const UploadModal = () => {
 								classes: { input: classes.input }
 							}}
 							margin="dense"
-							placeholder="Your first name, full name or nickname"
+							placeholder="Your first name or nickname"
 							type="text"
 							name="artist_name"
 							fullWidth
