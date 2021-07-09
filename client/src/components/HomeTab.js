@@ -71,12 +71,12 @@ const HomeTab = ({ setView, showIntro, setShowIntro, hideIntro, setHideIntro }) 
           boxSizing: "border-box",
           borderRadius: "7px",
           fontFamily: "EB Garamond",
-          padding: "0.5em 1.75em",
+          padding: "0.5em 1.3em",
           cursor: "pointer",
           whiteSpace: "nowrap"
         }}
       >
-        LIST VIEW
+        STORY VIEW
       </button>
     </div>
   );

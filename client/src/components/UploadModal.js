@@ -198,12 +198,13 @@ const UploadModal = () => {
 					borderRadius: "7px",
 					fontFamily: "EB Garamond",
 					padding: "0.5em 1.75em",
+					whiteSpace: "nowrap"
 				}}
 				variant="outlined"
 				color="primary"
 				onClick={handleClickOpen}
 			>
-        Upload
+        ADD STORY
 			</Button>
 			<Dialog
 				fullScreen
