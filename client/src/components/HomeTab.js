@@ -53,7 +53,13 @@ const HomeTab = ({ setView, showIntro, setShowIntro, hideIntro, setHideIntro }) 
           <CloseIcon />
         </IconButton>
         <h2 className="intro">
-          <span className='larger-text'>UCHI</span> &nbsp;is sed tellus nisl. Aenean tincidunt convallis sagittis. Vivamus at varius ipsum. Cras venenatis at sapien vitae imperdiet. Aenean facilisis hendrerit gravida. Nam dictum nulla eu purus porta luctus at eget sapien. Sed tincidunt non nulla in viverra.  Etiam tristique nisl eget hendrerit tincidunt. Nulla dapibus, urna sit amet tempor pellentesque, turpis neque molestie felis, sed auctor metus nunc ut risus.
+          Welcome to <span className='larger-text'>UCHI</span> World, a celebration of unity, identity and love! This is a place to share cultures, memories and stories of the homes we carry within us, wherever we go.  <br />
+
+          UCHI provides a platform for you to upload your own personal piece of content and become part of the global family. You can share a small part of your story with the world as text, image, audio or video with a short description. We love to hear and see the specific things you relate to “home”; perhaps an old family recipe, a lullaby your grandma used to sing, a photo or video of a favourite memory - all contributions are valuable!  <br /> 
+
+          Please also feel free to explore the site and enjoy other stories as we share and learn special pieces of people's lives from around the world.  <br />
+
+          {/* We welcome your contribution to this site. Your safety and wellbeing are our priorities.  Personal data and information you upload to this site will be processed according to UK data protection law. It will also be in the public domain for everyone to see. Please therefore do not upload your full postcode or other information which may precisely identify your location. Do not use your full name and limit other identifying information where possible. We moderate content uploaded to the site. We may edit information published at our absolute discretion. */}
         </h2>
       </div>
       <button
