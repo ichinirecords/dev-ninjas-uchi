@@ -58,8 +58,6 @@ const HomeTab = ({ setView, showIntro, setShowIntro, hideIntro, setHideIntro }) 
           UCHI provides a platform for you to upload your own personal piece of content and become part of the global family. You can share a small part of your story with the world as text, image, audio or video with a short description. We love to hear and see the specific things you relate to “home”; perhaps an old family recipe, a lullaby your grandma used to sing, a photo or video of a favourite memory - all contributions are valuable!  <br /> 
 
           Please also feel free to explore the site and enjoy other stories as we share and learn special pieces of people's lives from around the world.  <br />
-
-          {/* We welcome your contribution to this site. Your safety and wellbeing are our priorities.  Personal data and information you upload to this site will be processed according to UK data protection law. It will also be in the public domain for everyone to see. Please therefore do not upload your full postcode or other information which may precisely identify your location. Do not use your full name and limit other identifying information where possible. We moderate content uploaded to the site. We may edit information published at our absolute discretion. */}
         </h2>
       </div>
       <button
@@ -73,12 +71,12 @@ const HomeTab = ({ setView, showIntro, setShowIntro, hideIntro, setHideIntro }) 
           boxSizing: "border-box",
           borderRadius: "7px",
           fontFamily: "EB Garamond",
-          padding: "0.5em 1.75em",
+          padding: "0.5em 1.3em",
           cursor: "pointer",
           whiteSpace: "nowrap"
         }}
       >
-        LIST VIEW
+        STORY VIEW
       </button>
     </div>
   );
