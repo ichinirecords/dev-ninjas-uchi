@@ -137,7 +137,6 @@ const UploadModal = () => {
 			formData.append("image", file);
 			console.log(file);
 			for (let value of formData.values()) {
-				console.log(value);
 			}
 			for(let key in uploadForm){
 				formData.append(key, uploadForm[key]);

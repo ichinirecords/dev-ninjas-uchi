@@ -48,125 +48,129 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminStoryCards = ({ user, approveMode }) => {
-	const classes = useStyles();
+const AdminStoryCards = ({ user, approveMode}) => {
+  const classes = useStyles();
 
-	const [submittedArtwork, setSubmittedArtwork] = useState([]);
-	const [filteredArtwork, setFilteredArtwork] = useState([]);
-	const [search, setSearch] = useState("");
+  const [submittedArtwork, setSubmittedArtwork] = useState([]);
+  const [filteredArtwork, setFilteredArtwork] = useState([]);
+  const [search, setSearch] = useState(" ");
 
-	const applySearch = (data) => {
-		const filteredData = data.filter(
-			(artwork) =>
-				(artwork.title && artwork.title.toLowerCase().includes(search))
-        || (artwork.artist_name
-          && artwork.artist_name.toLowerCase().includes(search))
-		);
-		return filteredData;
-	};
+  const applySearch = (data) => {
+    const filteredData = data.filter(
+      (artwork) =>
+        (artwork.title && artwork.title.toLowerCase().includes(search)) ||
+        (artwork.artist_name &&
+          artwork.artist_name.toLowerCase().includes(search))
+    );
+    return filteredData;
+  };
 
-	useEffect(() => {
-		setFilteredArtwork(applySearch(submittedArtwork));
-	}, [submittedArtwork, search]);
+  useEffect(() => {
+    if (!approveMode) {
+      setFilteredArtwork(applySearch(submittedArtwork));
+    } else {
+      setFilteredArtwork(submittedArtwork);
+    }
+  }, [submittedArtwork, search]);
 
-	useEffect(() => {
-		if (approveMode) {
-			fetch("/api/artwork?status=submitted")
-				.then((res) => res.json())
-				.then((data) => setSubmittedArtwork(data))
-				.catch((err) => console.log(err));
-		} else {
-			fetch("/api/artwork")
-				.then((res) => res.json())
-				.then((data) => setSubmittedArtwork(data))
-				.catch((err) => console.log(err));
-		}
-	}, [approveMode]);
+  useEffect(() => {
+    if (approveMode) {
+      fetch("/api/admin-artwork?status=submitted")
+        .then((res) => res.json())
+        .then((data) => setSubmittedArtwork(data))
+        .catch((err) => console.log(err));
+    } else {
+      fetch("/api/admin-artwork")
+        .then((res) => res.json())
+        .then((data) => setSubmittedArtwork(data))
+        .catch((err) => console.log(err));
+    }
+  }, [approveMode]);
 
-	// function to accept/reject submitted artwork
-	const changeStatus = (id, newStatus) => {
-		fetch(`/api/artwork/${id}`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				artwork_status: newStatus,
-				decision_date: new Date(),
-				admin_id: user.id,
-			}),
-		})
-			.then((res) => {
-				if (res.status === 401) {
-					return "Unauthorised";
-				} else {
-					return res.json();
-				}
-			})
-			.then((data) => {
-				if (data.success) {
-					alert(`Item successfully ${newStatus}`);
-					fetch("/api/artwork?status=submitted")
-						.then((res) => res.json())
-						.then((data) => setSubmittedArtwork(data))
-						.catch((err) => console.log(err));
-				} else {
-					alert("Could not change artwork status");
-				}
-			});
-	};
+  // function to accept/reject submitted artwork
+  const changeStatus = (id, newStatus) => {
+    fetch(`/api/artwork/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        artwork_status: newStatus,
+        decision_date: new Date(),
+        admin_id: user.id,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          return "Unauthorised";
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        if (data.success) {
+          alert(`Item successfully ${newStatus}`);
+          fetch("/api/artwork?status=submitted")
+            .then((res) => res.json())
+            .then((data) => setSubmittedArtwork(data))
+            .catch((err) => console.log(err));
+        } else {
+          alert("Could not change artwork status");
+        }
+      });
+  };
 
-	// function to delete an artwork item
-	const deleteArtwork = (id) => {
-		fetch(`/api/artwork/${id}`, {
-			method: "DELETE",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-			.then((res) => {
-				if (res.status === 401) {
-					return "Unauthorised";
-				} else {
-					return res.json();
-				}
-			})
-			.then((data) => {
-				if (data.success) {
-					alert(data.success);
-					fetch("/api/artwork?status=submitted")
-						.then((res) => res.json())
-						.then((data) => setSubmittedArtwork(data))
-						.catch((err) => console.log(err));
-				} else {
-					alert("Could delete item");
-				}
-			});
-	};
+  // function to delete an artwork item
+  const deleteArtwork = (id) => {
+    fetch(`/api/artwork/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          return "Unauthorised";
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        if (data.success) {
+          alert(data.success);
+          fetch("/api/admin-artwork?status=submitted")
+            .then((res) => res.json())
+            .then((data) => setSubmittedArtwork(data))
+            .catch((err) => console.log(err));
+        } else {
+          alert("Could not delete item");
+        }
+      });
+  };
 
-	return (
-		<>
-			{!approveMode && (
-				<div
-					key="searchbar"
-					className="search-input-wrapper"
-					style={{ width: "400px", marginBottom: "20px" }}
-				>
-					<i className="fas fa-search"></i>
-					<input
-						type="text"
-						className="search-bar"
-						placeholder="Search by artist name or title"
-						id="search"
-						onChange={(e) => setSearch(e.target.value.toLowerCase())}
-					/>
-				</div>
-			)}
-      <div className='container'>
-				<div className="cards-wrapper">
-					{filteredArtwork.length > 0
-						&& filteredArtwork.map((artwork) => {
-							return (
+  return (
+    <>
+      {!approveMode && (
+        <div
+          key="searchbar"
+          className="search-input-wrapper"
+          style={{ width: "400px", marginBottom: "20px" }}
+        >
+          <i className="fas fa-search"></i>
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search by artist name or title"
+            id="search"
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+          />
+        </div>
+      )}
+      <div className="container">
+        <div className="cards-wrapper">
+          {filteredArtwork.length > 0 &&
+            filteredArtwork.map((artwork) => {
+              return (
                 <Card key={artwork.id} className={classes.root}>
                   <CardContent className="card-action">
                     {artwork.content_type === "image" && (
@@ -278,12 +282,12 @@ const AdminStoryCards = ({ user, approveMode }) => {
                   </CardContent>
                 </Card>
               );
-						})}
-					{submittedArtwork.length === 0 && <div>No artwork to approve</div>}
-				</div>
-			</div>
-		</>
-	);
+            })}
+          {submittedArtwork.length === 0 && <div>No artwork to approve</div>}
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default AdminStoryCards;

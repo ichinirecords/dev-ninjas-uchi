@@ -128,118 +128,127 @@ const Edit = ({ user, setUser }) => {
   };
 
 	return (
-		<div className="upload-form">
-			{user && user.username && location.state && (
-				<>
-					<h2>Please use the form below to edit this item</h2>
-					<form className="form" onSubmit={handleSubmit}>
-						<ListItem>
-							<TextField
-								autoFocus
-								margin="dense"
-								label="Title of the art work"
-								placeholder="Title of the art work"
-								type="text"
-								name="title"
-								fullWidth
-								variant="outlined"
-								value={uploadForm.title}
-								onChange={handleChange}
-							/>
-						</ListItem>
-						<ListItem>
-							<TextField
-								margin="dense"
-								label="Artist name, full name or nickname"
-								placeholder="Artist name, full name or nickname"
-								type="text"
-								name="artist_name"
-								fullWidth
-								variant="outlined"
-								value={uploadForm.artist_name}
-								onChange={handleChange}
-							/>
-						</ListItem>
-						<ListItem className={classes.map_header}>
-							<strong>Current location:</strong> {uploadForm.city},{" "}
-							{uploadForm.country}
-						</ListItem>
-						<ListItem>
-							<MapForm setCoordUploadForm={setCoordUploadForm} />
-						</ListItem>
-						<ListItem>
-							<Button
-								style={{ backgroundColor: "white" }}
-								color="secondary"
-								variant="outlined"
-								onClick={() =>
-									setUploadForm((uploadForm) => {
-										return { ...uploadForm, ...coordUploadForm };
-									})
-								}
-							>
+    <div className="upload-form">
+      {user && user.username && location.state && (
+        <>
+          <h2>Please use the form below to edit this item</h2>
+          <form className="form" onSubmit={handleSubmit}>
+            <ListItem>
+              <TextField
+                autoFocus
+                margin="dense"
+                label="Title of the art work"
+                placeholder="Title of the art work"
+                type="text"
+                name="title"
+                fullWidth
+                variant="outlined"
+                value={uploadForm.title}
+                onChange={handleChange}
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                margin="dense"
+                label="Artist name, full name or nickname"
+                placeholder="Artist name, full name or nickname"
+                type="text"
+                name="artist_name"
+                fullWidth
+                variant="outlined"
+                value={uploadForm.artist_name}
+                onChange={handleChange}
+              />
+            </ListItem>
+            <ListItem className={classes.map_header}>
+              <strong>Current location:</strong> {uploadForm.city},{" "}
+              {uploadForm.country}
+            </ListItem>
+            <ListItem>
+              <MapForm setCoordUploadForm={setCoordUploadForm} />
+            </ListItem>
+            <ListItem>
+              <Button
+                style={{ backgroundColor: "white" }}
+                color="secondary"
+                variant="outlined"
+                onClick={() =>
+                  setUploadForm((uploadForm) => {
+                    return { ...uploadForm, ...coordUploadForm };
+                  })
+                }
+              >
                 Change location
-							</Button>
-						</ListItem>
-						<ListItem>
-							<div className="center">
-								<strong>Media type:</strong> {uploadForm.content_type}
-							</div>
-						</ListItem>
+              </Button>
+            </ListItem>
+            <ListItem>
+              <div className="center">
+                <strong>Media type:</strong> {uploadForm.content_type}
+              </div>
+            </ListItem>
 
-						{(uploadForm.content_type === "text"
-              || uploadForm.content_type === "image") && (
-							<ListItem>
-								<TextField
-									label="Please edit the story here"
-									placeholder="Please edit the story here"
-									multiline
-									variant="outlined"
-									type="text"
-									name="content_text"
-									fullWidth
-									value={uploadForm.content_text}
-									onChange={handleChange}
-								/>
-							</ListItem>
-						)}
-						{uploadForm.content_type === "image" && (
-							<ListItem>
-								<div style={{ display:"flex", alignContent:"center", justifyItems:"center" }}>
-									<img
-										alt={uploadForm.title}
-										height="240px"
-										width="auto"
-										margin="auto"
-										src={uploadForm.content_link}
-									/>
-								</div>
-							</ListItem>
-						)}
-						{uploadForm.content_type === "video" && (
-							<ListItem>
-								<video width="100%" height="240" controls>
-									<source src={uploadForm.content_link} type="video/mp4" />
-								</video>
-							</ListItem>
-						)}
-						{uploadForm.content_type === "audio" && (
-							<ListItem>
-								<audio controls style={{ display: "flex", width: "100%" }}>
-									<source src={uploadForm.content_link} />
-								</audio>
-							</ListItem>
-						)}
-						<ListItem>
-							<button type="submit" className="btn">
+            {(uploadForm.content_type === "text" ||
+              uploadForm.content_type === "image") && (
+              <ListItem>
+                <TextField
+                  label="Please edit the story here"
+                  placeholder="Please edit the story here"
+                  multiline
+                  variant="outlined"
+                  type="text"
+                  name="content_text"
+                  fullWidth
+                  value={uploadForm.content_text}
+                  onChange={handleChange}
+                />
+              </ListItem>
+            )}
+            {uploadForm.content_type === "image" && (
+              <ListItem>
+                <div
+                  style={{
+                    display: "flex",
+                    alignContent: "center",
+                    justifyItems: "center",
+                  }}
+                >
+                  <img
+                    alt={uploadForm.title}
+                    height="240px"
+                    width="auto"
+                    margin="auto"
+                    src={`/api/media/${uploadForm.content_link}`}
+                  />
+                </div>
+              </ListItem>
+            )}
+            {uploadForm.content_type === "video" && (
+              <ListItem>
+                <video width="100%" height="240" controls>
+                  <source
+                    src={`/api/media/${uploadForm.content_link}`}
+                    type="video/mp4"
+                  />
+                </video>
+              </ListItem>
+            )}
+            {uploadForm.content_type === "audio" && (
+              <ListItem>
+                <audio controls style={{ display: "flex", width: "100%" }}>
+                  <source src={`/api/media/${uploadForm.content_link}`} />
+                </audio>
+              </ListItem>
+            )}
+            <ListItem>
+              <button type="submit" className="btn">
                 Save edits
-							</button>
-						</ListItem>
-					</form>
-				</>
-			)}
-		</div>
-	);
+              </button>
+            </ListItem>
+          </form>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default Edit;

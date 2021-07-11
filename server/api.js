@@ -2,7 +2,7 @@ import { Router } from "express";
 import passport from "passport";
 import { login, logout, ping, requestReset, verifyToken, resetPassword, createNewAdmin } from "./admins";
 import { artUpload, media } from "./upload";
-import { getArtwork, updateArtwork, deleteArtwork } from "./artwork";
+import { getArtwork, getPublicArtwork, updateArtwork, deleteArtwork } from "./artwork";
 import { requiresLogin } from "./middleware";
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
@@ -27,7 +27,9 @@ router.post("/admin", createNewAdmin);
 
 router.put("/admin/:id", resetPassword);
 
-router.get("/artwork", getArtwork);
+router.get("/admin-artwork", requiresLogin, getArtwork);
+
+router.get("/artwork", getPublicArtwork);
 
 router.put("/artwork/:id", requiresLogin, updateArtwork);
 
