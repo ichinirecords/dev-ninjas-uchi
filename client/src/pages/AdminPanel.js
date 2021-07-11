@@ -12,6 +12,7 @@ const AdminPanel = ({ user, setUser }) => {
 
   const [approveMode, setApproveMode] = useState(true);
   const [createMode, setCreateMode] = useState(false);
+  
 
   useEffect(() => {
     fetch("/api/ping", { credentials: "include" })
@@ -34,6 +35,8 @@ const AdminPanel = ({ user, setUser }) => {
       }
     });
   };
+
+  
 
   return (
     <>

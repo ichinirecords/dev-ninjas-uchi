@@ -68,7 +68,7 @@ export const updateArtwork = (req, res) => {
     .catch((e) => console.error(e));
 };
 
-// function for GET endpoint
+// function for GET endpoints
 
 export const getArtwork = (req, res) => {
   const status = req.query.status;
@@ -76,6 +76,13 @@ export const getArtwork = (req, res) => {
   if (Object.keys(req.query).length > 0) getQuery += " WHERE ";
   if (status) getQuery += `artwork_status = '${status}'`;
   getQuery += " ORDER BY id;";
+  db.query(getQuery)
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
+};
+
+export const getPublicArtwork = (req, res) => {
+  let getQuery = `SELECT * FROM artwork WHERE artwork_status = 'approved' ORDER BY id;`;
   db.query(getQuery)
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));

@@ -37,7 +37,8 @@ const HomeTab = ({ setView, showIntro, setShowIntro, hideIntro, setHideIntro }) 
           fontFamily: "EB Garamond",
           padding: "0.5em 1.75em",
           cursor: "pointer",
-          whiteSpace: "nowrap"
+          whiteSpace: "nowrap",
+          zIndex: "2"
         }}
       >
         MAP VIEW

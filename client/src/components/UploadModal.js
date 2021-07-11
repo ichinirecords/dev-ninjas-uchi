@@ -14,15 +14,16 @@ import TextField from "@material-ui/core/TextField";
 import MapForm from "./MapForm";
 import { useHistory } from "react-router-dom";
 import UploadModalAlerts from "./UploadModalAlerts";
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	appBar: {
 		position: "relative",
 		backgroundColor: "#7d69af",
 		fontFamily: "EB Garamond",
 	},
 	title: {
-		marginLeft: theme.spacing(5),
 		display: "flex",
 		justifyContent: "space-between",
 		width: "100%",
@@ -30,6 +31,18 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "center",
 		alignItems: "center",
 		fontFamily: "EB Garamond",
+	},
+	disclaimer: {
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "space-between",
+		width: "100%",
+		margin: "auto",
+		justifyContent: "center",
+		alignItems: "center",
+		fontFamily: "EB Garamond",
+		textAlign: "justify",
+	  textJustify: "inter-word"
 	},
 	icon: {
 		marginRight: '-1em'
@@ -46,9 +59,6 @@ const useStyles = makeStyles((theme) => ({
 			fontFamily: "EB Garamond",
 			fontSize: "1.2em"
 		},
-	},
-	map_header: {
-		fontSize: "1.25em",
 	},
 	media: {
 		borderRadius: "0.25em",
@@ -90,6 +100,13 @@ const UploadModal = () => {
 		story: "",
 	};
 	const [uploadForm, setUploadForm] = useState(initialFormValues);
+	const [signed, setSigned] = useState({
+		agreement: false,
+	});
+
+	const handleAgreement = (e) => {
+		setSigned({ [e.target.name]: e.target.checked });
+	};
 
 	const validateForm = () =>{
 		if (uploadForm.content_type === "") {
@@ -132,12 +149,11 @@ const UploadModal = () => {
 		e.preventDefault();
 
 		const validate = validateForm();
-		if (validate) {
+		if (validate && signed.agreement) {
 			const formData = new FormData();
 			formData.append("image", file);
 			console.log(file);
 			for (let value of formData.values()) {
-				console.log(value);
 			}
 			for(let key in uploadForm){
 				formData.append(key, uploadForm[key]);
@@ -191,10 +207,8 @@ const UploadModal = () => {
 					backgroundColor: '#4f3e7f',
 					color: "white",
 					fontWeight: '900',
-					// fontSize: '1em',
 					fontWeight: "normal",
 					border: "3px solid #a8546c",
-					// boxSizing: "border-box",
 					borderRadius: "7px",
 					fontFamily: "EB Garamond",
 					padding: "0.5em 1.75em",
@@ -214,9 +228,8 @@ const UploadModal = () => {
 			>
 				<AppBar className={classes.appBar}>
 					<Toolbar>
-						<Typography variant="h6" className={classes.title}>
-              Please fill out the form below and choose the media type you want
-              to upload
+						<Typography variant="h5" className={classes.title}>
+              Please read the Disclaimer, check the box and fill out the form below
 						</Typography>
 						<IconButton
 						  className={classes.icon}
@@ -230,6 +243,27 @@ const UploadModal = () => {
 					</Toolbar>
 				</AppBar>
 				<List className={`${classes.form} upload-modal`}>
+					<ListItem className={classes.disclaimer}>
+						<Typography variant="h4" className={classes.disclaimer}>
+							Disclaimer
+						</Typography>
+						<Typography variant="h6" className={classes.disclaimer}>
+							We welcome your contribution to this site. Your safety and wellbeing are our priorities.  Personal data and information you upload to this site will be processed according to UK data protection law. It will also be in the public domain for everyone to see. Please therefore do not upload your full postcode or other information which may precisely identify your location. Do not use your full name and limit other identifying information where possible. We moderate content uploaded to the site. We may edit information published at our absolute discretion.
+						</Typography>
+						<Typography>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={signed.agreement}
+										onChange={handleAgreement}
+										name="agreement"
+										color="primary"
+									/>
+								}
+								label="Agreed"
+							/>
+						</Typography>
+					</ListItem>
 					<ListItem>
 						<TextField
 							InputProps={{
@@ -261,12 +295,19 @@ const UploadModal = () => {
 							onChange={handleChange}
 						/>
 					</ListItem>
-					<ListItem className={classes.map_header}>
-            Please enter the name of your country or city and locate it on the
-            map
+					<ListItem>
+						<Typography variant="h5" className={classes.title}>
+							Please enter the name of your country or city and locate it on the
+							map
+						</Typography>
 					</ListItem>
 					<ListItem>
 						<MapForm setCoordUploadForm={setCoordUploadForm} />
+					</ListItem>
+					<ListItem>
+						<Typography variant="h5" className={classes.title}>
+							Please choose the media type you would like to upload
+						</Typography>
 					</ListItem>
 					<ListItem>
 						<div className="center">

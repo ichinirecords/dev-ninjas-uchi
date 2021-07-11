@@ -71,21 +71,25 @@ npm test
 
 ## Usage
 
-#### Home page
+### Home page
 
 <p>On the main page visitors can see uploaded art in an interactive map. They have the option to switch to list view, filter specific media types and search for content.</p>
 
-<!-- SCREENSHOT EXAMPLE 
-<p align="center">
-	<img src="https://github.com/cbaggini/itinerary-generator-react/blob/master/search.png?raw=true" alt="drawing" width="800"/>
+<p align="middle">
+	<img src="https://github.com/scarabeo7/dev-ninjas-uchi/blob/staging/img/home-map.png?raw=true" alt="drawing" width="300"/>
+	<img src="https://github.com/scarabeo7/dev-ninjas-uchi/blob/staging/img/home-list.png?raw=true" alt="drawing" width="300"/>
 </p>
--->
 
-#### Upload form
+### Upload form
 
 <p>This form allows the artist to upload their content in text, image, audio and video format. They need to provide their name and the title of their work, their location. Upon successful upload, they will be notified their work has been submitted and is awaiting admin approval.</p>
-
-#### Admin area
+<p align="center">
+	<img src="https://github.com/scarabeo7/dev-ninjas-uchi/blob/staging/img/upload-form.png?raw=true" alt="drawing" width="500"/>
+</p>
+### Admin area
 
 <p>The admin can approve or reject submitted artwork, as well as edit artwork before approving it. They can also view all artwork on the database, search by title and artist name, edit and delete any item in the database. An email digest with details of submitted artwork awaiting approval is sent daily to all admins.</p>
 <p>The form to create a new admin account is only accessible in the admin area. Once email address and username for the new user are entered, they will receive an email to set their new password.</p>
+<p align="center">
+	<img src="https://github.com/scarabeo7/dev-ninjas-uchi/blob/staging/img/admin.png?raw=true" alt="drawing" width="500"/>
+</p>

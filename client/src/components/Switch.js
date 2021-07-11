@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Switch.css';
 
-const Switch = ({ approvedArtwork, setApprovedArtwork, backupData, showIntro, setShowIntro}) => {
+const Switch = ({ approvedArtwork, setApprovedArtwork, backupData, showIntro, setShowIntro }) => {
   let tempArray = [...approvedArtwork]
   const mediaTypes = ['video', 'audio', 'image', 'text'];
   const [checkedMediaTypes, setCheckedMediaTypes] = useState([]);
