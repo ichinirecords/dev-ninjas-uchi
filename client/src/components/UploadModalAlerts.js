@@ -22,7 +22,7 @@ const UploadModalAlerts = ({ error, setError, success, setSuccess, uploadingMess
 				onClose={() => setError(false)}
 			>
 				<AlertTitle>Error</AlertTitle>
-        Failed to submit! — <strong>Please fill in the empty field/s!</strong>
+        Failed to submit! — <strong>Please fill in the empty field/s and make sure the disclaimer box is checked!</strong>
 			</Alert>
 			<Alert
 				className={success ? "success-alert" : "d-none"}
