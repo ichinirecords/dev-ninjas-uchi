@@ -15,7 +15,6 @@ import MapForm from "./MapForm";
 import { useHistory } from "react-router-dom";
 import UploadModalAlerts from "./UploadModalAlerts";
 import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const useStyles = makeStyles(() => ({
