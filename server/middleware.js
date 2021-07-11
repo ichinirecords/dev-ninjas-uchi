@@ -26,6 +26,7 @@ export const configuredHelmet = () =>
           "unpkg.com",
           "cdn.pixabay.com",
           "uchi-app-uploads.s3.eu-west-1.amazonaws.com",
+          "snappygoat.com",
         ],
         scriptSrc: [
           "'self'",
