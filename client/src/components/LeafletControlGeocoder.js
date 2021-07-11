@@ -12,7 +12,6 @@ const LeafletControlGeocoder = ({ setCoordUploadForm }) => {
   useEffect(() => {
     var geocoder = L.Control.Geocoder.nominatim();
     if (typeof URLSearchParams !== "undefined" && location.search) {
-      // parse /?geocoder=nominatim from URL
       var params = new URLSearchParams(location.search);
       var geocoderString = params.get("geocoder");
       if (geocoderString && L.Control.Geocoder[geocoderString]) {

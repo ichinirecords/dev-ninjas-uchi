@@ -12,7 +12,7 @@ export function Home() {
   const [view, setView] = useState("map");
   const [showIntro, setShowIntro] = useState(true);
   const [hideIntro, setHideIntro] = useState('');
-  
+
   useEffect(() => {
     fetch("/api/artwork")
       .then((res) => res.json())
@@ -26,10 +26,22 @@ export function Home() {
   return (
     <>
       <main className="main" role="main">
-        <AppHeader showIntro={showIntro} setShowIntro={setShowIntro} setHideIntro={setHideIntro} approvedArtwork={approvedArtwork} setApprovedArtwork={setApprovedArtwork} backupData={backupData}/>
-        <HomeTab hideIntro={hideIntro} setHideIntro={setHideIntro} showIntro={showIntro} setShowIntro={setShowIntro} setView={setView} />
+        <AppHeader
+          showIntro={showIntro}
+          setShowIntro={setShowIntro}
+          approvedArtwork={approvedArtwork}
+          setApprovedArtwork={setApprovedArtwork}
+          backupData={backupData}
+        />
+        <HomeTab
+          hideIntro={hideIntro}
+          setHideIntro={setHideIntro}
+          showIntro={showIntro}
+          setShowIntro={setShowIntro}
+          setView={setView}
+        />
         {view === "listing" && <ArtistsStoryCards approvedArtwork={approvedArtwork} />}
-        {view === "map" && <Map approvedArtwork={approvedArtwork} /> }
+        {view === "map" && <Map approvedArtwork={approvedArtwork} />}
         <Footer />
       </main>
     </>
