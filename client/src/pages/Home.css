@@ -218,7 +218,7 @@ input::-ms-input-placeholder { /* Microsoft Edge */
 .radio-container {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   font-size: larger;
-  margin-top: 2em;
+  margin: 1em 0 -1em 0;
 }
 
 .radio-input {
@@ -234,12 +234,10 @@ input::-ms-input-placeholder { /* Microsoft Edge */
   cursor: pointer;
   transition: background 0.1s;
 }
-
 .radio-input:checked + .radio-label {
   background-color: #b9aed6
 
 }
-
 .radio-label:last-of-type {
   border-top-right-radius: 0.25em;
   border-bottom-right-radius: 0.25em;
