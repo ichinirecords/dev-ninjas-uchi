@@ -14,7 +14,7 @@ export function Home() {
   const [hideIntro, setHideIntro] = useState('');
   
   useEffect(() => {
-    fetch("/api/artwork?status=approved")
+    fetch("/api/artwork")
       .then((res) => res.json())
       .then((data) => {
         setApprovedArtwork(data);

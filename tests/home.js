@@ -3,7 +3,7 @@ import { Selector } from "testcafe";
 fixture`Homepage`.page`http://localhost:3000/`;
 
 const cards = Selector(".MuiPaper-root");
-const listButton = Selector(".tab-button").withText("LIST VIEW");
+const listButton = Selector(".tab-button").withText("STORY VIEW");
 const mapContainer = Selector(".leaflet-container");
 const searchBar = Selector(".search-bar");
 const searchResults = Selector(".MuiCard-root");
