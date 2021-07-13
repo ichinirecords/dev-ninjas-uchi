@@ -39,7 +39,7 @@ const NewAdmin = ({ setCreateMode }) => {
           alert("New account created successfully");
           setCreateMode(false);
 		} else if (res.status === 400) {
-			alert("an user with this username or email address already exists")
+			alert("A user with this username or email address already exists")
         } else {
           alert("Account creation was not successful");
         }
