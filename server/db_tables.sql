@@ -25,7 +25,6 @@ CREATE TABLE artwork (
         REFERENCES admins (id)
 );
 
-INSERT INTO admins (username, pass) VALUES ('user1', '$2b$10$MVxoipkq1jsFrwZJeiE6Y.hXPC0aSkeYDrW5DMa2jXmUh1BDca2Yq'); //pw is qwerty
 
 INSERT INTO artwork (artist_name, title, city, country, content_type, content_text, artwork_status) 
 	VALUES ('test user', 'test title', 'Telford', 'UK', 'text', 'some random content', 'submitted'); 

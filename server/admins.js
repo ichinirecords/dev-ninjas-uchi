@@ -96,11 +96,12 @@ export const resetPassword = async (req, res) => {
   }
 };
 
-export const createNewAdmin = async (req, res) => {
+export const createNewAdmin = async (req, res) => { 
   const username = req.body.username;
   const email = req.body.email;
   const adminEmails = await getAdminEmails();
-  if (adminEmails.includes(email)) return res.sendStatus(400)
+  const usernameExists = await getUserDetails(username, "username");
+  if (adminEmails.includes(email)  || usernameExists !== undefined ) return res.sendStatus(400)
   const createQuery = `INSERT INTO admins (username, email) VALUES ($1, $2);`;
   try {
     const queryResult = await db.query(createQuery, [username, email]);
