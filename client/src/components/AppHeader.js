@@ -8,7 +8,7 @@ import Sticky from "react-stickynode";
 
 const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData, showIntro, setShowIntro }) => {
   return (
-    <header className='app-header'>
+    <header className="app-header">
       <div
         className="header_bg"
         style={{
@@ -26,8 +26,10 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData, showIntro,
       >
         <div className="header-contents">
           <div className="logo-container">
-            <img className='logo' src={logo} alt={logo} />
-            <h1 className='brand-name'>UCHI</h1>
+            <a href="/">
+              <img className="logo" src={logo} alt={logo} />
+            </a>
+            <h1 className="brand-name">UCHI</h1>
           </div>
           <div className="search-and-switch">
             <SearchBar
@@ -47,7 +49,7 @@ const AppHeader = ({ approvedArtwork, setApprovedArtwork, backupData, showIntro,
           <UploadModal />
         </div>
       </div>
-      <Sticky innerZ='10' enabled={true}>
+      <Sticky innerZ="10" enabled={true}>
         <DonateLink />
       </Sticky>
     </header>
